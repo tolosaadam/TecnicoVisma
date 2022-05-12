@@ -1,0 +1,38 @@
+version: '3.4'
+
+volumes:
+  datafiles:
+
+services:
+  tecnicovismaapi:
+    environment:
+      - DBHOST=database
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+    ports:
+      - "80"
+      - "443"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    networks:
+      - backend
+  database:
+    image: mysql:8.0.0
+    container_name: TecnicoVismaMySQL
+    command: --skip-ssl
+    ports:
+      - "3305:3306"
+    restart: always
+    volumes:
+      - datafiles:/var/lib/mysql
+    environment:
+        MYSQL_ROOT_PASSWORD: '123456'
+        MYSQL_DATABASE: TecnicoVismaDB
+    networks:
+      - backend
+networks:
+  backend:
+    driver: bridge
+  frontend:
+    driver: bridge

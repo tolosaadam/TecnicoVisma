@@ -1,0 +1,28 @@
+footer{
+    border-top: 1px solid lightgray;
+    
+    width: 100%;  
+    max-width: 100%;
+    bottom: 0px;
+    height: 50px;
+    position: fixed;
+    display: flex;
+    margin-top: auto;
+}
+
+.foot-bar{
+    background-color: #1976d2;
+}
+
+
+footer div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    display: flex;   
+    font-size: 12px;
+    margin-bottom: 10px;
+
+}

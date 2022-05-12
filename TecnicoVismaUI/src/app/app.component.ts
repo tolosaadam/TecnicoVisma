@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ISideNavToggle } from './models/sidenav.interface';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'TecnicoVismaUI';
+
+  isSideNavCollapsed = false;
+  screenWidth = 0;
+
+  onToggleSideNav(data: ISideNavToggle): void{
+    this.screenWidth = data.screenWidth;
+    this.isSideNavCollapsed = data.collapsed;
+  }
+
+
 }

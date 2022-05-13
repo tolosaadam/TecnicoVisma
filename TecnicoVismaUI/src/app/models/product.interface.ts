@@ -6,6 +6,6 @@ export interface ProductI {
     details: string;
     unitPrice: number;
     unitsInStock: number;
-    category: CategoryI;
+    // category: CategoryI;
     // imagePath: string; 
 }

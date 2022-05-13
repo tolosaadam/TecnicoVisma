@@ -7,6 +7,7 @@ import { FooterModule } from './components/shared-components/footer/footer.modul
 import { HeaderModule } from './components/shared-components/header/header.module';
 import { HomeModule } from './views/home/home.module';
 import { LoginModule } from './views/login/login.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { LoginModule } from './views/login/login.module';
     FooterModule,
     HeaderModule,
     LoginModule,
-    HomeModule
+    HomeModule,
+    HttpClientModule
 
   ],
   providers: [],

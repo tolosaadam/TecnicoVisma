@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CustomerTableComponent } from './components/customer-table/customer-table.component';
+import { MetricsComponent } from './components/metrics/metrics.component';
 import { ProductTableComponent } from './components/product-table/product-table.component';
 import { HomeComponent } from './views/home/home.component';
 import { LoginComponent } from './views/login/login.component';
@@ -16,6 +17,10 @@ const routes: Routes = [
    {
      path:'customers',
      component:CustomerTableComponent
+   },
+   {
+     path:'metrics',
+     component: MetricsComponent
    }]}
 ];
 @NgModule({

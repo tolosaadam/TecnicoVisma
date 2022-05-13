@@ -1,20 +1,54 @@
-<div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed':''">
-    <div class="logo-container">
-        <button class="logo" (click)="toggleCollapse()">A</button>
-        <div class="logo-text" *ngIf="collapsed">Angular</div>   
-        <button class="btn-close" *ngIf="collapsed" (click)="closeSidenav()">
-            <i class="fal fa-times close-icon"></i>
-        </button>    
+<mat-nav-list>
+    <div class="profile-card">        
+        <div class="header">
+            <h2>Adam Tolosa</h2>
+            <h4>tolosaadam@gmail.com</h4>
+        </div>
+        <img src="" alt="Tolosa Adam">
     </div>
-    <ul class="sidenav-nav">
-        <li class="sidenav-nav-item" *ngFor="let data of navData">
-            <a  class="sidenav-nav-link" [routerLink]="[data.routeLink]"
-                routerLinkActive="active"
-                [routerLinkActiveOptions]="{exact: true}"
-            >
-                <i class="sidenav-link-icon" [class]="data.icon"></i>
-                <span class="sidenav-link-text" *ngIf="collapsed">{{data.label}}</span>
-            </a>
-        </li>
-    </ul>
-</div>
+
+    <mat-divider></mat-divider>
+
+    <h2 matSubheader >Pages</h2>
+
+    <a mat-list-item routerLink="products"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{exact: true}">
+        <mat-icon>inventory_2</mat-icon>
+        <span>Products</span>
+        
+    </a>
+    <a mat-list-item   routerLink="customers"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{exact: true}">
+        <mat-icon>import_contacts</mat-icon>
+        <span>Customers</span>
+    </a>
+    <!-- <a mat-list-item routerLinkActive="List-item-active" routerLink="questions">Questions</a>
+    <a mat-list-item routerLinkActive="List-item-active" routerLink="manage-products">Manage Products</a>
+    <a mat-list-item routerLinkActive="List-item-active" routerLink="manage-categories">Manage Categories</a>
+    <a mat-list-item routerLinkActive="List-item-active" routerLink="manage-brands">Manage Brands</a>
+    <a mat-list-item routerLinkActive="List-item-active" routerLink="manage-site">Manage Web Site Settings</a> -->
+    
+    <mat-divider></mat-divider>
+    
+    <h2 matSubheader>Tools</h2>
+
+    <a mat-list-item routerLink="/contacts"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{exact: true}">
+        <mat-icon>import_contacts</mat-icon>
+        <span >Contacts</span>
+    </a>
+
+    <a mat-list-item routerLink="/contacts"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{exact: true}">
+        <mat-icon>contact_phone</mat-icon>
+        <span>Leads</span>
+    </a>
+
+
+
+
+</mat-nav-list>

@@ -10,16 +10,14 @@ export class HomeComponent implements OnInit {
 
   constructor() { }
 
+  sideBarOpen = true;
+
   ngOnInit(): void {
     
   }
 
-  isSideNavCollapsed = false;
-  screenWidth = 0;
-
-  onToggleSideNav(data: ISideNavToggle): void{
-    this.screenWidth = data.screenWidth;
-    this.isSideNavCollapsed = data.collapsed;
+  sideBarToggler(){
+    this.sideBarOpen = !this.sideBarOpen;
   }
 
 }

@@ -51,6 +51,7 @@ namespace TecnicoVisma.Repositories
 
         public IEnumerable<Product> Update(Product product)
         {
+            product.CategoryId = 1;
             _context.Products.Update(product);
             _context.SaveChanges();
             return GetProducts();

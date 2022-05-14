@@ -33,9 +33,9 @@ export class ApiService {
     return this.http.post<ApiResponseI>(direccion,product);
   }
 
-  editProduct(product: ProductI){
+  editProduct(product: ProductOperationI){
     let direccion = this.url + "product/update";
-    return this.http.put<ProductI[]>(direccion,product);
+    return this.http.put<ApiResponseI>(direccion,product);
   }
 
   removeProduct(ids: number[]){

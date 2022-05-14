@@ -110,8 +110,19 @@ namespace TecnicoVismaAPI.Controllers
         public IActionResult updateProduct(ProductDTO productDTO)
         {
             _logger.LogInformation($"UpdateProduct from Controller");
-
-            return Ok(_business.UpdateProduct(productDTO));
+            var response = new ResponseDTO<IEnumerable<ProductDTO>>();
+            try
+            {
+                var products = _business.UpdateProduct(productDTO);
+                response.Data = products;
+                return Ok(response);
+            }
+            catch(Exception e)
+            {
+                _logger.LogError($"An error occurring editing the  product  = {productDTO}", e);
+                response.ErrorMessage = e.Message;
+                return BadRequest(response);
+            }
         }
 
     }

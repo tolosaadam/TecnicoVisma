@@ -6,7 +6,7 @@ import { ProductI } from 'src/app/models/product.interface';
 import { ApiService } from 'src/app/services/api/api.service';
 import { DialogService } from 'src/app/services/dialog/dialog.service';
 import { NgToastService } from 'ng-angular-popup';
-import { Observable } from 'rxjs';
+import { DialogDataI } from 'src/app/models/dialogData.interface';
 @Component({
   selector: 'app-product-table',
   templateUrl: './product-table.component.html',
@@ -57,7 +57,12 @@ export class ProductTableComponent implements OnInit {
   }
 
   addRow(){
-    this.dialogService.openAddProductDialog().afterClosed().subscribe((res:ApiResponseI) => {
+    let dialogData:DialogDataI = {
+      title: "Add Product",
+      data: undefined,
+      key: "add"
+    };
+    this.dialogService.openAddProductDialog(dialogData).afterClosed().subscribe((res:ApiResponseI) => {
       if(res.isError){
         this.toast.error({detail:"Error Message",summary:"An error has occurred, try again later."});
       }
@@ -66,6 +71,7 @@ export class ProductTableComponent implements OnInit {
         this.dataSource.data = res.data;
       }
     });
+    this.selection = new SelectionModel<ProductI>(true, []);
   }
 
   removeSelectedRows() {
@@ -98,8 +104,21 @@ export class ProductTableComponent implements OnInit {
 
   editSelectedRow(){
     if(this.selection.selected.length == 1){
-      
-      
+      let dialogData:DialogDataI = {
+        title: "Edit Product",
+        data: this.selection.selected,
+        key: "edit"
+      };
+      this.dialogService.openEditProductDialog(dialogData)
+      .afterClosed().subscribe((res:ApiResponseI) =>{
+        if(res.isError){
+          this.toast.error({detail:"Error Message",summary:"An error has occurred, try again later."});
+        }
+        else if(res.data != undefined){
+          this.toast.success({detail:"Sucess Message",summary:"The product have been edited"});
+          this.dataSource.data = res.data;
+        }
+      })     
     }
     else{
       if(this.selection.selected.length == 0){

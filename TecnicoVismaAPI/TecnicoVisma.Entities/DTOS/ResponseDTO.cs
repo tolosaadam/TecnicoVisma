@@ -8,7 +8,6 @@ namespace TecnicoVisma.Entities.DTOS
 {
     public class ResponseDTO<T> where T : class
     {
-        public string Id { get; set; }
         public T Data { get; set; }
         public bool IsError
         {

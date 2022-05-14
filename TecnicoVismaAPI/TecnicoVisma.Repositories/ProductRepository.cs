@@ -19,16 +19,11 @@ namespace TecnicoVisma.Repositories
             return _context.Products.Count();
         }
 
-        public IEnumerable<Product> Delete(int id)
+        public IEnumerable<Product> Delete(List<int> ids)
         {
-            var product = _context.Products.FirstOrDefault(x => x.Id == id);
-            if (product != null)
-            {
-                _context.Products.Remove(product);
-                _context.SaveChanges();
-                return GetProducts();
-            }
-            return null;
+            _context.Products.RemoveRange(_context.Products.Where(x => ids.Contains(x.Id)));
+            _context.SaveChanges();
+            return GetProducts();
         }
 
         public IEnumerable<Product> GetProducts()

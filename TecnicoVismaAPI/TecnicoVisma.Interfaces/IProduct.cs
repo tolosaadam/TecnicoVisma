@@ -11,7 +11,7 @@ namespace TecnicoVisma.Interfaces
         Product GetProduct(int id);
         int Insert(Product product);
         IEnumerable<Product> Update(Product product);
-        IEnumerable<Product> Delete(int id);
+        IEnumerable<Product> Delete(List<int> ids);
         int Count();
         //IEnumerable<Product> GetSimilarProducts(Product product);
     }

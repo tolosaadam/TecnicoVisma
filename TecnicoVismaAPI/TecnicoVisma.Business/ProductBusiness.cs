@@ -37,19 +37,6 @@ namespace TecnicoVisma.Business
             return productsDTO;
         }
 
-        //public IEnumerable<ProductDTO> GetSimilarProductsByCategory(int id)
-        //{
-        //    var productGridDTO = _repository.GetProduct(id);
-        //    var product = _mapper.Map<ProductGridDTO, Product>(productGridDTO);
-        //    if (product != null)
-        //    {
-        //        var products = _repository.GetSimilarProducts(product);
-        //        var productsDTO = _mapper.Map<IEnumerable<Product>, IEnumerable<ProductDTO>>(products);
-        //        return productsDTO;
-        //    }
-        //    return null;
-        //}
-
         public int CreateProduct(ProductDTO productDTO)
         {
             var product = _mapper.Map<ProductDTO, Product>(productDTO);
@@ -57,9 +44,9 @@ namespace TecnicoVisma.Business
             return response;
         }
 
-        public IEnumerable<ProductDTO> DeleteProduct(int id)
+        public IEnumerable<ProductDTO> DeleteProduct(List<int> ids)
         {
-            var products = _repository.Delete(id);
+            var products = _repository.Delete(ids);
             var productsDTO = _mapper.Map<IEnumerable<Product>, IEnumerable<ProductDTO>>(products);
             return productsDTO;
         }

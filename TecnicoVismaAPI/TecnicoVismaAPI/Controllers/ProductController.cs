@@ -42,14 +42,6 @@ namespace TecnicoVismaAPI.Controllers
             return Ok(_business.GetProduct(id));
         }
 
-        //[HttpGet("similar/{id}")]
-        //public IActionResult GetSimilarProductsByCategory(int id)
-        //{
-        //    _logger.LogInformation($"GetSimilarProductsByCategory from Controller");
-
-        //    return Ok(_business.GetSimilarProductsByCategory(id));
-        //}
-
         [HttpGet]
         public IActionResult GetAllProducts()
         {
@@ -62,16 +54,29 @@ namespace TecnicoVismaAPI.Controllers
         public IActionResult CreateProduct(ProductDTO productDTO)
         {
             _logger.LogInformation($"CreateProduct from Controller");
-
+            
             return Ok(_business.CreateProduct(productDTO));
         }
 
-        [HttpDelete("remove/{id}")]
-        public IActionResult DeleteProduct(int id)
+        [HttpDelete("remove")]
+        public IActionResult DeleteProduct([FromBody]List<int> ids)
         {
-            _logger.LogInformation($"DeleteProduct from Controller");
+            _logger.LogInformation($"DeleteProduct from Controller ids = {ids}");
+            var response = new ResponseDTO<IEnumerable<ProductDTO>>();
+            try
+            {
+                var products = _business.DeleteProduct(ids);
+                response.Data = products;
+                return Ok(response);
 
-            return Ok(_business.DeleteProduct(id));
+            }
+            catch(Exception e)
+            {
+                _logger.LogError($"An error occurring Deleting products ids = {ids}", e);
+                response.ErrorMessage = e.Message;
+                return BadRequest(response);
+                
+            }           
         }
 
         [HttpPut("update")]

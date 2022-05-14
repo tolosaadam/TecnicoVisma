@@ -21,16 +21,17 @@
     }
 
     .no-button{
+        color:#1976d2;
         &:hover{
-            background-color: darken(#f44336, 15%);
+            background-color: darken(#fff, 15%);
         }
     }
 
     .yes-button{
         color: white;
-        background-color: rgb(72, 189, 72);
+        background-color: #1976d2;
         &:hover{
-            background-color: darken(rgb(72, 189, 72), 15%);
+            background-color: darken(#1976d2, 15%);
         }
 
     }

@@ -6,6 +6,7 @@ import { ProductI } from 'src/app/models/product.interface';
 import { ApiService } from 'src/app/services/api/api.service';
 import { DialogService } from 'src/app/services/dialog/dialog.service';
 import { NgToastService } from 'ng-angular-popup';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-product-table',
   templateUrl: './product-table.component.html',
@@ -16,7 +17,7 @@ export class ProductTableComponent implements OnInit {
   // displayedColumns: string[] = ['id', 'name', 'details', 'unitPrice','unitsInStock','category','brand','imagePath','actions']; 
   displayedColumns: string[] = ['select','id', 'name', 'details', 'unitPrice','unitsInStock']; 
   selection = new SelectionModel<ProductI>(true, []);
-  dataSelected = Object.assign(this.products);
+  // dataSelected = Object.assign(this.products);
   dataSource = new MatTableDataSource<ProductI>();
   
 
@@ -27,8 +28,8 @@ export class ProductTableComponent implements OnInit {
   ngOnInit(): void {
     
     this.api.getProducts().subscribe(data =>{
-      this.dataSource.data = data;
-      this.dataSelected.data = data;    
+      this.dataSource.data = data.data;
+      // this.dataSelected.data = data.data;    
     });
   }
 
@@ -55,10 +56,22 @@ export class ProductTableComponent implements OnInit {
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
   }
 
+  addRow(){
+    this.dialogService.openAddProductDialog().afterClosed().subscribe((res:ApiResponseI) => {
+      if(res.isError){
+        this.toast.error({detail:"Error Message",summary:"An error has occurred, try again later."});
+      }
+      else if(res.data != undefined){
+        this.toast.success({detail:"Sucess Message",summary:"The product have been added"});
+        this.dataSource.data = res.data;
+      }
+    });
+  }
+
   removeSelectedRows() {
     let auxSelectedItems = this.selection.selected;
     if(auxSelectedItems.length == 0){
-      this.toast.warning({detail:"Warning Message",summary:"You have to select at least 1"})
+      this.toast.warning({detail:"Warning Message",summary:"You have to select at least 1"});
     }
     else{
       this.dialogService.openConfirmationDialog("Are you sure you want to delete these products?")
@@ -70,10 +83,10 @@ export class ProductTableComponent implements OnInit {
           });
           this.api.removeProduct(selectedIds).subscribe((data:ApiResponseI) => {
             if(data.isError){
-              this.toast.error({detail:"Error Message",summary:"An error has occurred, try again later."})
+              this.toast.error({detail:"Error Message",summary:"An error has occurred, try again later."});
             }
             else{
-              this.toast.success({detail:"Sucess Message",summary:"The products have been deleted"})
+              this.toast.success({detail:"Sucess Message",summary:"The products have been deleted"});
               this.dataSource.data = data.data;
             }
           }) 
@@ -96,6 +109,7 @@ export class ProductTableComponent implements OnInit {
         this.toast.warning({detail:"Warning Message",summary:"You cannot edit more than one product"})   
       }
     }
+    this.selection = new SelectionModel<ProductI>(true, []);
   }
 
   applyFilter(event: Event) {

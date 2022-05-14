@@ -46,16 +46,43 @@ namespace TecnicoVismaAPI.Controllers
         public IActionResult GetAllProducts()
         {
             _logger.LogInformation($"GetAllProduct from Controller");
+            var response = new ResponseDTO<IEnumerable<ProductDTO>>();
+            try
+            {
+                var products = _business.GetAllProducts();
+                response.Data = products;
+                return Ok(response);
 
-            return Ok(_business.GetAllProducts());
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"An error getting all products", e);
+                response.ErrorMessage = e.Message;
+                return BadRequest(response);
+
+            }
         }
 
         [HttpPost]
         public IActionResult CreateProduct(ProductDTO productDTO)
         {
             _logger.LogInformation($"CreateProduct from Controller");
-            
-            return Ok(_business.CreateProduct(productDTO));
+            var response = new ResponseDTO<IEnumerable<ProductDTO>>();
+            try
+            {
+                var products = _business.CreateProduct(productDTO);
+                response.Data = products;
+                return Ok(response);
+
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"An error occurring Adding a product  = {productDTO}", e);
+                response.ErrorMessage = e.Message;
+                return BadRequest(response);
+
+            }
+
         }
 
         [HttpDelete("remove")]

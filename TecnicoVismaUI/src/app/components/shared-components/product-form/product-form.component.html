@@ -1,0 +1,72 @@
+
+<div class="container">
+    <div class="content">     
+     <form [formGroup]="productForm" class="form-container">     
+       <mat-card class="form-content">
+         <mat-card-header>
+           <mat-card-title>Add a Product</mat-card-title>
+           <mat-icon id="close-icon" (click)="closeDialog()">close</mat-icon>
+         </mat-card-header>
+         <mat-card-content class="input-content">
+           <div class="row">
+             <div class="col-md-6">
+               <mat-form-field appearance="fill" class="full-width">
+                 <mat-label>Name</mat-label>
+                 <mat-icon matSuffix>badge</mat-icon>
+                 <input type="text" formControlName="name" matInput placeholder="Ingrese el nombre del producto" required>
+               </mat-form-field>
+             </div>
+             <div class="col-md-6">
+               <mat-form-field appearance="fill" class="full-width">
+                 <mat-label>Details</mat-label>
+                 <mat-icon matSuffix>list_alt</mat-icon>
+                 <input type="text" formControlName="details" matInput placeholder=" Ingrese los detalles del producto" required>
+               </mat-form-field>
+             </div>
+             <div class="col-md-6">
+               <mat-form-field appearance="fill" class="full-width">
+                 <mat-label>Price</mat-label>
+                 <mat-icon matSuffix>payments</mat-icon>
+                 <input  type="number" formControlName="unitPrice" matInput placeholder="Ingrese el precio del producto en pesos" required>
+                 <mat-hint> Sin caracteres especiales </mat-hint>
+               </mat-form-field>
+             </div>           
+             <div class="col-md-6">
+               <mat-form-field appearance="fill" class="full-width">
+                 <mat-label>Stock</mat-label>
+                 <mat-icon matSuffix>inventory_2</mat-icon>               
+                 <input type="number" formControlName="unitsInStock" matInput placeholder="Ingrese el stock del producto" required>
+               </mat-form-field>
+             </div>
+             <!-- <div class="col-md-6">
+                 <mat-form-field appearance="fill" class="full-width">
+                   <mat-label>Category</mat-label>
+                   <mat-icon matSuffix>category</mat-icon>
+                   <mat-select formControlName="categoryId">
+                     <mat-option   *ngFor="let category of categories"   [value]="category.id"  placeholder="Ingrese la categoría del producto" required>{{category.name}}</mat-option>
+                   </mat-select>
+                    
+                 </mat-form-field>
+             </div> -->
+             <!-- <div class="col-md-6">
+                 <mat-form-field appearance="fill" class="full-width">
+                   <mat-label>Brand</mat-label>
+                   <mat-icon matSuffix>branding_watermark</mat-icon>
+                      <mat-select formControlName="brandId">
+                        <mat-option   *ngFor="let brand of brands" [value]="brand.id"   placeholder="Ingrese la marca del producto" required>{{brand.name}}</mat-option>
+                      </mat-select>
+                 </mat-form-field>
+             </div>   |
+             <app-upload (onUploadFinished)="uploadFinished($event)"></app-upload>        -->
+           </div>
+         </mat-card-content>
+         <mat-card-actions class="action-buttons">
+           <button (click)="onSubmit(productForm.value)" [disabled]="!productForm.valid"  mat-raised-button class="buttons submit-button">Submit</button>
+           <button (click)="closeDialog()"  mat-raised-button class="buttons cancel-button">Cancel</button>
+         </mat-card-actions>
+       </mat-card>
+     </form>
+   
+   </div>
+ </div>
+

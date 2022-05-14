@@ -40,11 +40,13 @@ namespace TecnicoVisma.Repositories
             return product;         
         }
 
-        public int Insert(Product product)
+        public IEnumerable<Product> Insert(Product product)
         {
+            product.CategoryId = 1; // Para testing
+
             _context.Products.Add(product);
             _context.SaveChanges();
-            return 1;
+            return GetProducts();
         }
 
         public IEnumerable<Product> Update(Product product)

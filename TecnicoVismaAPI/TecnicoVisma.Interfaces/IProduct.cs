@@ -9,7 +9,7 @@ namespace TecnicoVisma.Interfaces
     {
         IEnumerable<Product> GetProducts();
         Product GetProduct(int id);
-        int Insert(Product product);
+        IEnumerable<Product> Insert(Product product);
         IEnumerable<Product> Update(Product product);
         IEnumerable<Product> Delete(List<int> ids);
         int Count();

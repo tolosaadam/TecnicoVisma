@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from 'src/app/components/shared-components/confirmation-dialog/confirmation-dialog.component';
+import { ProductFormComponent } from 'src/app/components/shared-components/product-form/product-form.component';
 
 @Injectable({
   providedIn: 'root'
@@ -19,5 +20,14 @@ export class DialogService {
         message:msg
       }
     });
+  }
+
+  openAddProductDialog(){
+    return this.dialog.open(ProductFormComponent,{
+      width:'400px',
+      disableClose:true,
+      position: {top:"80px"},
+      panelClass: 'mat-dialog-product-form'
+    })
   }
 }

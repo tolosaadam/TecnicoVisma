@@ -37,11 +37,12 @@ namespace TecnicoVisma.Business
             return productsDTO;
         }
 
-        public int CreateProduct(ProductDTO productDTO)
+        public IEnumerable<ProductDTO> CreateProduct(ProductDTO productDTO)
         {
             var product = _mapper.Map<ProductDTO, Product>(productDTO);
-            var response = _repository.Insert(product);
-            return response;
+            var products = _repository.Insert(product);
+            var productsDTO = _mapper.Map<IEnumerable<Product>, IEnumerable<ProductDTO>>(products);
+            return productsDTO;
         }
 
         public IEnumerable<ProductDTO> DeleteProduct(List<int> ids)

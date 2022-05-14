@@ -15,18 +15,40 @@ table {
   .action-buttons{
     display: inline-flex;
     justify-content: space-evenly;
+
+    .add-button{
+      background-color: rgb(72, 189, 72);
+      &:hover{
+        background-color: darken(rgb(72, 189, 72), 15%);
+      }
+    }
+
+    .edit-button{
+      &:hover{
+        background-color: darken(#ffd740, 15%);
+      }
+    }
     
+    .delete-button{
+      &:hover{
+        background-color: darken(#f44336, 15%);
+      }
+    }
+
     button{
+      align-items: center;
       margin: 1px;
       width: 200px;
-      &:hover{
-        background-color: darken(#673ab7, 10%);
+
+      mat-icon{
+        font-size: 21px;
       }
     }
 
   }
 
 }
+
 
 @media screen and (max-width: 1250px){
   .filter-create{

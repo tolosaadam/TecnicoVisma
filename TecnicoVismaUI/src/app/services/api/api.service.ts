@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ApiResponseI } from 'src/app/models/apiResponse.interface';
 import { ProductI } from 'src/app/models/product.interface';
 
 @Injectable({
@@ -31,13 +32,14 @@ export class ApiService {
   //   return this.http.post<ProductI>(direccion,product);
   // }
 
-  // editProduct(product: ProductOperationI){
-  //   let direccion = this.url + "product/update";
-  //   return this.http.put<ProductI[]>(direccion,product);
-  // }
+  editProduct(product: ProductI){
+    let direccion = this.url + "product/update";
+    return this.http.put<ProductI[]>(direccion,product);
+  }
 
-  removeProduct(id:number){
+  removeProduct(ids: number[]){
     let direccion = this.url + "product/remove";
-    return this.http.delete<ProductI[]>(direccion+'/'+id);    
+    const body = ids
+    return this.http.delete<ApiResponseI>(direccion,{body});    
   }
 }

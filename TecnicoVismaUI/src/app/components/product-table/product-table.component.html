@@ -5,13 +5,13 @@
       <input matInput (keyup)="applyFilter($event)"  #input>
   </mat-form-field>
   <div fxLayout="row wrap" class="action-buttons">
-    <button mat-raised-button color="primary">
-      Add Row
+    <button mat-raised-button class="add-button">
+      Add Row    
     </button>
-    <button mat-raised-button color="primary">
+    <button mat-raised-button class="edit-button" color="accent" (click)="editSelectedRow()">
       Edit Row
     </button>
-    <button mat-raised-button color="primary" (click)="removeSelectedRows()">
+    <button mat-raised-button class="delete-button" color="warn" (click)="removeSelectedRows()">
       Remove Selected Rows
     </button>
   </div>
@@ -53,7 +53,7 @@
   </ng-container>
   <ng-container matColumnDef="unitPrice"> 
       <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.unitPrice}}</mat-cell>
+      <mat-cell *matCellDef="let row">{{row.unitPrice}} $</mat-cell>
   </ng-container>
   <ng-container matColumnDef="unitsInStock"> 
       <mat-header-cell *matHeaderCellDef> Stock </mat-header-cell>

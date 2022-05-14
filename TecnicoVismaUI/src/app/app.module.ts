@@ -8,6 +8,7 @@ import { HeaderModule } from './components/shared-components/header/header.modul
 import { HomeModule } from './views/home/home.module';
 import { LoginModule } from './views/login/login.module';
 import { HttpClientModule } from '@angular/common/http';
+import { NgToastModule } from 'ng-angular-popup';
 
 @NgModule({
   declarations: [
@@ -21,8 +22,8 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderModule,
     LoginModule,
     HomeModule,
-    HttpClientModule
-
+    HttpClientModule,
+    NgToastModule
   ],
   providers: [],
   bootstrap: [AppComponent]

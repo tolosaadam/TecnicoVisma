@@ -1,0 +1,37 @@
+.content-container{
+    display: flex;
+    margin-bottom: 20px;
+    align-items: center;
+    justify-content: space-between;
+
+    mat-icon {
+        cursor: pointer;
+    }
+}
+
+.action-buttons{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    justify-content: space-around;
+
+    button{
+        width: 100px;
+    }
+
+    .no-button{
+        &:hover{
+            background-color: darken(#f44336, 15%);
+        }
+    }
+
+    .yes-button{
+        color: white;
+        background-color: rgb(72, 189, 72);
+        &:hover{
+            background-color: darken(rgb(72, 189, 72), 15%);
+        }
+
+    }
+}

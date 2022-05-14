@@ -9,6 +9,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatIconModule } from '@angular/material/icon';
+import { ConfirmationDialogModule } from '../shared-components/confirmation-dialog/confirmation-dialog.module';
+
 
 
 
@@ -25,7 +27,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatInputModule,
     MatButtonModule,
     FlexLayoutModule,
-    MatIconModule
+    MatIconModule,
+    ConfirmationDialogModule
   ],
   exports:[
     ProductTableComponent

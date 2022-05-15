@@ -57,6 +57,8 @@ mat-card-content{
            flex-direction: column;
 
            .submit-button{
+            cursor: pointer;
+            box-shadow: 0 2px 5px #0000004d;
             background-color: #1976d2;
             color: #fff;
             &:hover{

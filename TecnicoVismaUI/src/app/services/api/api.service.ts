@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiResponseI } from 'src/app/models/apiResponse.interface';
 import { ProductOperationI } from 'src/app/models/product-operation';
-import { ProductI } from 'src/app/models/product.interface';
 
 @Injectable({
   providedIn: 'root'

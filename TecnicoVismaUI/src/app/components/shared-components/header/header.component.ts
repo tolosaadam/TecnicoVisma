@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { NavigateService } from 'src/app/services/navigate/navigate.service';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +10,7 @@ export class HeaderComponent implements OnInit {
 
   @Output() toggleSideBarForMe: EventEmitter<any> = new  EventEmitter()
   
-  constructor() { }
+  constructor(private navigate:NavigateService) { }
 
   ngOnInit(): void {
   }
@@ -24,5 +25,7 @@ export class HeaderComponent implements OnInit {
 
   }
 
-
+  logOut(){
+    this.navigate.logOut();
+  }
 }

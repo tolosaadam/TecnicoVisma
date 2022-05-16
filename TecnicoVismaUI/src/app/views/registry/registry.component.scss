@@ -1,0 +1,162 @@
+mat-toolbar{
+    background-color: #1976d2;
+    color: white;
+    box-shadow: 0 3px 5px -1px #0003, 0 6px 10px #00000024, 0 1px 18px #0000001f;
+    position: relative;
+}
+
+ul li {
+    list-style: none;
+}
+
+.bottom-nav-bar{
+    height: 50px;
+    background-color: #1976d2;
+
+}
+
+.container{
+    max-width: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    padding: 0 0;
+    align-items: center;
+    
+
+    
+    .form-content{
+        width: 100%;
+        margin-top: 50px;
+        box-shadow: 0 2px 5px #0000004d;
+
+        mat-card-header{
+            background: #1976d2;
+            border-radius: 4px;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 20px;
+            display: flex;
+            width: 100%;
+            color: #fff;
+            justify-content: space-between;
+            height: 60px;
+            box-shadow: 0 2px 5px #0000004d;
+        
+            mat-card-title{
+                margin-bottom: 0px;
+                text-align: center;
+                align-items: center;
+            }
+        }
+        
+        mat-card-content{
+            width: 100%;
+
+            .row{
+                mat-form-field{
+                    width: 100%;
+                }
+            }
+
+            .example-stepper{
+                align-items: center;
+                width: 100%;
+                .form-groups{
+                    display: flex;
+                    flex-direction: column;
+            
+                    .stepper-buttons{
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+            
+                        button{
+                            width: 100px;
+                        }
+            
+                        mat-icon{
+                            font-size: 22px;
+                        }
+            
+                        .next-button{
+                            background-color: #1976d2;
+                            color: #fff;
+                            &:hover{
+                                background-color: darken(#1976d2, 10%);
+                            }
+                        }
+            
+                        .back-button{
+                            margin-right: 10px;
+                            color: #1976d2;
+                            &:hover{
+                                background-color: darken(#fff, 10%);
+                            }
+                        }
+
+                        .submit-button{
+                            cursor: pointer;
+                            background-color: #1976d2;
+                            color: #fff;
+                            &:hover{
+                                background-color: darken(#1976d2, 10%);
+                            }
+                        }
+                        
+            
+                        .next-back-button{
+                            display: flex;
+                            flex-direction: row;
+                            flex: 0;
+                        }
+                    }
+                }
+            }
+        }
+
+
+        mat-divider{
+            width: 100%;
+            align-items: center;
+            text-align: center;
+            display: flex;
+        }
+        
+
+
+        .action-buttons{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            margin: 0px;
+            padding: 0px;
+
+            .login-button{
+                margin: 0px;
+                color: #1976d2;
+                &:hover{
+                    background-color: darken(#fff, 10%);
+                }
+            }
+        }
+    }
+    
+}
+
+
+.mat-stepper-vertical {
+    margin-top: 8px;
+  }
+  
+  .mat-form-field {
+    margin-top: 16px;
+  }
+
+// @media screen and (max-width: 1050){
+// .form-content{
+//     width: 100%;
+// }
+
+// }

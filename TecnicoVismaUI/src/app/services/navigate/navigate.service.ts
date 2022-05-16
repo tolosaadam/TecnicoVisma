@@ -7,20 +7,20 @@ import { Router } from '@angular/router';
 export class NavigateService {
 
   constructor(private router:Router) { }
-  // goToLogin(){
-  //   this.router.navigate(['login'])
-  // }
 
-  // goToRegistry(){
-  //   this.router.navigate(['registry'])
-  // }
+  goToLogin(){
+    this.router.navigate(['login']);
+  }
 
-  // goToHome(){
-  //   this.router.navigate(['new'])
-  // }
+  goToRegistry(){
+    this.router.navigate(['registry']);
+  }
 
-  // goToAdmin(){
-  //   this.router.navigate(['admin'])
-  // }
-  
+  goToHome(){
+    this.router.navigate(['home']);
+  }
+
+  logOut(){
+    this.router.navigate(['login']);
+  }
 }

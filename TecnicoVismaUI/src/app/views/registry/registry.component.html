@@ -1,0 +1,163 @@
+<mat-toolbar>
+    <mat-toolbar-row>
+    <span>Visma Latam</span>     
+    </mat-toolbar-row>
+</mat-toolbar>
+<div class="bottom-nav-bar">
+</div>
+<div class="container">
+    <div class="content">  
+        <mat-card class="form-content">
+        <mat-card-header>
+        <mat-card-title>Sign up</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="input-content">
+        <mat-stepper
+        #stepper
+        class="example-stepper"
+        [orientation]="(stepperOrientation | async)!">
+        <mat-step [stepControl]="personalDataFormGroup" label="Fill out your personal data">
+            <form class="form-groups" [formGroup]="personalDataFormGroup">
+            <mat-form-field appearance="fill">
+                <mat-label>Name</mat-label>
+                <input matInput placeholder="First name" formControlName="firstName" required>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Last Name</mat-label>
+                <input matInput placeholder="Last name" formControlName="lastName" required>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Birthday</mat-label>
+                <input matInput placeholder="Birthday" formControlName="birthday" [matDatepicker]="picker">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Gender</mat-label>
+                <mat-select placeholder="Gender" formControlName="gender" required>
+                  <mat-option value="Male">Male</mat-option>
+                  <mat-option value="Female">Female</mat-option>
+                  <mat-option value="Anonymous">Anonymous</mat-option>
+                </mat-select>
+              </mat-form-field>
+            <div class="stepper-buttons">
+                <button mat-stroked-button (click)="stepper.reset()">
+                    <mat-icon>restart_alt</mat-icon>
+                    Reset
+                </button>
+                <button class="next-button" mat-raised-button matStepperNext>
+                    Next
+                    <mat-icon>arrow_forward</mat-icon>
+                </button>
+            </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="localizationDataFormGroup" label="Fill out your address">
+            <form class="form-groups" [formGroup]="localizationDataFormGroup">
+            <mat-form-field appearance="fill">
+                <mat-label>Country</mat-label>
+                <input matInput formControlName="country" placeholder="Country"
+                    required>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Postal Code</mat-label>
+                <input matInput formControlName="postalCode" placeholder="Postal Code"
+                    required>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Address</mat-label>
+                <input matInput formControlName="address" placeholder="Address"
+                    required>
+            </mat-form-field>    
+            <div class="stepper-buttons">
+                <button mat-stroked-button (click)="stepper.reset()">
+                    <mat-icon>restart_alt</mat-icon>
+                    Reset
+                </button>
+                <div class="next-back-button">
+                    <button class="back-button" mat-raised-button matStepperPrevious>
+                        <mat-icon>arrow_back</mat-icon>
+                        Back
+                    </button>
+                    <button class="next-button" mat-raised-button matStepperNext>
+                        Next
+                        <mat-icon>arrow_forward</mat-icon>
+                    </button>
+                </div> 
+            </div>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="loginFormGroup" label="Fill out your log in data">
+            <form class="form-groups" [formGroup]="loginFormGroup">
+            <mat-form-field appearance="fill">
+                <mat-label>Mail address</mat-label>
+                <input matInput  formControlName="mailAddress" placeholder="Mail address" required>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" placeholder="Password"
+                    required>
+                <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button> 
+            </mat-form-field>
+            <div class="stepper-buttons">
+                <button mat-stroked-button (click)="stepper.reset()">
+                    <mat-icon>restart_alt</mat-icon>
+                    Reset
+                </button>
+                <div class="next-back-button">
+                    <button class="back-button" mat-raised-button matStepperPrevious>
+                        <mat-icon>arrow_back</mat-icon>
+                        Back
+                    </button>
+                    <button class="next-button" mat-raised-button matStepperNext>
+                        Next
+                        <mat-icon>arrow_forward</mat-icon>
+                    </button>
+                </div>               
+            </div>
+            </form>
+        </mat-step>
+        <mat-step class="done-step" label="Done">
+            <form class="form-groups">
+                <mat-list>
+                    <mat-list-item>First Name {{personalDataFormGroup.value.firstName}} </mat-list-item>
+                    <mat-list-item> {{personalDataFormGroup.value.lastName}} </mat-list-item>
+                    <mat-list-item> {{personalDataFormGroup.value.birthday}} </mat-list-item>
+                    <mat-list-item> {{personalDataFormGroup.value.gender}} </mat-list-item>
+                    <mat-list-item> {{localizationDataFormGroup.value.country}} </mat-list-item>
+                    <mat-list-item> {{localizationDataFormGroup.value.postalCode}} </mat-list-item>
+                    <mat-list-item> {{localizationDataFormGroup.value.address}} </mat-list-item>
+                    <mat-list-item> {{loginFormGroup.value.mailAddress}} </mat-list-item>
+                </mat-list>
+            <div class="stepper-buttons">
+                <button mat-stroked-button (click)="stepper.reset()">
+                    <mat-icon>restart_alt</mat-icon>
+                    Reset
+                </button>
+                <div class="next-back-button">
+                    <button class="back-button" mat-raised-button matStepperPrevious>
+                        <mat-icon>arrow_back</mat-icon>
+                        Back
+                    </button>
+                    <button (click)="onSubmit(personalDataFormGroup.value,localizationDataFormGroup.value,loginFormGroup.value)" class="submit-button" mat-raised-button mat-raised-button matStepperNext>
+                        Submit
+                        <mat-icon>check</mat-icon>
+                    </button>
+                </div>             
+            </div>
+            </form>
+        </mat-step>
+        </mat-stepper>
+        <div class="divider">
+            <mat-divider></mat-divider>
+        </div>      
+        </mat-card-content>
+        <mat-card-actions class="action-buttons">
+        <button (click)="goToLogin()" mat-raised-button class="login-button">Log in</button>
+        </mat-card-actions>
+    </mat-card>
+    </div>
+</div>

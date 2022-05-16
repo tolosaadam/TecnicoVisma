@@ -44,9 +44,13 @@ namespace TecnicoVismaAPI
 
             services.AddScoped<ProductBusiness>();
             services.AddScoped<IProduct, ProductRepository>();
+            services.AddScoped<UserBusiness>();
+            services.AddScoped<IUser, UserRepository>();
+
 
             var config = new MapperConfiguration(cfg => {
                 cfg.AddProfile(new ProductProfile());
+                cfg.AddProfile(new UserProfile());
             });
             IMapper mapper = config.CreateMapper();
             services.AddSingleton(mapper);

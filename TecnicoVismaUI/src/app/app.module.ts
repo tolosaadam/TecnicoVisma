@@ -9,6 +9,7 @@ import { HomeModule } from './views/home/home.module';
 import { LoginModule } from './views/login/login.module';
 import { HttpClientModule } from '@angular/common/http';
 import { NgToastModule } from 'ng-angular-popup';
+import { RegistryModule } from './views/registry/registry.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { NgToastModule } from 'ng-angular-popup';
     HeaderModule,
     LoginModule,
     HomeModule,
+    RegistryModule,
     HttpClientModule,
     NgToastModule
   ],

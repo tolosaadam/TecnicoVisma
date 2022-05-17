@@ -21,6 +21,7 @@ export class NavigateService {
   }
 
   logOut(){
+    sessionStorage.clear()
     this.router.navigate(['login']);
   }
 }

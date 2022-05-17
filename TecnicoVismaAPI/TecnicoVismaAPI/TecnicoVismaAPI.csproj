@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.17" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.17" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.17">
       <PrivateAssets>all</PrivateAssets>
@@ -25,6 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\TecnicoVisma.JWTAuthenticationManager\TecnicoVisma.JWTAuthenticationManager.csproj" />
     <ProjectReference Include="..\TecnicoVisma.Business\TecnicoVisma.Business.csproj" />
     <ProjectReference Include="..\TecnicoVisma.Entities\TecnicoVisma.Entities.csproj" />
     <ProjectReference Include="..\TecnicoVisma.MapperProfiles\TecnicoVisma.MapperProfiles.csproj" />

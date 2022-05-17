@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TecnicoVisma.Entities.DTOS
+namespace TecnicoVisma.Interfaces
 {
-    public class ProductGridDTO
+    public interface IJWTAuthenticationManager
     {
+        string GenerateToken(string mailAddress);
     }
 }

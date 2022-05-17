@@ -13,5 +13,6 @@ namespace TecnicoVisma.Interfaces
         User AuthenticateUser(AuthenticateDTO authenticateDTO);
         User CheckUserAvailabity(string mailAddress);
         User Insert(User user);
+        List<string> GetAllMailAddresses();
     }
 }

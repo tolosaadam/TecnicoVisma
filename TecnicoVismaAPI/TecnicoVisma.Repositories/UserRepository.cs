@@ -30,6 +30,12 @@ namespace TecnicoVisma.Repositories
             return user;
         }
 
+        public List<string> GetAllMailAddresses()
+        {
+            var mailAddresses = _context.Users.Select(x => x.MailAddress).ToList();
+            return mailAddresses;
+        }
+
         public User Insert(User user)
         {
             _context.Users.Add(user);

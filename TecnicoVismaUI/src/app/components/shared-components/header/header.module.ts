@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatButtonModule} from '@angular/material/button';
+import { DigitalClockTimerModule } from '../digital-clock-timer/digital-clock-timer.module';
 
 
 
@@ -19,7 +20,8 @@ import {MatButtonModule} from '@angular/material/button';
     MatIconModule,
     MatMenuModule,
     FlexLayoutModule,
-    MatButtonModule
+    MatButtonModule,
+    DigitalClockTimerModule
     
   ],
   exports:[

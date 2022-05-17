@@ -7,9 +7,12 @@ import { FooterModule } from './components/shared-components/footer/footer.modul
 import { HeaderModule } from './components/shared-components/header/header.module';
 import { HomeModule } from './views/home/home.module';
 import { LoginModule } from './views/login/login.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgToastModule } from 'ng-angular-popup';
 import { RegistryModule } from './views/registry/registry.module';
+import {AppHttpInterceptor} from './utils/HttpInterceptor';
+
+
 
 @NgModule({
   declarations: [
@@ -27,7 +30,11 @@ import { RegistryModule } from './views/registry/registry.module';
     HttpClientModule,
     NgToastModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AppHttpInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

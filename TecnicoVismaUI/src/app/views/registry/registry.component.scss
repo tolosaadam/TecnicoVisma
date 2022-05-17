@@ -28,7 +28,7 @@ ul li {
     
     .form-content{
         width: 100%;
-        margin-top: 50px;
+        margin-top: 10px;
         box-shadow: 0 2px 5px #0000004d;
 
         mat-card-header{
@@ -54,6 +54,10 @@ ul li {
         mat-card-content{
             width: 100%;
 
+            .list-value{
+                width: 150px;
+            }
+
             .row{
                 mat-form-field{
                     width: 100%;
@@ -66,6 +70,18 @@ ul li {
                 .form-groups{
                     display: flex;
                     flex-direction: column;
+
+                    .inputs{
+                        height: 464px;
+                        display: flex;
+                        flex-direction: column;
+                    }
+                    .summary-header{
+                        background: dimgrey;
+                        margin-bottom: 0px;
+                        height: 30px;
+                        justify-content: space-evenly;
+                    }
             
                     .stepper-buttons{
                         display: flex;
@@ -145,6 +161,16 @@ ul li {
     
 }
 
+mat-card{
+    margin-bottom: 10px;
+}
+
+
+    
+.has-text-danger{
+    color: red;
+    font-size: 12px;
+}
 
 .mat-stepper-vertical {
     margin-top: 8px;

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using NSwag.Annotations;
 using System;
@@ -42,14 +43,15 @@ namespace TecnicoVismaAPI.Controllers
             return Ok(_business.GetProduct(id));
         }
 
+        [Authorize]
         [HttpGet]
-        public IActionResult GetAllProducts()
+        public async Task<IActionResult> GetAllProducts()
         {
             _logger.LogInformation($"GetAllProduct from Controller");
             var response = new ResponseDTO<IEnumerable<ProductDTO>>();
             try
             {
-                var products = _business.GetAllProducts();
+                var products = await Task.FromResult(_business.GetAllProducts());
                 response.Data = products;
                 return Ok(response);
 
@@ -63,14 +65,15 @@ namespace TecnicoVismaAPI.Controllers
             }
         }
 
+        [Authorize]
         [HttpPost]
-        public IActionResult CreateProduct(ProductDTO productDTO)
+        public async Task<IActionResult> CreateProduct(ProductDTO productDTO)
         {
             _logger.LogInformation($"CreateProduct from Controller");
             var response = new ResponseDTO<IEnumerable<ProductDTO>>();
             try
             {
-                var products = _business.CreateProduct(productDTO);
+                var products = await Task.FromResult(_business.CreateProduct(productDTO));
                 response.Data = products;
                 return Ok(response);
 
@@ -85,14 +88,15 @@ namespace TecnicoVismaAPI.Controllers
 
         }
 
+        [Authorize]
         [HttpDelete("remove")]
-        public IActionResult DeleteProduct([FromBody]List<int> ids)
+        public async Task<IActionResult> DeleteProduct([FromBody]List<int> ids)
         {
             _logger.LogInformation($"DeleteProduct from Controller ids = {ids}");
             var response = new ResponseDTO<IEnumerable<ProductDTO>>();
             try
             {
-                var products = _business.DeleteProduct(ids);
+                var products = await Task.FromResult(_business.DeleteProduct(ids));
                 response.Data = products;
                 return Ok(response);
 
@@ -106,14 +110,15 @@ namespace TecnicoVismaAPI.Controllers
             }           
         }
 
+        [Authorize]
         [HttpPut("update")]
-        public IActionResult updateProduct(ProductDTO productDTO)
+        public async Task<IActionResult> UpdateProduct(ProductDTO productDTO)
         {
             _logger.LogInformation($"UpdateProduct from Controller");
             var response = new ResponseDTO<IEnumerable<ProductDTO>>();
             try
             {
-                var products = _business.UpdateProduct(productDTO);
+                var products = await Task.FromResult(_business.UpdateProduct(productDTO));
                 response.Data = products;
                 return Ok(response);
             }

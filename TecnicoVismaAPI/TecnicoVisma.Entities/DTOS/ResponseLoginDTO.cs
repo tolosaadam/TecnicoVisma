@@ -11,5 +11,7 @@ namespace TecnicoVisma.Entities.DTOS
         public bool Status { get; set; }
         public string Message { get; set; }
         public string Token { get; set; }
+        public UserDTO User { get; set; }
+        public int SessionTime { get; set; }
     }
 }

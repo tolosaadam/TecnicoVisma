@@ -1,6 +1,6 @@
 @import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
 html,body { height: 100%; overflow: hidden; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; overflow: auto; }
 
 .mat-dialog-alert .mat-dialog-container{
     border-radius: 15px;  
@@ -8,7 +8,4 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .mat-dialog-product-form .mat-dialog-container{
     padding: 0px;
-    // box-shadow: 0 2px 5px #0000004d;
-    // width: auto;
-    // border-radius: 15px;
 }

@@ -18,6 +18,7 @@
         [orientation]="(stepperOrientation | async)!">
         <mat-step [stepControl]="personalDataFormGroup" label="Fill out your personal data">
             <form class="form-groups" [formGroup]="personalDataFormGroup">
+            <div class="inputs">
             <mat-form-field appearance="fill">
                 <mat-label>Name</mat-label>
                 <input matInput placeholder="First name" formControlName="firstName" required>
@@ -41,6 +42,7 @@
                   <mat-option value="Anonymous">Anonymous</mat-option>
                 </mat-select>
               </mat-form-field>
+            </div>
             <div class="stepper-buttons">
                 <button mat-stroked-button (click)="stepper.reset()">
                     <mat-icon>restart_alt</mat-icon>
@@ -55,6 +57,7 @@
         </mat-step>
         <mat-step [stepControl]="localizationDataFormGroup" label="Fill out your address">
             <form class="form-groups" [formGroup]="localizationDataFormGroup">
+            <div class="inputs">
             <mat-form-field appearance="fill">
                 <mat-label>Country</mat-label>
                 <input matInput formControlName="country" placeholder="Country"
@@ -69,7 +72,8 @@
                 <mat-label>Address</mat-label>
                 <input matInput formControlName="address" placeholder="Address"
                     required>
-            </mat-form-field>    
+            </mat-form-field>
+            </div>    
             <div class="stepper-buttons">
                 <button mat-stroked-button (click)="stepper.reset()">
                     <mat-icon>restart_alt</mat-icon>
@@ -90,10 +94,14 @@
         </mat-step>
         <mat-step [stepControl]="loginFormGroup" label="Fill out your log in data">
             <form class="form-groups" [formGroup]="loginFormGroup">
-            <mat-form-field appearance="fill">
+            <div class="inputs">
+            <mat-form-field  appearance="fill">
                 <mat-label>Mail address</mat-label>
-                <input matInput  formControlName="mailAddress" placeholder="Mail address" required>
+                <input matInput  formControlName="mailAddress" placeholder="Mail address" required email>
             </mat-form-field>
+            <div class="has-text-danger" *ngIf="loginFormGroup.controls['mailAddress'].errors?.['usernameExists']">
+                This Mail address is already taken!
+            </div>
             <mat-form-field appearance="fill">
                 <mat-label>Password</mat-label>
                 <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" placeholder="Password"
@@ -102,6 +110,7 @@
                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button> 
             </mat-form-field>
+            </div>
             <div class="stepper-buttons">
                 <button mat-stroked-button (click)="stepper.reset()">
                     <mat-icon>restart_alt</mat-icon>
@@ -120,18 +129,58 @@
             </div>
             </form>
         </mat-step>
-        <mat-step class="done-step" label="Done">
+        <mat-step label="Done">
             <form class="form-groups">
-                <mat-list>
-                    <mat-list-item>First Name {{personalDataFormGroup.value.firstName}} </mat-list-item>
-                    <mat-list-item> {{personalDataFormGroup.value.lastName}} </mat-list-item>
-                    <mat-list-item> {{personalDataFormGroup.value.birthday}} </mat-list-item>
-                    <mat-list-item> {{personalDataFormGroup.value.gender}} </mat-list-item>
-                    <mat-list-item> {{localizationDataFormGroup.value.country}} </mat-list-item>
-                    <mat-list-item> {{localizationDataFormGroup.value.postalCode}} </mat-list-item>
-                    <mat-list-item> {{localizationDataFormGroup.value.address}} </mat-list-item>
-                    <mat-list-item> {{loginFormGroup.value.mailAddress}} </mat-list-item>
-                </mat-list>
+                <mat-card>
+                    <mat-card-header class="summary-header">
+                        <mat-card-title>
+                            Summary
+                        </mat-card-title>
+                    </mat-card-header>
+                <mat-card-content>
+                    <mat-list>
+                        <mat-list-item>
+                            <span matLine>Name</span>
+                            <span class="list-value">{{personalDataFormGroup.value.firstName}}</span>
+                        </mat-list-item>
+                        <mat-divider></mat-divider>                 
+                        <mat-list-item>
+                            <span matLine>Last Name</span>
+                            <span class="list-value">{{personalDataFormGroup.value.lastName}}</span>
+                        </mat-list-item>
+                        <mat-divider></mat-divider>
+                        <mat-list-item>
+                            <span matLine>Birthday</span>
+                            <span class="list-value">{{personalDataFormGroup.value.birthday | date: "MM/dd/yyyy"}}</span>
+                        </mat-list-item>
+                        <mat-divider></mat-divider>
+                        <mat-list-item>
+                            <span matLine>Gender</span>
+                            <span class="list-value">{{personalDataFormGroup.value.gender}}</span>
+                        </mat-list-item>
+                        <mat-divider></mat-divider>
+                        <mat-list-item>
+                            <span matLine>Country</span>
+                            <span class="list-value">{{localizationDataFormGroup.value.country}}</span>
+                        </mat-list-item>
+                        <mat-divider></mat-divider>
+                        <mat-list-item>
+                            <span matLine>Postal Code</span> 
+                            <span class="list-value">{{localizationDataFormGroup.value.postalCode}}</span>
+                        </mat-list-item>
+                        <mat-divider></mat-divider>
+                        <mat-list-item>
+                            <span matLine>Address</span>
+                            <span class="list-value">{{localizationDataFormGroup.value.address}}</span>  
+                        </mat-list-item>
+                        <mat-divider></mat-divider>
+                        <mat-list-item class="mat-list-item">
+                            <span matLine>Mail Address</span>
+                            <span class="list-value">{{loginFormGroup.value.mailAddress}}</span> 
+                        </mat-list-item>
+                    </mat-list>
+                </mat-card-content>
+            </mat-card>
             <div class="stepper-buttons">
                 <button mat-stroked-button (click)="stepper.reset()">
                     <mat-icon>restart_alt</mat-icon>

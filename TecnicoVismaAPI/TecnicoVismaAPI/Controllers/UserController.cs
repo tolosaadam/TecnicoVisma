@@ -26,6 +26,25 @@ namespace TecnicoVismaAPI.Controllers
             _business = business;
         }
 
+        [HttpGet("mailAddresses")]
+        public IActionResult GetAllMailAddresses() 
+        {
+            _logger.LogInformation($"Getting all mail address");
+            var response = new ResponseDTO<List<string>>();
+            try
+            {
+                var mailAddresses = _business.GetAllMailAddresses();
+                response.Data = mailAddresses;
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"An error occurring Getting all mail address", e);
+                response.ErrorMessage = e.Message;
+                return BadRequest(response);
+            }
+        }
+
         [HttpPost("authenticate")]
         public IActionResult AuthenticateUser(AuthenticateDTO authenticateDTO)
         {
@@ -43,7 +62,6 @@ namespace TecnicoVismaAPI.Controllers
                 response.ErrorMessage = e.Message;
                 return BadRequest(response);
             }
-
         }
 
         [HttpPost]

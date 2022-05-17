@@ -42,6 +42,11 @@ export class LoginComponent implements OnInit {
       }
       else{
         this.toast.success({detail:"Success Message",summary:"Sucessfull Login."});
+        sessionStorage.setItem('userName', data.data.user.firstName);
+        sessionStorage.setItem('userLastName', data.data.user.lastName);
+        sessionStorage.setItem('userMailAddress', data.data.user.mailAddress);
+        sessionStorage.setItem('userJwt', data.data.token);
+        sessionStorage.setItem('userSessionTime', data.data.sessionTime);
         this.navigate.goToHome();
       }
     })   

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,16 +13,19 @@ namespace TecnicoVisma.Business
 {
     public class UserBusiness
     {
-        public UserBusiness(IUser repository, IMapper mapper)
+        public UserBusiness(IConfiguration configuration, IUser repository, IMapper mapper, IJWTAuthenticationManager jwtManager)
         {
             _repository = repository;
             _mapper = mapper;
+            _jwtManager = jwtManager;
+            _configuration = configuration;
         }
         private readonly IUser _repository;
         private readonly IMapper _mapper;
+        private readonly IJWTAuthenticationManager _jwtManager;
+        private readonly IConfiguration _configuration;
 
 
-        //TODO RESPONSES DEL REGISTRY PARA CUANDO YA EXISTE EL EMAIL, RESPONSES DEL LOGIN PARA INVALID USERNAME O PASSWORD
         public ResponseLoginDTO AuthenticateUser(AuthenticateDTO authenticateDTO)
         {
             ResponseLoginDTO response = new();
@@ -29,9 +33,13 @@ namespace TecnicoVisma.Business
             {
                 if (_repository.AuthenticateUser(authenticateDTO) != null)
                 {
-                    response.Token = "";
+                    var user = _mapper.Map<User, UserDTO>(_repository.AuthenticateUser(authenticateDTO));
+                    response.Token = _jwtManager.GenerateToken(user.MailAddress);
                     response.Message = "Valid User";
-                    response.Status = true;                                 
+                    response.Status = true;
+                    response.User = user;
+                    response.SessionTime = Convert.ToInt32(_configuration["Jwt:SessionTime"]);
+                    
                 }
                 else
                 {
@@ -46,6 +54,11 @@ namespace TecnicoVisma.Business
                 response.Status = false;
             }
             return response;
+        }
+
+        public List<string> GetAllMailAddresses()
+        {
+            return _repository.GetAllMailAddresses();
         }
 
         public UserDTO CreateUser(UserDTO userDTO)

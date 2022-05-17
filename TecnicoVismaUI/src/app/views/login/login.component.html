@@ -18,13 +18,13 @@
             <mat-form-field appearance="fill" class="full-width">
                 <mat-label>Email</mat-label>
                 <mat-icon matSuffix>badge</mat-icon>
-                <input type="email" formControlName="mailAddress" matInput placeholder="Enter your email" required email>
+                <input type="email" formControlName="mailAddress" matInput placeholder="Enter your email" required email autocomplete="on">
             </mat-form-field>
             </div>
             <div class="col-md-6">
             <mat-form-field appearance="fill" class="full-width">
                 <mat-label>Password</mat-label>
-                <input [type]="hide ? 'password' : 'text'" formControlName="password" matInput placeholder="Enter your password" required>
+                <input [type]="hide ? 'password' : 'text'" formControlName="password" matInput placeholder="Enter your password" required autocomplete="on">
                 <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button> 

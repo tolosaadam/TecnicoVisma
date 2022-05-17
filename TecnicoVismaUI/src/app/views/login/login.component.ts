@@ -14,7 +14,6 @@ import { NavigateService } from 'src/app/services/navigate/navigate.service';
 export class LoginComponent implements OnInit {
 
   hide:boolean = true;
-
   credentials:loginFormI={
     mailAddress: '',
     password: ''

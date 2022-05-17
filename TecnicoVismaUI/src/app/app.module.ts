@@ -11,6 +11,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgToastModule } from 'ng-angular-popup';
 import { RegistryModule } from './views/registry/registry.module';
 import {AppHttpInterceptor} from './utils/HttpInterceptor';
+import { SharedComponentsModule } from './components/shared-components/shared-components.module';
 
 
 
@@ -28,7 +29,8 @@ import {AppHttpInterceptor} from './utils/HttpInterceptor';
     HomeModule,
     RegistryModule,
     HttpClientModule,
-    NgToastModule
+    NgToastModule,
+    SharedComponentsModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

@@ -9,3 +9,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; overflow: a
 .mat-dialog-product-form .mat-dialog-container{
     padding: 0px;
 }
+
+.mat-progress-spinner circle, .mat-spinner circle {
+    stroke: #e81212!important;
+}

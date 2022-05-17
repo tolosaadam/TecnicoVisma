@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { timer } from 'rxjs';
 import { Subscription } from 'rxjs/internal/Subscription';
+import { ApiService } from 'src/app/services/api/api.service';
 
 @Component({
   selector: 'app-digital-clock-timer',
@@ -9,14 +10,18 @@ import { Subscription } from 'rxjs/internal/Subscription';
 })
 export class DigitalClockTimerComponent implements OnInit, OnDestroy {
 
-  sessionTime:any = sessionStorage.getItem('userSessionTime');
+  userJwt:any = sessionStorage.getItem('userJwt');
   countDown:Subscription = new Subscription;
-  counter:any = parseInt(this.sessionTime);
+  counter:any;
   tick = 1000;
 
-  constructor() { }
+  constructor(private api:ApiService) { }
 
   ngOnInit(): void {
+    this.api.GetTokenLifeTime(this.userJwt).subscribe((lifetime:number) => {
+      this.counter = lifetime;
+      console.log(lifetime);
+    });
     this.countDown = timer(0, this.tick)
       .subscribe(() =>{
         --this.counter

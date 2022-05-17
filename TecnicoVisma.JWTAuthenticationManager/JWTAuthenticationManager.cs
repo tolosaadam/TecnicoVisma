@@ -35,7 +35,17 @@ namespace TecnicoVisma.JWTAuthenticationManager
                 claims,
                 expires: DateTime.UtcNow.AddSeconds(Convert.ToInt32(_configuration["Jwt:SessionTime"])),
                 signingCredentials: signIn);
+            var result = DateTime.UtcNow;
             return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+        public double GetTokenLifeTime(string token)
+        {
+            var lifeTime = new JwtSecurityTokenHandler().ReadToken(token).ValidTo;
+            var today = DateTime.UtcNow;
+            var result = lifeTime - today;
+           
+            return result.TotalSeconds;
         }
     }
 }

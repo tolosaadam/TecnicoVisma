@@ -68,5 +68,10 @@ namespace TecnicoVisma.Business
             var responseUserDTO = _mapper.Map<User, UserDTO>(response);
             return responseUserDTO;
         }
+
+        public double GetTokenLifeTime(string token)
+        {
+            return _jwtManager.GetTokenLifeTime(token);
+        }
     }
 }

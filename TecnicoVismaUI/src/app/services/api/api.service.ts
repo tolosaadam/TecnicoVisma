@@ -62,4 +62,9 @@ export class ApiService {
     let direccion = this.url + "user/mailAddresses";
     return this.http.get<ApiResponseI>(direccion);
   }
+
+  GetTokenLifeTime(token:string){
+    let direccion = this.url + "user/tokenLifeTime/" + token;
+    return this.http.get<number>(direccion);
+  }
 }

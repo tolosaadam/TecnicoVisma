@@ -9,5 +9,6 @@ namespace TecnicoVisma.Interfaces
     public interface IJWTAuthenticationManager
     {
         string GenerateToken(string mailAddress);
+        double GetTokenLifeTime(string token);
     }
 }

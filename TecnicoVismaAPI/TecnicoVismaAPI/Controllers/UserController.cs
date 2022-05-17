@@ -85,5 +85,21 @@ namespace TecnicoVismaAPI.Controllers
             }
 
         }
+
+        [HttpGet("tokenLifeTime/{token}")]
+        public IActionResult GetAllMailAddresses(string token) 
+        {
+            _logger.LogInformation($"Getting all mail address");
+            try
+            {
+                var lifeTime = _business.GetTokenLifeTime(token);
+                return Ok(lifeTime);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"An error occurring Getting all mail address", e);
+                return BadRequest();
+            }
+        }
     }
 }

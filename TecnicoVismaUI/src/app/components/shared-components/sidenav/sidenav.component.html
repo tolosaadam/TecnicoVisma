@@ -30,8 +30,24 @@
         <mat-icon>import_contacts</mat-icon>
         <span>Customers</span>
     </a>
+    <a mat-list-item   routerLink="customersexpenses"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{exact: true}">
+        <mat-icon>import_contacts</mat-icon>
+        <span>Customers Expenses</span>
+    </a>
 
    
+    <mat-divider></mat-divider>
+
+    <h2 matSubheader >Operations</h2>
+    <a mat-list-item   routerLink="customersoperations"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{exact: true}">
+        <mat-icon>import_contacts</mat-icon>
+        <span>Customers Operations</span>
+    </a>
+
     <mat-divider></mat-divider>
     
     <h2 matSubheader>Contact</h2>

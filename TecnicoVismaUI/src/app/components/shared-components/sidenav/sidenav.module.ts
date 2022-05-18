@@ -8,6 +8,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { ProductTableModule } from '../../product-table/product-table.module';
 import { CustomerTableModule } from '../../customer-table/customer-table.module';
 import { ContactModule } from '../../contact/contact.module';
+import { CustomersOperationsModule } from '../../customers-operations/customers-operations.module';
+import { CustomersExpensesModule } from '../../customers-expenses/customers-expenses.module';
 
 
 
@@ -24,7 +26,9 @@ import { ContactModule } from '../../contact/contact.module';
     MatDividerModule,
     ProductTableModule,
     CustomerTableModule,
-    ContactModule
+    ContactModule,
+    CustomersOperationsModule,
+    CustomersExpensesModule
   ],
   exports:[
     SidenavComponent

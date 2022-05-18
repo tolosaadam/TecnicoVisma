@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using NSwag.Annotations;
 using System;
@@ -27,13 +28,13 @@ namespace TecnicoVismaAPI.Controllers
         }
 
         [HttpGet("mailAddresses")]
-        public IActionResult GetAllMailAddresses() 
+        public async Task<IActionResult> GetAllMailAddresses() 
         {
             _logger.LogInformation($"Getting all mail address");
             var response = new ResponseDTO<List<string>>();
             try
             {
-                var mailAddresses = _business.GetAllMailAddresses();
+                var mailAddresses = await Task.FromResult(_business.GetAllMailAddresses());
                 response.Data = mailAddresses;
                 return Ok(response);
             }
@@ -46,13 +47,13 @@ namespace TecnicoVismaAPI.Controllers
         }
 
         [HttpPost("authenticate")]
-        public IActionResult AuthenticateUser(AuthenticateDTO authenticateDTO)
+        public async Task<IActionResult> AuthenticateUser(AuthenticateDTO authenticateDTO)
         {
             _logger.LogInformation($"Login user,  credentials = {authenticateDTO}");
             var response = new ResponseDTO<ResponseLoginDTO>();
             try
             {
-                var responseLogin = _business.AuthenticateUser(authenticateDTO);
+                var responseLogin = await Task.FromResult(_business.AuthenticateUser(authenticateDTO));
                 response.Data = responseLogin;
                 return Ok(response);
             }
@@ -65,13 +66,13 @@ namespace TecnicoVismaAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateUser(UserDTO userDTO)
+        public async Task<IActionResult> CreateUser(UserDTO userDTO)
         {
             _logger.LogInformation($"CreateProduct from Controller");
             var response = new ResponseDTO<UserDTO>();
             try
             {
-                var products = _business.CreateUser(userDTO);
+                var products = await Task.FromResult(_business.CreateUser(userDTO));
                 response.Data = products;
                 return Ok(response);
 
@@ -87,12 +88,12 @@ namespace TecnicoVismaAPI.Controllers
         }
 
         [HttpGet("tokenLifeTime/{token}")]
-        public IActionResult GetAllMailAddresses(string token) 
+        public async Task<IActionResult> GetAllMailAddresses(string token) 
         {
             _logger.LogInformation($"Getting all mail address");
             try
             {
-                var lifeTime = _business.GetTokenLifeTime(token);
+                var lifeTime = await Task.FromResult(_business.GetTokenLifeTime(token));
                 return Ok(lifeTime);
             }
             catch (Exception e)

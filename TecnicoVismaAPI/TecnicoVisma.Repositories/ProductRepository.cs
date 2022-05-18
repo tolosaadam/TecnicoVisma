@@ -29,13 +29,11 @@ namespace TecnicoVisma.Repositories
         public IEnumerable<Product> GetProducts()
         {
             var products = _context.Products.ToList();
-            //var products = _context.Products.ProjectTo<ProductGridDTO>(_mapper.ConfigurationProvider).ToList();  //TODO  CHECK THIS
             return products;
         }
 
         public Product GetProduct(int id)
         {
-            //var product = _context.Products.ProjectTo<ProductGridDTO>(_mapper.ConfigurationProvider).FirstOrDefault(x => x.Id == id);
             var product = _context.Products.FirstOrDefault(x => x.Id == id);
             return product;         
         }

@@ -33,7 +33,11 @@
 </mat-toolbar>
 <div class="bottom-nav-bar">
     <div class="clock-container">
-        <span class="clock-container-text">Session time remaining:</span>       
-        <app-digital-clock-timer></app-digital-clock-timer>
+        <mat-icon class="alarm-icon">alarm</mat-icon>
+        <app-digital-clock-timer
+            matTooltip="Session time remaining"
+            matTooltipPosition="right"
+            matTooltipHideDelay="100000"
+          ></app-digital-clock-timer>         
     </div>
 </div> 

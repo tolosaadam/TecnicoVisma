@@ -31,6 +31,12 @@ namespace TecnicoVisma.Entities.Data
                 entity.Property(x => x.Birthday).HasColumnType("date");
                 entity.Property(x => x.RegisteredDate).HasColumnType("datetime");
             });
+
+            modelBuilder.Entity<Customer>(entity =>
+            {
+                entity.Property(x => x.Birthday).HasColumnType("date");
+                entity.Property(x => x.RegisteredDate).HasColumnType("datetime");
+            });
         }
     }
 }

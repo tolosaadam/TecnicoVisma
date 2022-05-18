@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { ProductTableModule } from '../../product-table/product-table.module';
 import { CustomerTableModule } from '../../customer-table/customer-table.module';
+import { ContactModule } from '../../contact/contact.module';
 
 
 
@@ -22,7 +23,8 @@ import { CustomerTableModule } from '../../customer-table/customer-table.module'
     MatIconModule,
     MatDividerModule,
     ProductTableModule,
-    CustomerTableModule 
+    CustomerTableModule,
+    ContactModule
   ],
   exports:[
     SidenavComponent

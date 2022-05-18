@@ -1,5 +1,5 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table'
 import { ApiResponseI } from 'src/app/models/apiResponse.interface';
 import { ProductI } from 'src/app/models/product.interface';
@@ -7,6 +7,7 @@ import { ApiService } from 'src/app/services/api/api.service';
 import { DialogService } from 'src/app/services/dialog/dialog.service';
 import { NgToastService } from 'ng-angular-popup';
 import { DialogDataI } from 'src/app/models/dialogData.interface';
+import { MatPaginator } from '@angular/material/paginator';
 @Component({
   selector: 'app-product-table',
   templateUrl: './product-table.component.html',
@@ -19,13 +20,16 @@ export class ProductTableComponent implements OnInit {
   selection = new SelectionModel<ProductI>(true, []);
   // dataSelected = Object.assign(this.products);
   dataSource = new MatTableDataSource<ProductI>();
-  
+
+
+  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
 
   constructor(private api:ApiService, private dialogService:DialogService, private toast:NgToastService) {
     this.dataSource = new MatTableDataSource(this.products);
    }
 
   ngOnInit(): void {
+    this.dataSource.paginator = this.paginator;
     
     this.api.getProducts().subscribe(data =>{
       this.dataSource.data = data.data;

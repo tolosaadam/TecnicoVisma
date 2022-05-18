@@ -1,1 +1,39 @@
-<p>metrics works!</p>
+<div class="container">
+    <div class="charts">
+        <div fxFlex="60">
+            <app-big-chart [data]="bigChart"></app-big-chart>
+        </div>
+        
+        <div fxFlex="40">
+            <app-pie-chart [data]="pieChart"></app-pie-chart>
+        </div>
+
+    </div>
+    
+
+    <mat-divider></mat-divider>
+
+    <br>
+
+    <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px" class="stats-cards">
+        <mat-card fxFlex="25"> 
+            <app-card-chart label="New Users" total="12k" percentage="50" [data]="cards"></app-card-chart>
+        </mat-card>
+        <mat-card fxFlex="25"> 
+            <app-card-chart label="Users Retention" total="10k" percentage="40" [data]="cards"></app-card-chart>
+        </mat-card>
+        <mat-card fxFlex="25"> 
+            <app-card-chart label="Users Engagement" total="8k" percentage="30" [data]="cards"></app-card-chart>
+        </mat-card>
+        <mat-card fxFlex="25"> 
+            <app-card-chart label="Referral" total="6k" percentage="20" [data]="cards"></app-card-chart>
+        </mat-card>
+        
+    </div>
+
+    <br>
+
+    <mat-divider></mat-divider>
+
+
+</div>

@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MetricsComponent } from './metrics.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
+import { ChartsComponentsModule } from '../charts-components/charts-components.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 
@@ -9,7 +13,12 @@ import { MetricsComponent } from './metrics.component';
     MetricsComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatCardModule,
+    MatDividerModule,
+    ChartsComponentsModule,
+    FlexLayoutModule
+    
   ],
   exports:[
     MetricsComponent

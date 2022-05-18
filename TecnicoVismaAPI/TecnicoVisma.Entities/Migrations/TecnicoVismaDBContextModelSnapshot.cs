@@ -40,8 +40,11 @@ namespace TecnicoVisma.Entities.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("longtext");
 
-                    b.Property<DateTime?>("EnteredDate")
-                        .HasColumnType("datetime(6)");
+                    b.Property<DateTime>("Birthday")
+                        .HasColumnType("date");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("longtext");
 
                     b.Property<string>("FirstName")
                         .HasColumnType("longtext");
@@ -58,8 +61,8 @@ namespace TecnicoVisma.Entities.Migrations
                     b.Property<string>("PostalCode")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Username")
-                        .HasColumnType("longtext");
+                    b.Property<DateTime>("RegisteredDate")
+                        .HasColumnType("datetime");
 
                     b.HasKey("Id");
 

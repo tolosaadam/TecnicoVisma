@@ -77,11 +77,14 @@ namespace TecnicoVismaAPI
             services.AddScoped<IProduct, ProductRepository>();
             services.AddScoped<UserBusiness>();
             services.AddScoped<IUser, UserRepository>();
+            services.AddScoped<CustomerBusiness>();
+            services.AddScoped<ICustomer, CustomerRepository>();
             services.AddScoped<IJWTAuthenticationManager, JWTAuthenticationManager>();
 
             var config = new MapperConfiguration(cfg => {
                 cfg.AddProfile(new ProductProfile());
                 cfg.AddProfile(new UserProfile());
+                cfg.AddProfile(new CustomerProfile());
             });
             IMapper mapper = config.CreateMapper();
             services.AddSingleton(mapper);

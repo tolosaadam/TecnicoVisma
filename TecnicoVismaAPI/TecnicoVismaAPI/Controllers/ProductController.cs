@@ -27,20 +27,21 @@ namespace TecnicoVismaAPI.Controllers
             _business = business;
         }
 
+        [Authorize]
         [HttpGet("count")]
-        public IActionResult CountProduct()
+        public async Task<IActionResult> CountProduct()
         {
             _logger.LogInformation($"CountProduct from Controller");
 
-            return Ok(_business.CountProduct());
+            return Ok(await Task.FromResult(_business.CountProduct()));
         }
 
+        [Authorize]
         [HttpGet("{id}")]
-        public IActionResult GetProduct(int id)
+        public async Task<IActionResult> GetProduct(int id)
         {
             _logger.LogInformation($"GetProduct from Controller");
-
-            return Ok(_business.GetProduct(id));
+            return Ok(await Task.FromResult(_business.GetProduct(id)));
         }
 
         [Authorize]

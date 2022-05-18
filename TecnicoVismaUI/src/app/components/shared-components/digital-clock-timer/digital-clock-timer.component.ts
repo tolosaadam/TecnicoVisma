@@ -24,8 +24,8 @@ export class DigitalClockTimerComponent implements OnInit, OnDestroy {
     this.countDown = timer(0, this.tick)
       .subscribe(() =>{
         --this.counter
-        if(this.counter == 0){
-          this.countDown.unsubscribe();
+        if(this.counter < 1){
+          this.countDown.unsubscribe()
         }
       })
         

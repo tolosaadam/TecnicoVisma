@@ -13,6 +13,5 @@ namespace TecnicoVisma.Interfaces
         IEnumerable<Product> Update(Product product);
         IEnumerable<Product> Delete(List<int> ids);
         int Count();
-        //IEnumerable<Product> GetSimilarProducts(Product product);
     }
 }

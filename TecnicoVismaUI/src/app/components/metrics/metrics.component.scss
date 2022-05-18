@@ -1,0 +1,28 @@
+.stats-cards{
+    .mat-card{
+        overflow: hidden;
+    }
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    .charts{
+        display: flex;
+        flex-direction: row;
+        .big-chart{
+            flex: 1;
+        }
+    }
+}
+
+// table {
+//     width: 100%;
+    
+// }
+
+  
+// mat-cell > span.ellipsis {
+//      text-overflow: ellipsis; 
+//      overflow: hidden; 
+//      white-space: nowrap;
+//   }

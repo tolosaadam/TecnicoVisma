@@ -18,5 +18,6 @@ namespace TecnicoVisma.Entities.Models
         public string PostalCode { get; set; }
         public string Address { get; set; }
         public string MailAddress { get; set; }
+        public int ProductDiscount { get; set; }
     }
 }

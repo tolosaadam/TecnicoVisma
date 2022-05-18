@@ -53,5 +53,11 @@ namespace TecnicoVisma.Repositories
             _context.SaveChanges();
             return GetCustomers();
         }
+
+        public List<string> GetAllMailAddresses()
+        {
+            var mailAddresses = _context.Customers.Select(x => x.MailAddress).ToList();
+            return mailAddresses;
+        }
     }
 }

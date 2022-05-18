@@ -88,7 +88,7 @@ namespace TecnicoVismaAPI.Controllers
         }
 
         [HttpGet("tokenLifeTime/{token}")]
-        public async Task<IActionResult> GetAllMailAddresses(string token) 
+        public async Task<IActionResult> GetTokenLifeTime(string token) 
         {
             _logger.LogInformation($"Getting all mail address");
             try

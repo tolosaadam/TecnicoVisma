@@ -27,7 +27,6 @@ export class ProductFormComponent implements OnInit {
     unitPrice : new FormControl(this.data.data["key"] == "edit" ? this.data.data["data"][0]["unitPrice"] : '',Validators.required),
     unitsInStock : new FormControl(this.data.data["key"] == "edit" ? this.data.data["data"][0]["unitsInStock"] : '',Validators.required)
     // categoryId : new FormControl('',Validators.required),
-    // brandId :  new FormControl('',Validators.required),
 
   })
 

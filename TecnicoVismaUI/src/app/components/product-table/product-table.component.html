@@ -67,12 +67,6 @@
       <mat-header-cell *matHeaderCellDef> Image </mat-header-cell>
       <mat-cell *matCellDef="let row" ><td><img [src]="createImgPath(row.imagePath)" alt="profile picture" style="width:60px; height:60px;"></td></mat-cell>
   </ng-container> -->
-  
-    <!-- <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"
-        (click)="selection.toggle(row)">
-    </tr> -->
-
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></mat-row>
 

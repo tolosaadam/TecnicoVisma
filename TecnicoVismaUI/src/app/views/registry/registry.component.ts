@@ -83,7 +83,7 @@ export class RegistryComponent implements OnInit {
     else{
       this.user.firstName = stepOne.firstName;
       this.user.lastName = stepOne.lastName;
-        this.user.birthday = stepOne.birthday;
+      this.user.birthday = stepOne.birthday;
       this.user.gender = stepOne.gender;
       this.user.country = stepTwo.country;
       this.user.postalCode = stepTwo.postalCode;

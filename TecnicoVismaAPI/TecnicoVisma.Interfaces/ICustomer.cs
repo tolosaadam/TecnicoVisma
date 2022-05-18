@@ -14,6 +14,7 @@ namespace TecnicoVisma.Interfaces
         IEnumerable<Customer> Insert(Customer customer);
         IEnumerable<Customer> Update(Customer customer);
         IEnumerable<Customer> Delete(List<int> ids);
+        List<string> GetAllMailAddresses();
         int Count();
     }
 }

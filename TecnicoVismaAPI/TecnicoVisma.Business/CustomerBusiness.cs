@@ -62,5 +62,10 @@ namespace TecnicoVisma.Business
             var customersDTO = _mapper.Map<IEnumerable<Customer>, IEnumerable<CustomerDTO>>(customers);
             return customersDTO;
         }
+
+        public List<string> GetAllMailAddresses()
+        {
+            return _repository.GetAllMailAddresses();
+        }
     }
 }

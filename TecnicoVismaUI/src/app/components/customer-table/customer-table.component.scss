@@ -1,0 +1,67 @@
+table {
+    width: 100%;
+  }
+
+.filter-create{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  mat-form-field{
+    display: flex;
+    flex:1;
+  }
+
+  .action-buttons{
+    display: inline-flex;
+    justify-content: space-evenly;
+
+    .add-button{
+      color: #fff;
+      background-color: #1976d2;
+      &:hover{
+        background-color: darken(#1976d2, 15%);
+      }
+    }
+
+    .edit-button{
+      &:hover{
+        background-color: darken(#ffd740, 15%);
+      }
+    }
+    
+    .delete-button{
+      &:hover{
+        background-color: darken(#f44336, 15%);
+      }
+    }
+
+    button{
+      align-items: center;
+      margin: 1px;
+      width: 200px;
+
+      mat-icon{
+        font-size: 21px;
+      }
+    }
+
+  }
+
+}
+
+
+@media screen and (max-width: 1250px){
+  .filter-create{
+    mat-form-field{
+      flex:0;
+    }
+  }
+
+}
+
+@media screen and (max-width: 1000px){
+  .action-buttons{
+    margin-bottom: 2px;
+  }
+}

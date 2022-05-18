@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TecnicoVisma.Entities.Data;
 
 namespace TecnicoVisma.Entities.Migrations
 {
     [DbContext(typeof(TecnicoVismaDBContext))]
-    partial class TecnicoVismaDBContextModelSnapshot : ModelSnapshot
+    [Migration("20220518043933_discount")]
+    partial class discount
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

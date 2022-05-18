@@ -129,5 +129,25 @@ namespace TecnicoVismaAPI.Controllers
                 return BadRequest(response);
             }
         }
+
+        [Authorize]
+        [HttpGet("mailAddresses")]
+        public async Task<IActionResult> GetAllMailAddresses()
+        {
+            _logger.LogInformation($"Getting all mail address");
+            var response = new ResponseDTO<List<string>>();
+            try
+            {
+                var mailAddresses = await Task.FromResult(_business.GetAllMailAddresses());
+                response.Data = mailAddresses;
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"An error occurring Getting all mail address", e);
+                response.ErrorMessage = e.Message;
+                return BadRequest(response);
+            }
+        }
     }
 }

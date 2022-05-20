@@ -65,5 +65,6 @@ namespace TecnicoVisma.Repositories
             var discount = _context.Customers.FirstOrDefault(x => x.Id == id).ProductDiscount;
             return discount;
         }
+
     }
 }

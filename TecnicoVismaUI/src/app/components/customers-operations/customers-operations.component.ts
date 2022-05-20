@@ -1,8 +1,7 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { MatOption } from '@angular/material/core';
-import { MatPaginator } from '@angular/material/paginator';
 import { MatSelect } from '@angular/material/select';
 import { MatStepper } from '@angular/material/stepper';
 import { MatTableDataSource } from '@angular/material/table';
@@ -27,7 +26,6 @@ export class CustomersOperationsComponent implements OnInit {
 
   displayedColumns: string[] = ['productName', 'productQuantity', 'unitPrice','productDiscount','normalPrice','totalDiscount','price']; 
   dataSource = new MatTableDataSource<OrderDetailsI>();
-  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
 
   userId:any = sessionStorage.getItem('userId');
   
@@ -65,7 +63,6 @@ export class CustomersOperationsComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataSource.data = this.order.orderDetails;
-    this.dataSource.paginator = this.paginator;
     this.api.getCustomers().subscribe((data:ApiResponseI) => {
       if(data.isError){
 
@@ -169,15 +166,6 @@ export class CustomersOperationsComponent implements OnInit {
         }
 
       })
-    }
-  }
-
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
-
-    if (this.dataSource.paginator){
-      this.dataSource.paginator.firstPage();
     }
   }
 

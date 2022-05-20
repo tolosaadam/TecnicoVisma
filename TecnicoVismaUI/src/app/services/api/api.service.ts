@@ -45,6 +45,12 @@ export class ApiService {
     return this.http.post<ApiResponseI>(direccion,order,{headers:this.getAuthorizationHeader()});
   }
 
+  getAllCustomerExpenses(){
+    let direccion = this.url + "customer/getAllCustomerExpenses";
+
+    return this.http.get<ApiResponseI>(direccion,{headers:this.getAuthorizationHeader()});
+  }
+
   addCustomer(product: CustomerI){
     let direccion = this.url + "customer";
 

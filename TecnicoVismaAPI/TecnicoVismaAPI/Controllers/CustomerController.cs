@@ -149,5 +149,25 @@ namespace TecnicoVismaAPI.Controllers
                 return BadRequest(response);
             }
         }
+
+        [Authorize]
+        [HttpGet("getAllCustomerExpenses")]
+        public async Task<IActionResult> GetAllCustomerExpenses()
+        {
+            _logger.LogInformation($"GetAllCustomerExpenses from controller");
+            var response = new ResponseDTO<IEnumerable<CustomerExpensesDTO>>();
+            try
+            {
+                var customersExpenses = await Task.FromResult(_business.GetAllCustomerExpenses());
+                response.Data = customersExpenses;
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"An error occurring Getting all customers expenses", e);
+                response.ErrorMessage = e.Message;
+                return BadRequest(response);
+            }
+        }
     }
 }

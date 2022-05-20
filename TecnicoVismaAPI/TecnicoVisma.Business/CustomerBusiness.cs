@@ -72,5 +72,23 @@ namespace TecnicoVisma.Business
         {
             return _repository.GetProductDiscountById(id);
         }
+
+        public IEnumerable<CustomerExpensesDTO> GetAllCustomerExpenses()
+        {
+            var customersExpensesDTO = new List<CustomerExpensesDTO>();
+            var customers = _repository.GetCustomers();
+            var customersDTO = _mapper.Map<IEnumerable<Customer>, IEnumerable<CustomerDTO>>(customers);
+            foreach(CustomerDTO customerDTO in customersDTO)
+            {
+                var customerExpensesDTO = new CustomerExpensesDTO
+                {
+                    CustomerId = customerDTO.Id,
+                    CustomerName = customerDTO.FirstName
+                };
+                customersExpensesDTO.Add(customerExpensesDTO);
+            }
+
+            return customersExpensesDTO;
+        }
     }
 }

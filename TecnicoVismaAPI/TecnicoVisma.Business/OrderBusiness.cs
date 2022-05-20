@@ -47,11 +47,11 @@ namespace TecnicoVisma.Business
             return orderDTO;
         }
 
-        public IEnumerable<OrderDTO> CreateOrder(OrderDTO orderDTO)
+        public OrderDTO CreateOrder(OrderDTO orderDTO)
         {
             var order = _mapper.Map<OrderDTO, Order>(orderDTO);
             var orders = _repository.Insert(order);
-            var ordersDTO = _mapper.Map<IEnumerable<Order>, IEnumerable<OrderDTO>>(orders);
+            var ordersDTO = _mapper.Map<Order, OrderDTO>(orders);
             return ordersDTO;
         }
 

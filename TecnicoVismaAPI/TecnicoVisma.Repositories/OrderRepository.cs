@@ -34,11 +34,11 @@ namespace TecnicoVisma.Repositories
             return order;
         }
 
-        public IEnumerable<Order> Insert(Order order)
+        public Order Insert(Order order)
         {
             _context.Orders.Add(order);
             _context.SaveChanges();
-            return GetAllOrder();
+            return order;
         }
     }
 }

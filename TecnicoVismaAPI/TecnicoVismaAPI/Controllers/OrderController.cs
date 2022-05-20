@@ -87,12 +87,12 @@ namespace TecnicoVismaAPI.Controllers
             }
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> CreateOrder(OrderDTO orderDTO)
         {
             _logger.LogInformation($"CreateOrder from Controller");
-            var response = new ResponseDTO<IEnumerable<OrderDTO>>();
+            var response = new ResponseDTO<OrderDTO>();
             try
             {
                 var orders = await Task.FromResult(_business.CreateOrder(orderDTO));

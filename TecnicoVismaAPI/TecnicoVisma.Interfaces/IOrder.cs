@@ -12,6 +12,6 @@ namespace TecnicoVisma.Interfaces
         int Count();
         Order GetOrder(int id);
         IEnumerable<Order> GetAllOrder();
-        IEnumerable<Order> Insert(Order order);
+        Order Insert(Order order);
     }
 }

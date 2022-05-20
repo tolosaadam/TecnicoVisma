@@ -10,13 +10,8 @@ namespace TecnicoVisma.Entities.DTOS
     {
         public int Id { get; set; }
         public int OrderId { get; set; }
-        public string ProductName { get; set; }
-        public int ProductDiscount { get; set; }
-        public decimal TotalDiscount { get; set; }
         public int ProductId { get; set; }
         public int ProductQuantity { get; set; }
-        public decimal UnitPrice { get; set; }
-        public decimal NormalPrice { get; set; }
         public decimal Price { get; set; }
     }
 }

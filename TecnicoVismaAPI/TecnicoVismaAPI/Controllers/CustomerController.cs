@@ -155,10 +155,10 @@ namespace TecnicoVismaAPI.Controllers
         public async Task<IActionResult> GetAllCustomerExpenses()
         {
             _logger.LogInformation($"GetAllCustomerExpenses from controller");
-            var response = new ResponseDTO<IEnumerable<CustomerExpensesDTO>>();
+            var response = new ResponseDTO<IList<CustomerExpensesDTO>>();
             try
             {
-                var customersExpenses = await Task.FromResult(_business.GetAllCustomerExpenses());
+                var customersExpenses = await (_business.GetAllCustomerExpenses());
                 response.Data = customersExpenses;
                 return Ok(response);
             }

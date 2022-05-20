@@ -1,5 +1,5 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { MatOption } from '@angular/material/core';
 import { MatSelect } from '@angular/material/select';
@@ -10,7 +10,7 @@ import { map } from 'rxjs';
 import { ApiResponseI } from 'src/app/models/apiResponse.interface';
 import { CustomerI } from 'src/app/models/customer.interface';
 import { OrderI } from 'src/app/models/order.interface';
-import { OrderDetailsI } from 'src/app/models/orderDetails.interface';
+import { OrderDetailsSummaryI } from 'src/app/models/orderSummary.interface';
 import { ProductI } from 'src/app/models/product.interface';
 import { ApiService } from 'src/app/services/api/api.service';
 
@@ -20,12 +20,23 @@ import { ApiService } from 'src/app/services/api/api.service';
   templateUrl: './customers-operations.component.html',
   styleUrls: ['./customers-operations.component.scss']
 })
-export class CustomersOperationsComponent implements OnInit {
+export class CustomersOperationsComponent implements OnInit, OnDestroy {
 
-  @Input() productDiscount:number = 0;
+  @Input() customerToDisplay:CustomerI = {
+    id: 0,
+    firstName: '',
+    lastName: '',
+    birthday: '',
+    gender: undefined,
+    country: undefined,
+    postalCode: '',
+    address: '',
+    mailAddress: '',
+    productDiscount: 0
+  };
 
-  displayedColumns: string[] = ['productName', 'productQuantity', 'unitPrice','productDiscount','normalPrice','totalDiscount','price']; 
-  dataSource = new MatTableDataSource<OrderDetailsI>();
+  displayedColumns: string[] = ['productName', 'productQuantity', 'productUnitPrice','productDiscount','totalNormalPrice','totalDiscount','totalDiscountedPrice']; 
+  dataSource = new MatTableDataSource<OrderDetailsSummaryI>();
 
   userId:any = sessionStorage.getItem('userId');
   
@@ -57,12 +68,17 @@ export class CustomersOperationsComponent implements OnInit {
     this.stepperOrientation = breakpointObserver
       .observe('(min-width: 920px)')
       .pipe(map(({matches}) => (matches ? 'horizontal' : 'vertical')));
-    this.dataSource = new MatTableDataSource(this.order.orderDetails);
+    this.dataSource = new MatTableDataSource();
+
+    this.onValChanges();
+
 
   }
 
+  ngOnDestroy(): void{
+  }
+
   ngOnInit(): void {
-    this.dataSource.data = this.order.orderDetails;
     this.api.getCustomers().subscribe((data:ApiResponseI) => {
       if(data.isError){
 
@@ -81,37 +97,86 @@ export class CustomersOperationsComponent implements OnInit {
     })
   }
 
+  ////////// REACTIVE METHODS ///////////////////
 
-
-  get orderDetails() {
-    return this.orderForm.controls["orderDetails"] as FormArray;
+  onValChanges(): void {
+    this.orderForm.controls['customerId'].valueChanges.subscribe((val) => {
+      this.orderDetails.controls.forEach(orderDetails => {
+        this.getOrderDetailsTotalPrice(orderDetails);
+      })
+    })
   }
 
+  enableQuantityInput(orderDetails:any){
+    if(orderDetails.value.productId && orderDetails.controls.productQuantity.disabled){
+      orderDetails.controls.productQuantity.enable()     
+    }
+  }
+
+  getOrderDetailsTotalPrice(orderDetails:any):void{
+    var productQuantity = orderDetails.get('productQuantity').value;
+    var customerId = this.orderForm.get("customerId")?.value;
+
+    if(productQuantity != null){
+      var productId = orderDetails.get('productId').value;
+      var productUnitPrice:number = 0;
+      var productDiscount:number = 0;
+
+      this.customers.forEach(x => {
+        if(x.id == customerId){
+          productDiscount = x.productDiscount
+        }
+      });
+
+      this.products.forEach(x => {
+        if(x.id == productId){
+          productUnitPrice = x.unitPrice
+        }
+      });
+      var totalPrice = productQuantity * (productUnitPrice - ((productUnitPrice * productDiscount)/100));   
+      orderDetails.get('price').setValue(totalPrice);   
+    }     
+  }
+  
+  setCustomerToDisplay(customerId:number):void{
+    this.customers.forEach(x =>{
+      if(x.id == customerId){
+        this.customerToDisplay = x;
+      }
+    });
+  }
+  
+  ///////////// AVM ORDER DETAILS /////////////
 
   addOrderDetails():void {
     if(this.orderForm.value.customerId){
       const orderDetailsForm = this._formBuilder.group({
-          productId: ['', Validators.required],
-          productQuantity: ['', Validators.required],
+        productId: ['', Validators.required],
+        productQuantity: [{value: 0, disabled:true}, Validators.required],
+        price : ['', Validators.required]
       }); 
       this.orderDetails.push(orderDetailsForm);
     }
     else{
       this.toast.info({detail:"Info Message",summary:"You must first select a client."});
-    }
-  
+    }   
   }
-
-  deleteOrderDetails(orderDetailsIndex: number) {
-    
+  
+  deleteOrderDetails(orderDetailsIndex: number) {   
     this.orderDetails.removeAt(orderDetailsIndex);
   }
-
+  
   clearOrderDetails():void{
     this.customerIdSelect.options.forEach((data: MatOption) => data.deselect());
     this.orderDetails.clear();
+  } 
+  get orderDetails() {
+    return this.orderForm.controls["orderDetails"] as FormArray;
   }
 
+
+
+  //////////// STEPPER - SUBMIT FORM - API CALLS VALIDATIONS ////////////////
   
   onSubmit(){
 
@@ -124,17 +189,9 @@ export class CustomersOperationsComponent implements OnInit {
         this.toast.success({detail:"Success Message",summary:"Order added Sucessfully."});
       }
     })
-
   }
 
   
-  setCustomerDiscount(customerId:number):void{
-    this.customers.forEach(x =>{
-      if(x.id == customerId){
-        this.productDiscount = x.productDiscount
-      }
-    });
-  }
 
   goBack(stepper: MatStepper){
       stepper.previous();
@@ -154,21 +211,28 @@ export class CustomersOperationsComponent implements OnInit {
     {
       this.order.customerId = form.customerId;
       this.order.orderDetails = form.orderDetails;
-      this.api.getOrderPrices(this.order).subscribe((data:ApiResponseI) => {
+      console.log(this.order);
+      this.api.getOrderSummary(this.order).subscribe((data:ApiResponseI) => {
         if(data.isError){
           this.toast.error({detail:"Error Message",summary:"An error has occurred, try again later."});
         }
         else{
           this.order.totalOrder = data.data.totalOrder;
           this.order.orderDetails = data.data.orderDetails;
-          this.dataSource.data = this.order.orderDetails;
+          this.dataSource.data = data.data.orderDetailsSummary;
+          this.order.orderDetails = data.data.orderDetailsSummary.map((x:OrderDetailsSummaryI) => (
+            {
+              id: 0,
+              orderId:0,
+              productId:x.productId,
+              productQuantity:x.productQuantity,
+              price:x.totalDiscountedPrice
+            }));
           stepper.next();     
         }
-
       })
     }
   }
-
 }
 
 

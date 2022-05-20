@@ -18,7 +18,7 @@
 
                                 <mat-form-field appearance="fill">
                                     <mat-label>Customer</mat-label>
-                                    <mat-select #customerIdSelect formControlName="customerId" (selectionChange)="setCustomerDiscount(customerIdSelect.value)">
+                                    <mat-select #customerIdSelect formControlName="customerId" (selectionChange)="setCustomerToDisplay(customerIdSelect.value)">
                                         <mat-option *ngFor="let customer of customers" [value]="customer.id">
                                             <div style="display:flex;flex-direction:row;justify-content:space-between;">                                  
                                                 <span>
@@ -41,30 +41,34 @@
                                 <ng-container formArrayName="orderDetails">
                                     <ng-container *ngFor="let orderDetailsForm of orderDetails.controls; let i = index">
                                         <form fxLayout="row" class="form-orderDetails" [formGroupName]="i">
-                                            <mat-form-field  fxFlex="30.66" appearance="fill">
+                                            <mat-form-field  fxFlex="23" appearance="fill">
                                                 <mat-label>Product</mat-label>
-                                                <mat-select  #productIdSelect formControlName="productId">
+                                                <mat-select  #productIdSelect formControlName="productId" (selectionChange)="enableQuantityInput(orderDetailsForm)" (selectionChange)="getOrderDetailsTotalPrice(orderDetailsForm)">
                                                 <mat-option *ngFor="let product of products" [value]="product.id">
                                                     
                                                     {{product.name}}                                                                                                   
                                                 </mat-option>
                                                 </mat-select>
                                             </mat-form-field>
-                                            <mat-form-field fxFlex="30.66" appearance="fill">
+                                            <mat-form-field fxFlex="23" appearance="fill">
                                                 <mat-label>Product Quantity</mat-label>
-                                                <input type="number" matInput formControlName="productQuantity"  placeholder="Enter product quantity" required>
+                                                <input type="number" matInput formControlName="productQuantity" placeholder="Enter product quantity" required  (input)="getOrderDetailsTotalPrice(orderDetailsForm)">
                                             </mat-form-field>
-
-                                            <div class="discount-total-container " fxFlex="30.66">
+                                            
+                                            <div class="discount-total-container " fxFlex="23">
                                                 <div class="discount-total-box">
                                                     <div class="discount-total-item">
                                                         <span class="discount-total-text">
-                                                            Discount: {{productDiscount}}%
+                                                            Discount: {{customerToDisplay.productDiscount}}%
                                                         </span>
                                                     </div>                                             
                                                 </div>
-
+                                                
                                             </div>
+                                            <mat-form-field fxFlex="23" appearance="fill">
+                                                <mat-label>Total</mat-label>
+                                                <input type="number" matInput formControlName="price" required [readonly]='true'>
+                                            </mat-form-field>
                                             <div class="discount-total-container" fxFlex="8">
                                                 <button    class="delete-button" mat-raised-button (click)="deleteOrderDetails(i)"
                                                 matTooltip="Delete product"
@@ -110,25 +114,25 @@
                                     <mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>
                                     <mat-cell *matCellDef="let row">{{row.productQuantity}}</mat-cell>
                                 </ng-container>
-                                <ng-container matColumnDef="unitPrice"> 
+                                <ng-container matColumnDef="productUnitPrice"> 
                                     <mat-header-cell *matHeaderCellDef> Unit Price </mat-header-cell>
-                                    <mat-cell *matCellDef="let row">{{row.unitPrice}} $</mat-cell>
+                                    <mat-cell *matCellDef="let row">{{row.productUnitPrice | currency}}</mat-cell>
                                 </ng-container>
                                 <ng-container matColumnDef="productDiscount"> 
                                     <mat-header-cell *matHeaderCellDef> Discount </mat-header-cell>
                                     <mat-cell *matCellDef="let row">{{row.productDiscount}}%</mat-cell>
                                 </ng-container>
-                                <ng-container matColumnDef="normalPrice"> 
+                                <ng-container matColumnDef="totalNormalPrice"> 
                                     <mat-header-cell *matHeaderCellDef> Normal Price </mat-header-cell>
-                                    <mat-cell *matCellDef="let row">{{row.normalPrice}} $</mat-cell>
+                                    <mat-cell *matCellDef="let row">{{row.totalNormalPrice | currency}}</mat-cell>
                                 </ng-container>
                                 <ng-container matColumnDef="totalDiscount"> 
                                     <mat-header-cell *matHeaderCellDef> Price Discounted </mat-header-cell>
-                                    <mat-cell *matCellDef="let row">{{row.totalDiscount}} $</mat-cell>
+                                    <mat-cell *matCellDef="let row">{{row.totalDiscount | currency}}</mat-cell>
                                 </ng-container>
-                                <ng-container matColumnDef="price"> 
+                                <ng-container matColumnDef="totalDiscountedPrice"> 
                                     <mat-header-cell *matHeaderCellDef> Total Price </mat-header-cell>
-                                    <mat-cell *matCellDef="let row">{{row.price}} $</mat-cell>
+                                    <mat-cell *matCellDef="let row">{{row.totalDiscountedPrice | currency}}</mat-cell>
                                 </ng-container>
 
                                 <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
@@ -137,8 +141,11 @@
                             </mat-table>
 
                             <div class="total-container">
+                                <span>
+                                    Customer: {{customerToDisplay.firstName}} {{customerToDisplay.lastName}}
+                                </span>
                                 <span class="total-text">
-                                    Total: {{order.totalOrder}}$
+                                    Total: {{order.totalOrder | currency}}$
                                 </span>
                             </div>
                             

@@ -53,7 +53,7 @@
   </ng-container>
   <ng-container matColumnDef="unitPrice"> 
       <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.unitPrice}} $</mat-cell>
+      <mat-cell *matCellDef="let row">{{row.unitPrice}} | currency</mat-cell>
   </ng-container>
   <ng-container matColumnDef="unitsInStock"> 
       <mat-header-cell *matHeaderCellDef> Stock </mat-header-cell>

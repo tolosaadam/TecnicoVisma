@@ -73,22 +73,25 @@ namespace TecnicoVisma.Business
             return _repository.GetProductDiscountById(id);
         }
 
-        public IEnumerable<CustomerExpensesDTO> GetAllCustomerExpenses()
+        public async Task<IList<CustomerExpensesDTO>> GetAllCustomerExpenses()
         {
-            var customersExpensesDTO = new List<CustomerExpensesDTO>();
-            var customers = _repository.GetCustomers();
-            var customersDTO = _mapper.Map<IEnumerable<Customer>, IEnumerable<CustomerDTO>>(customers);
-            foreach(CustomerDTO customerDTO in customersDTO)
+            var customerExpensesDTO = new List<CustomerExpensesDTO>();
+            var orders = await _repository.GetAllCustomerExpenses();
+
+            foreach (Order order in orders)
             {
-                var customerExpensesDTO = new CustomerExpensesDTO
+                CustomerExpensesDTO customerExpenseDTO = new()
                 {
-                    CustomerId = customerDTO.Id,
-                    CustomerName = customerDTO.FirstName
+                    CustomerId = order.CustomerId,
+                    CustomerName = order.Customer.FirstName,
+                    TotalProducts = order.OrderDetails.Sum(x => x.ProductQuantity),
+                    TotalOrders = orders.Where(x => x.CustomerId == order.CustomerId).Count(),
+                    TotalExpense = orders.Where(x => x.CustomerId == order.CustomerId).Sum(x => x.TotalOrder),
                 };
-                customersExpensesDTO.Add(customerExpensesDTO);
+                customerExpensesDTO.Add(customerExpenseDTO);
             }
 
-            return customersExpensesDTO;
+            return customerExpensesDTO;
         }
     }
 }

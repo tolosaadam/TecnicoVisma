@@ -60,7 +60,7 @@ namespace TecnicoVisma.Business
             return productsDTO;
         }
 
-        public decimal GetProductPrice(int id)
+        public  decimal GetProductPrice(int id)
         {
             return _repository.GetProductPriceById(id);
         }

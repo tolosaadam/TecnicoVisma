@@ -16,6 +16,7 @@ namespace TecnicoVisma.Interfaces
         IEnumerable<Customer> Delete(List<int> ids);
         List<string> GetAllMailAddresses();
         int GetProductDiscountById(int id);
+        Task<IList<Order>> GetAllCustomerExpenses();
         int Count();
     }
 }

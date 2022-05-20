@@ -66,21 +66,22 @@ namespace TecnicoVismaAPI.Controllers
         }
 
         [Authorize]
-        [HttpPost("getPrices")]
-        public async Task<IActionResult> GetOrderPrices(OrderDTO orderDTO)
+        [HttpPost("getOrderSummary")]
+        public async Task<IActionResult> GetOrderSummary(OrderDTO orderDTO)
         {
-            _logger.LogInformation($"GetOrderPrices from Controller");
-            var response = new ResponseDTO<OrderDTO>();
+
+            _logger.LogInformation($"GetOrderSummary from Controller");
+            var response = new ResponseDTO<OrderSummaryDTO>();
             try
             {
-                var order = await Task.FromResult(_business.GetOrderPrices(orderDTO));
-                response.Data = order;
+                var orderSummaryDTO = await Task.FromResult(_business.GetOrderSummary(orderDTO));
+                response.Data = orderSummaryDTO;
                 return Ok(response);
 
             }
             catch (Exception e)
             {
-                _logger.LogError($"An error occurring Getting order prices  = {orderDTO}", e);
+                _logger.LogError($"An error occurring Getting a order summary  = {orderDTO}", e);
                 response.ErrorMessage = e.Message;
                 return BadRequest(response);
 

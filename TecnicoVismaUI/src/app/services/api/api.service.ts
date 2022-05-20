@@ -6,6 +6,7 @@ import { ContactI } from 'src/app/models/contact.interface';
 import { CustomerI } from 'src/app/models/customer.interface';
 import { loginFormI } from 'src/app/models/login.interface';
 import { OrderI } from 'src/app/models/order.interface';
+import { OrderDetailsI } from 'src/app/models/orderDetails.interface';
 import { ProductOperationI } from 'src/app/models/product-operation';
 import { UserI } from 'src/app/models/user.interface';
 
@@ -26,7 +27,7 @@ export class ApiService {
   getAuthorizationHeader():HttpHeaders{
     return new HttpHeaders().set("Authorization", "Bearer " + sessionStorage.getItem('userJwt'));
   }
-
+  
   getCustomers():Observable<ApiResponseI>{
     let direccion = this.url + "customer";
 
@@ -39,9 +40,8 @@ export class ApiService {
     return this.http.post<ApiResponseI>(direccion,order,{headers:this.getAuthorizationHeader()});
   }
 
-  getOrderPrices(order:OrderI){
-    let direccion = this.url + "order/getPrices";
-
+  getOrderSummary(order:OrderI){
+    let direccion = this.url + "order/getOrderSummary";
     return this.http.post<ApiResponseI>(direccion,order,{headers:this.getAuthorizationHeader()});
   }
 

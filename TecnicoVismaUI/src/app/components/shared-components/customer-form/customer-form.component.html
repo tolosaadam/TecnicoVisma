@@ -1,0 +1,95 @@
+
+<div class="container">
+    <div class="content">     
+     <form [formGroup]="customerForm" class="form-container">     
+       <mat-card class="form-content">
+         <mat-card-header>
+           <mat-card-title>{{data.data.title}}</mat-card-title>
+           <mat-icon id="close-icon" (click)="closeDialog()">close</mat-icon>
+         </mat-card-header>
+         <mat-card-content class="input-content">
+           <div class="row">
+             <div class="col-md-6">
+               <mat-form-field appearance="fill" class="full-width">
+                 <mat-label>Name</mat-label>
+                 <mat-icon matSuffix>badge</mat-icon>
+                 <input matInput formControlName="firstName"  placeholder="Enter the customer's name" required>
+               </mat-form-field>
+             </div>
+             <div class="col-md-6">
+               <mat-form-field appearance="fill" class="full-width">
+                 <mat-label>Last Name</mat-label>
+                 <mat-icon matSuffix>list_alt</mat-icon>
+                 <input matInput formControlName="lastName"  placeholder="Enter the customer's last name" required>
+               </mat-form-field>
+             </div>
+             <div class="col-md-6">
+                <mat-form-field appearance="fill" class="full-width">
+                    <mat-label>Birthday</mat-label>
+                    <input matInput placeholder="Birthday" formControlName="birthday" [matDatepicker]="picker">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+             </div>           
+             <div class="col-md-6">
+                <mat-form-field appearance="fill" class="full-width">
+                    <mat-label>Gender</mat-label>
+                    <mat-select placeholder="Gender" formControlName="gender" placeholder="Enter the customer's gender" required>
+                      <mat-option value="Male">Male</mat-option>
+                      <mat-option value="Female">Female</mat-option>
+                      <mat-option value="Anonymous">Anonymous</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+             </div>
+             <div class="col-md-6">
+                <mat-form-field appearance="fill" class="full-width">
+                    <mat-label>Country</mat-label>
+                    <mat-icon matSuffix>inventory_2</mat-icon>               
+                    <input matInput formControlName="country"  placeholder="Enter the country of the client" required>
+                  </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field appearance="fill" class="full-width">
+                  <mat-label>Postal Code</mat-label>
+                  <mat-icon matSuffix>inventory_2</mat-icon>               
+                  <input matInput formControlName="postalCode" matInput placeholder="Enter the customer's zip code" required>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field appearance="fill" class="full-width">
+                  <mat-label>Address</mat-label>
+                  <mat-icon matSuffix>inventory_2</mat-icon>               
+                  <input matInput formControlName="address" matInput placeholder="Enter the customer's address" required>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field appearance="fill" class="full-width">
+                  <mat-label>Mail Address</mat-label>
+                  <mat-icon matSuffix>inventory_2</mat-icon>               
+                  <input matInput formControlName="mailAddress" matInput placeholder="Enter the customer's zip code" required autocomplete="off">
+                </mat-form-field>
+                <div class="has-text-danger" *ngIf="customerForm.controls['mailAddress'].errors?.['usernameExists']">
+                  This Mail address is already taken!
+              </div>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field appearance="fill" class="full-width">
+                  <mat-label>Product Discount</mat-label>
+                  <mat-icon matSuffix>list_alt</mat-icon>
+                  <input matInput formControlName="productDiscount"  placeholder="Enter the customer's product discount" required>
+                </mat-form-field>
+              </div>
+           </div>
+         </mat-card-content>
+         <mat-card-actions class="action-buttons">
+           <button (click)="onSubmit(customerForm.value)" [disabled]="!customerForm.valid"  mat-raised-button class="buttons submit-button">Submit</button>
+           <button (click)="closeDialog()"  mat-raised-button class="buttons cancel-button">Cancel</button>
+         </mat-card-actions>
+       </mat-card>
+     </form>
+   
+   </div>
+ </div>
+
+

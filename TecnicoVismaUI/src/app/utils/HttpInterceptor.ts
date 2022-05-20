@@ -38,6 +38,7 @@ export class AppHttpInterceptor implements HttpInterceptor {
                         this.navigate.logOut();
                     }
                     else if(err.statusText == "Unknown Error"){
+                        this.navigate.logOut();
                         this.toast.error({detail:"Error Message",summary:"An error has occurred, try again later."});
                     }
                 }

@@ -46,6 +46,7 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem('userMailAddress', data.data.user.mailAddress);
         sessionStorage.setItem('userJwt', data.data.token);
         sessionStorage.setItem('userSessionTime', data.data.sessionTime);
+        sessionStorage.setItem('userId',data.data.user.id);
         this.navigate.goToHome();
       }
     })   

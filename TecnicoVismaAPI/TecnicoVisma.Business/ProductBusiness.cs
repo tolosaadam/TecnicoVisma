@@ -59,5 +59,15 @@ namespace TecnicoVisma.Business
             var productsDTO = _mapper.Map<IEnumerable<Product>, IEnumerable<ProductDTO>>(products);
             return productsDTO;
         }
+
+        public decimal GetProductPrice(int id)
+        {
+            return _repository.GetProductPriceById(id);
+        }
+
+        public string GetProductName(int id)
+        {
+            return _repository.GetProductNameById(id);
+        }
     }
 }

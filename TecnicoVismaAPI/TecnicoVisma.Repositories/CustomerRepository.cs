@@ -59,5 +59,11 @@ namespace TecnicoVisma.Repositories
             var mailAddresses = _context.Customers.Select(x => x.MailAddress).ToList();
             return mailAddresses;
         }
+
+        public int GetProductDiscountById(int id)
+        {
+            var discount = _context.Customers.FirstOrDefault(x => x.Id == id).ProductDiscount;
+            return discount;
+        }
     }
 }

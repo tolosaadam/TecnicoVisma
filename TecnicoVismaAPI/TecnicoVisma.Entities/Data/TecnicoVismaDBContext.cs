@@ -17,6 +17,9 @@ namespace TecnicoVisma.Entities.Data
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetails> OrdersDetails { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -36,6 +39,11 @@ namespace TecnicoVisma.Entities.Data
             {
                 entity.Property(x => x.Birthday).HasColumnType("date");
                 entity.Property(x => x.RegisteredDate).HasColumnType("datetime");
+            });
+
+            modelBuilder.Entity<Order>(entity =>
+            {
+                entity.Property(x => x.DateOfOrder).HasColumnType("datetime");
             });
         }
     }

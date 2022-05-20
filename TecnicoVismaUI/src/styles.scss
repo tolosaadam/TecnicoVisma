@@ -17,3 +17,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; overflow: a
 .mat-progress-spinner circle, .mat-spinner circle {
     stroke: #e81212!important;
 }
+
+.mat-horizontal-stepper-header{
+    pointer-events: none !important;
+}

@@ -1,1 +1,172 @@
-<p>customers-operations works!</p>
+<div class="container">
+    <div class="content">
+        <mat-card class="form-content">
+            <mat-card-header>
+                <mat-card-title>Add a operation</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+
+                <mat-stepper
+                #stepper
+                class="example-stepper"
+                [orientation]="(stepperOrientation | async)!"
+                >
+                    <mat-step label="Complete the order">
+                        
+                        <form class="form-groups" [formGroup]="orderForm"> 
+                            <div class="inputs">
+
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Customer</mat-label>
+                                    <mat-select #customerIdSelect formControlName="customerId" (selectionChange)="setCustomerDiscount(customerIdSelect.value)">
+                                        <mat-option *ngFor="let customer of customers" [value]="customer.id">
+                                            <div style="display:flex;flex-direction:row;justify-content:space-between;">                                  
+                                                <span>
+                                                    {{customer.mailAddress}}
+                                                </span>                                                                        
+                                            </div>
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                <div  fxLayout="row" class="add-delete-button">
+                                    <button fxFlex="40"  class="add-button" mat-raised-button (click)="addOrderDetails()"
+                                        matTooltip="Add a product"
+                                        matTooltipPosition="right"
+                                        matTooltipHideDelay="5">
+                                        <mat-icon>add</mat-icon>
+                                    </button>
+                                </div>
+                                <br>
+                                <mat-divider></mat-divider>
+                                <ng-container formArrayName="orderDetails">
+                                    <ng-container *ngFor="let orderDetailsForm of orderDetails.controls; let i = index">
+                                        <form fxLayout="row" class="form-orderDetails" [formGroupName]="i">
+                                            <mat-form-field  fxFlex="30.66" appearance="fill">
+                                                <mat-label>Product</mat-label>
+                                                <mat-select  #productIdSelect formControlName="productId">
+                                                <mat-option *ngFor="let product of products" [value]="product.id">
+                                                    
+                                                    {{product.name}}                                                                                                   
+                                                </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                            <mat-form-field fxFlex="30.66" appearance="fill">
+                                                <mat-label>Product Quantity</mat-label>
+                                                <input type="number" matInput formControlName="productQuantity"  placeholder="Enter product quantity" required>
+                                            </mat-form-field>
+
+                                            <div class="discount-total-container " fxFlex="30.66">
+                                                <div class="discount-total-box">
+                                                    <div class="discount-total-item">
+                                                        <span class="discount-total-text">
+                                                            Discount: {{productDiscount}}%
+                                                        </span>
+                                                    </div>                                             
+                                                </div>
+
+                                            </div>
+                                            <div class="discount-total-container" fxFlex="8">
+                                                <button    class="delete-button" mat-raised-button (click)="deleteOrderDetails(i)"
+                                                matTooltip="Delete product"
+                                                matTooltipPosition="right"
+                                                matTooltipHideDelay="5">                                               
+                                                    <mat-icon>remove</mat-icon>
+                                                </button>
+                                            </div>
+                                            
+                                            
+
+                                        </form>
+                                        
+                                    </ng-container>
+                                </ng-container>
+                            </div>
+                        </form>
+                        <div >
+                            <mat-divider style="position:relative; margin-top: 10px;"></mat-divider>
+                            <div class="stepper-buttons">
+                                <button mat-stroked-button (click)="clearOrderDetails()">
+                                    <mat-icon>restart_alt</mat-icon>
+                                    Clear
+                                </button>
+                                <div class="next-back-button">
+                                        <button class="next-button" mat-raised-button (click)="goForward(orderForm.value,stepper)">
+                                        Next
+                                        <mat-icon>arrow_forward</mat-icon>
+                                    </button>
+                                </div>               
+                            </div>
+                        </div>
+                    </mat-step>
+                    <mat-step label="Summary">
+
+
+                            <mat-table [dataSource]="dataSource" >
+                                <ng-container matColumnDef="productName"> 
+                                  <mat-header-cell *matHeaderCellDef> Product </mat-header-cell>
+                                  <mat-cell *matCellDef="let row">{{row.productName}}</mat-cell>
+                                </ng-container> 
+                                <ng-container matColumnDef="productQuantity"> 
+                                    <mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>
+                                    <mat-cell *matCellDef="let row">{{row.productQuantity}}</mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="unitPrice"> 
+                                    <mat-header-cell *matHeaderCellDef> Unit Price </mat-header-cell>
+                                    <mat-cell *matCellDef="let row">{{row.unitPrice}} $</mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="productDiscount"> 
+                                    <mat-header-cell *matHeaderCellDef> Discount </mat-header-cell>
+                                    <mat-cell *matCellDef="let row">{{row.productDiscount}}%</mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="normalPrice"> 
+                                    <mat-header-cell *matHeaderCellDef> Normal Price </mat-header-cell>
+                                    <mat-cell *matCellDef="let row">{{row.normalPrice}} $</mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="totalDiscount"> 
+                                    <mat-header-cell *matHeaderCellDef> Price Discounted </mat-header-cell>
+                                    <mat-cell *matCellDef="let row">{{row.totalDiscount}} $</mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="price"> 
+                                    <mat-header-cell *matHeaderCellDef> Total Price </mat-header-cell>
+                                    <mat-cell *matCellDef="let row">{{row.price}} $</mat-cell>
+                                </ng-container>
+
+                                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                                <mat-row *matRowDef="let row; columns: displayedColumns;" ></mat-row>
+                            
+                            </mat-table>
+
+                            <div class="total-container">
+                                <span class="total-text">
+                                    Total: {{order.totalOrder}}$
+                                </span>
+                            </div>
+                            
+                              
+                            
+                        
+                        <div>
+                            <div class="stepper-buttons">
+                                <button mat-stroked-button (click)="clearOrderDetails()" matStepperPrevious>
+                                    <mat-icon>restart_alt</mat-icon>
+                                    Clear
+                                </button>
+                                <div class="next-back-button">
+                                    <button class="back-button" mat-raised-button matStepperPrevious>
+                                        <mat-icon>arrow_back</mat-icon>
+                                        Back
+                                    </button>
+                                        <button class="next-button" mat-raised-button (click)="onSubmit()" matStepperPrevious>
+                                        Submit
+                                        <mat-icon>done</mat-icon>
+                                    </button>
+                                </div>               
+                            </div>
+                        </div>
+                    </mat-step>
+                </mat-stepper>
+
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

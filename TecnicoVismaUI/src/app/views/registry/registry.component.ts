@@ -16,6 +16,7 @@ import { NavigateService } from 'src/app/services/navigate/navigate.service';
 })
 export class RegistryComponent implements OnInit {
   user: UserI = {
+    id:0,
     firstName: '',
     lastName: '',
     birthday: '',
@@ -56,7 +57,7 @@ export class RegistryComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.api.GetAllMailAddresses().subscribe(data =>{
+    this.api.getAllMailAddresses().subscribe(data =>{
       this.takenMailAddress = data.data;  
     });
   }

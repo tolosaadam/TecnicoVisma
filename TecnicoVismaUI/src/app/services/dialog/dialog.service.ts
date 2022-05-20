@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from 'src/app/components/shared-components/confirmation-dialog/confirmation-dialog.component';
+import { CustomerFormComponent } from 'src/app/components/shared-components/customer-form/customer-form.component';
 import { ProductFormComponent } from 'src/app/components/shared-components/product-form/product-form.component';
 import { DialogDataI } from 'src/app/models/dialogData.interface';
 
@@ -21,6 +22,31 @@ export class DialogService {
         message:msg
       }
     });
+  }
+
+  openAddCustomerDialog(data:DialogDataI){
+    return this.dialog.open(CustomerFormComponent,{
+      width:'400px',
+      disableClose:true,
+      position: {top:"80px"},
+      panelClass: 'mat-dialog-customer-form',
+      data: {
+        data: data
+      }
+    })
+  }
+
+  openEditCustomerDialog(data:DialogDataI){
+
+    return this.dialog.open(CustomerFormComponent,{
+      width:'400px',
+      disableClose:true,
+      position: {top:"80px"},
+      panelClass: 'mat-dialog-customer-form',
+      data: {
+        data: data
+      }
+    })
   }
 
   openAddProductDialog(data:DialogDataI){

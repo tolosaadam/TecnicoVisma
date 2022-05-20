@@ -67,5 +67,10 @@ namespace TecnicoVisma.Business
         {
             return _repository.GetAllMailAddresses();
         }
+
+        public int GetProductDiscount(int id)
+        {
+            return _repository.GetProductDiscountById(id);
+        }
     }
 }

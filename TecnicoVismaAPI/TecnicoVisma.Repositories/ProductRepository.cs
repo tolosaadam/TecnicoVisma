@@ -55,6 +55,19 @@ namespace TecnicoVisma.Repositories
             return GetProducts();
         }
 
+        public decimal GetProductPriceById(int id)
+        {
+            var price = _context.Products.FirstOrDefault(x => x.Id == id).UnitPrice;
+            return price;
+                //db.Items.Where(x => x.userid == user_ID).Select(x => x.Id).Distinct();
+        }
+
+        public string GetProductNameById(int id)
+        {
+            var name = _context.Products.FirstOrDefault(x => x.Id == id).Name;
+            return name;
+        }
+
         //public IEnumerable<Product> GetSimilarProducts(Product product)
         //{
         //    var products = _context.Products.Where(x => x.Category.Id == product.Category.Id && x.Id != product.Id);

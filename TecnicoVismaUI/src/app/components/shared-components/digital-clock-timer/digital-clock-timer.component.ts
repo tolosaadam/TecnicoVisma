@@ -18,7 +18,7 @@ export class DigitalClockTimerComponent implements OnInit, OnDestroy {
   constructor(private api:ApiService) { }
 
   ngOnInit(): void {
-    this.api.GetTokenLifeTime(this.userJwt).subscribe((lifetime:number) => {
+    this.api.getTokenLifeTime(this.userJwt).subscribe((lifetime:number) => {
       this.counter = lifetime;
     });
     this.countDown = timer(0, this.tick)

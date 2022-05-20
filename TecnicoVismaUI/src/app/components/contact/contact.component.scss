@@ -1,0 +1,142 @@
+.container{
+    max-width: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    padding: 0 0;
+    align-items: center;
+
+    .content{
+        display: flex;
+        width: 50%;
+    }
+    
+
+    
+    .form-content{
+        width: 100%;
+        margin-top: 10px;
+        box-shadow: 0 2px 5px #0000004d;
+
+        mat-card-header{
+            background: #1976d2;
+            border-radius: 4px;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 20px;
+            display: flex;
+            width: 100%;
+            color: #fff;
+            justify-content: space-between;
+            height: 60px;
+            box-shadow: 0 2px 5px #0000004d;
+        
+            mat-card-title{
+                margin-bottom: 0px;
+                text-align: center;
+                align-items: center;
+
+            }
+            .social-media-icons{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+
+                .mat-button{
+                    border-radius: 10px;
+                    cursor: pointer;
+                    padding: 9px;
+                    &:hover{
+                        background: darken(#1976d2, 10%);
+                    }
+
+                }
+
+                .svg-icons{
+                    
+                    width: 30px;
+                    height: 30px;
+                    
+                }
+            }
+        }
+        
+        mat-card-content{
+            width: 100%;
+
+
+            .row{
+                mat-form-field{
+                    width: 100%;
+                }
+            }
+
+
+            .form-groups{
+                display: flex;
+                flex-direction: column;
+
+                .inputs{
+                    width: 100%;
+                    height: auto;
+                    display: flex;
+                    flex-direction: column;
+
+                    .message-input{
+                        height: 70px;
+                    }
+                }
+                .summary-header{
+                    background: dimgrey;
+                    margin-bottom: 0px;
+                    height: 30px;
+                    justify-content: space-evenly;
+                }
+        
+            }
+            
+        }
+
+
+        mat-divider{
+            width: 100%;
+            align-items: center;
+            text-align: center;
+            display: flex;
+        }
+        
+
+
+        .action-buttons{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            margin: 0px;
+            padding: 0px;
+
+            .send-button{
+                background-color: #1976d2;
+                margin: 0px;
+                color: #fff;
+                &:hover{
+                    background-color: darken(#1976d2, 10%);
+                }
+            }
+        }
+    }
+    
+}
+
+mat-card{
+    margin-bottom: 10px;
+}
+
+
+
+@media screen and (max-width: 1000px){
+    .content{
+        width: 100% !important;
+    }
+  
+  }

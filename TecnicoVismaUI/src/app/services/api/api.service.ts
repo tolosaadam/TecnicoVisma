@@ -27,24 +27,15 @@ export class ApiService {
   getAuthorizationHeader():HttpHeaders{
     return new HttpHeaders().set("Authorization", "Bearer " + sessionStorage.getItem('userJwt'));
   }
+
+  //////// Customers Services ////////
   
   getCustomers():Observable<ApiResponseI>{
     let direccion = this.url + "customer";
 
     return this.http.get<ApiResponseI>(direccion,{headers:this.getAuthorizationHeader()});
   }
-
-  addOrder(order:OrderI){
-    let direccion = this.url + "order";
-
-    return this.http.post<ApiResponseI>(direccion,order,{headers:this.getAuthorizationHeader()});
-  }
-
-  getOrderSummary(order:OrderI){
-    let direccion = this.url + "order/getOrderSummary";
-    return this.http.post<ApiResponseI>(direccion,order,{headers:this.getAuthorizationHeader()});
-  }
-
+  
   getAllCustomerExpenses(){
     let direccion = this.url + "customer/getAllCustomerExpenses";
 
@@ -72,7 +63,22 @@ export class ApiService {
     let direccion = this.url + "customer/mailAddresses";
     return this.http.get<ApiResponseI>(direccion,{headers:this.getAuthorizationHeader()});
   }
-  
+
+  //////// Orders Services ////////
+
+  addOrder(order:OrderI){
+    let direccion = this.url + "order";
+
+    return this.http.post<ApiResponseI>(direccion,order,{headers:this.getAuthorizationHeader()});
+  }
+
+  getOrderSummary(order:OrderI){
+    let direccion = this.url + "order/getOrderSummary";
+    return this.http.post<ApiResponseI>(direccion,order,{headers:this.getAuthorizationHeader()});
+  }
+
+  //////// Products Services ////////
+
   getProducts():Observable<ApiResponseI>{
     let direccion = this.url + "product";
 
@@ -95,6 +101,8 @@ export class ApiService {
     const body = ids
     return this.http.delete<ApiResponseI>(direccion,{body,headers:this.getAuthorizationHeader()});    
   }
+
+  //////// User Services ////////
 
   addUser(user: UserI){
     let direccion = this.url + "user";

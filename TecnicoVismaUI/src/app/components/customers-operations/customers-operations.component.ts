@@ -1,12 +1,12 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, Input, OnInit, ViewChild, OnDestroy } from '@angular/core';
-import { FormArray, FormBuilder, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, ValidationErrors, Validators } from '@angular/forms';
 import { MatOption } from '@angular/material/core';
 import { MatSelect } from '@angular/material/select';
 import { MatStepper } from '@angular/material/stepper';
 import { MatTableDataSource } from '@angular/material/table';
 import { NgToastService } from 'ng-angular-popup';
-import { map } from 'rxjs';
+import { map} from 'rxjs';
 import { ApiResponseI } from 'src/app/models/apiResponse.interface';
 import { CustomerI } from 'src/app/models/customer.interface';
 import { OrderI } from 'src/app/models/order.interface';
@@ -104,7 +104,7 @@ export class CustomersOperationsComponent implements OnInit, OnDestroy {
       this.orderDetails.controls.forEach(orderDetails => {
         this.getOrderDetailsTotalPrice(orderDetails);
       })
-    })
+    });
   }
 
   enableQuantityInput(orderDetails:any){
@@ -211,7 +211,6 @@ export class CustomersOperationsComponent implements OnInit, OnDestroy {
     {
       this.order.customerId = form.customerId;
       this.order.orderDetails = form.orderDetails;
-      console.log(this.order);
       this.api.getOrderSummary(this.order).subscribe((data:ApiResponseI) => {
         if(data.isError){
           this.toast.error({detail:"Error Message",summary:"An error has occurred, try again later."});

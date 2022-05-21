@@ -82,11 +82,14 @@ namespace TecnicoVisma.Business
             {
                 CustomerExpensesDTO customerExpenseDTO = new()
                 {
+
+                    OrderId = order.Id,
                     CustomerId = order.CustomerId,
-                    CustomerName = order.Customer.FirstName,
+                    CustomerName = order.Customer.FirstName + " " + order.Customer.LastName,
+                    DateOfOrder = order.DateOfOrder,
+                    MailAddress = order.Customer.MailAddress,
                     TotalProducts = order.OrderDetails.Sum(x => x.ProductQuantity),
-                    TotalOrders = orders.Where(x => x.CustomerId == order.CustomerId).Count(),
-                    TotalExpense = orders.Where(x => x.CustomerId == order.CustomerId).Sum(x => x.TotalOrder),
+                    TotalExpense = order.TotalOrder,
                 };
                 customerExpensesDTO.Add(customerExpenseDTO);
             }

@@ -33,7 +33,6 @@ export class AppHttpInterceptor implements HttpInterceptor {
 
 
                 if (err instanceof HttpErrorResponse) {
-                    console.log(err.statusText);
                     if (err.status === 401) {
                         this.navigate.logOut();
                     }

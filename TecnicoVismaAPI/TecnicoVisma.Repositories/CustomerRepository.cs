@@ -76,7 +76,6 @@ namespace TecnicoVisma.Repositories
             //    CustomerName = x.Customer.FirstName
             //});
 
-            
             var orders = await _context.Orders.AsNoTracking()
                 .Include(x => x.Customer)
                 .Include(x => x.OrderDetails)

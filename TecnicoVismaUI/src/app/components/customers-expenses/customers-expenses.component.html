@@ -1,1 +1,56 @@
-<p>customers-expenses works!</p>
+
+<h1>Customers Expenses</h1>
+<div class="filter-create">
+  <mat-form-field appearance="standard">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)"  #input>
+  </mat-form-field>
+</div>
+
+<mat-table [dataSource]="dataSource" class="mat-elevation-z8">  
+  <ng-container matColumnDef="orderId"> 
+      <mat-header-cell *matHeaderCellDef> Order Id </mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.orderId}}</mat-cell>
+  </ng-container> 
+  <ng-container matColumnDef="customerId"> 
+      <mat-header-cell *matHeaderCellDef> Customer Id </mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.customerId}}</mat-cell>
+  </ng-container> 
+  <ng-container matColumnDef="customerName"> 
+      <mat-header-cell *matHeaderCellDef> Customer Name </mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.customerName}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="dateOfOrder"> 
+    <mat-header-cell *matHeaderCellDef> Date of Order </mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.dateOfOrder | date:"MM/dd/yyyy HH:mm:ss"}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="mailAddress"> 
+    <mat-header-cell *matHeaderCellDef> Customer Mail Address </mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.mailAddress}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="totalProducts"> 
+      <mat-header-cell *matHeaderCellDef> Total Products Buyed </mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.totalProducts}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="totalExpense"> 
+      <mat-header-cell *matHeaderCellDef> Total Expense </mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.totalExpense | currency}}</mat-cell>
+  </ng-container>
+  <!-- <ng-container matColumnDef="category"> 
+      <mat-header-cell *matHeaderCellDef> Category </mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.category.name}}</mat-cell>
+  </ng-container> -->
+  <!-- <ng-container matColumnDef="imagePath"> 
+      <mat-header-cell *matHeaderCellDef> Image </mat-header-cell>
+      <mat-cell *matCellDef="let row" ><td><img [src]="createImgPath(row.imagePath)" alt="profile picture" style="width:60px; height:60px;"></td></mat-cell>
+  </ng-container> -->
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
+</mat-table>
+
+  
+<mat-paginator style="display: inline;" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of users"></mat-paginator>

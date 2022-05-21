@@ -1,11 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TecnicoVisma.Entities.Data;
-using TecnicoVisma.Entities.DTOS;
 using TecnicoVisma.Entities.Models;
 using TecnicoVisma.Interfaces;
 
@@ -67,30 +63,5 @@ namespace TecnicoVisma.Repositories
             var discount = _context.Customers.FirstOrDefault(x => x.Id == id).ProductDiscount;
             return discount;
         }
-
-        public async Task<IList<Order>> GetAllCustomerExpenses()
-        {
-            //var test = (await _context.Orders.AsNoTracking().Include(x => x.Customer).Include(x => x.OrderDetails).ToListAsync()).Select(x => new CustomerExpensesDTO
-            //{
-            //    CustomerId = x.CustomerId,
-            //    CustomerName = x.Customer.FirstName
-            //});
-
-            var orders = await _context.Orders.AsNoTracking()
-                .Include(x => x.Customer)
-                .Include(x => x.OrderDetails)
-                .ToListAsync();
-
-            if (!orders.Any())
-            {
-                return new List<Order>();
-            }
-
-            
-            
-            return orders;
-        }
-
-
     }
 }

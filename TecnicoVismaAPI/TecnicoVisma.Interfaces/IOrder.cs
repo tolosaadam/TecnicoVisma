@@ -13,5 +13,6 @@ namespace TecnicoVisma.Interfaces
         Order GetOrder(int id);
         IEnumerable<Order> GetAllOrder();
         Order Insert(Order order);
+        Task<IList<Order>> GetAllCustomerExpenses();
     }
 }

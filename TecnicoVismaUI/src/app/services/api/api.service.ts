@@ -36,12 +36,6 @@ export class ApiService {
     return this.http.get<ApiResponseI>(direccion,{headers:this.getAuthorizationHeader()});
   }
   
-  getAllCustomerExpenses(){
-    let direccion = this.url + "customer/getAllCustomerExpenses";
-
-    return this.http.get<ApiResponseI>(direccion,{headers:this.getAuthorizationHeader()});
-  }
-
   addCustomer(product: CustomerI){
     let direccion = this.url + "customer";
 
@@ -75,6 +69,13 @@ export class ApiService {
   getOrderSummary(order:OrderI){
     let direccion = this.url + "order/getOrderSummary";
     return this.http.post<ApiResponseI>(direccion,order,{headers:this.getAuthorizationHeader()});
+  }
+
+  getAllCustomerExpenses(){
+    let direccion = this.url + "order/getAllCustomerExpenses";
+    console.log(direccion)
+
+    return this.http.get<ApiResponseI>(direccion,{headers:this.getAuthorizationHeader()});
   }
 
   //////// Products Services ////////

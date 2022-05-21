@@ -58,5 +58,29 @@ namespace TecnicoVisma.Business
             orderSummaryDTO.TotalOrder = orderSummaryDTO.OrderDetailsSummary.Select(x => x.TotalDiscountedPrice).Sum();
             return orderSummaryDTO;
         }
+
+        public async Task<IList<CustomerExpensesDTO>> GetAllCustomerExpenses()
+        {
+            var customerExpensesDTO = new List<CustomerExpensesDTO>();
+            var orders = await _repository.GetAllCustomerExpenses();
+
+            foreach (Order order in orders)
+            {
+                CustomerExpensesDTO customerExpenseDTO = new()
+                {
+
+                    OrderId = order.Id,
+                    CustomerId = order.CustomerId,
+                    CustomerName = order.Customer.FirstName + " " + order.Customer.LastName,
+                    DateOfOrder = order.DateOfOrder,
+                    MailAddress = order.Customer.MailAddress,
+                    TotalProducts = order.OrderDetails.Sum(x => x.ProductQuantity),
+                    TotalExpense = order.TotalOrder,
+                };
+                customerExpensesDTO.Add(customerExpenseDTO);
+            }
+
+            return customerExpensesDTO;
+        }
     }
 }

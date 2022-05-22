@@ -28,7 +28,7 @@ export class DialogService {
     return this.dialog.open(CustomerFormComponent,{
       width:'400px',
       disableClose:true,
-      position: {top:"80px"},
+      position: {top:"10px"},
       panelClass: 'mat-dialog-customer-form',
       data: {
         data: data
@@ -41,7 +41,7 @@ export class DialogService {
     return this.dialog.open(CustomerFormComponent,{
       width:'400px',
       disableClose:true,
-      position: {top:"80px"},
+      position: {top:"10px"},
       panelClass: 'mat-dialog-customer-form',
       data: {
         data: data

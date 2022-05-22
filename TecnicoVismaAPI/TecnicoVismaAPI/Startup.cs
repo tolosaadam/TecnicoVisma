@@ -91,6 +91,7 @@ namespace TecnicoVismaAPI
                 cfg.AddProfile(new CustomerProfile());
                 cfg.AddProfile(new OrderProfile());
                 cfg.AddProfile(new OrderDetailsProfile());
+                cfg.AddProfile(new CategoryProfile());
             });
             IMapper mapper = config.CreateMapper();
             services.AddSingleton(mapper);

@@ -14,7 +14,7 @@ namespace TecnicoVisma.Entities.DTOS
         public decimal UnitPrice { get; set; }
         public int? UnitsInStock { get; set; }
         public int CategoryId { get; set; }
-        //public int BrandId { get; set; }
+        public string CategoryName { get; set; }
         //public string ImagePath { get; set; }
     }
 }

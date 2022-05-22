@@ -17,6 +17,7 @@ export class CardChartComponent implements OnInit {
   chartOptions: HighCharts.Options = {};
 
   @Input() data:any = []
+  @Input() item:any = ''
 
   constructor() { }
 
@@ -70,7 +71,7 @@ export class CardChartComponent implements OnInit {
           }
       },
       series: [{
-          name: "xd",
+          name: this.item,
           type: 'area',
           data: this.data
       }]

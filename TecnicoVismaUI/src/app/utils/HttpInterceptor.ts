@@ -28,7 +28,7 @@ export class AppHttpInterceptor implements HttpInterceptor {
 
         const authReq = request.clone({ headers: request.headers.set("Authentication", 'Bearer ' + sessionStorage.getItem("userJwt")) });
 
-        this.loadingService.show()
+        this.loadingService.show();
         return next.handle(authReq).pipe(finalize(() => this.loadingService.hide()),catchError(err => {
 
 

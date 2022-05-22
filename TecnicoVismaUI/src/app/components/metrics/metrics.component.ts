@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { Component, Input, OnInit } from '@angular/core';
 import { MetricsService } from 'src/app/services/metrics/metrics.service';
+import { MixpanelService } from 'src/app/services/mixpanel/mixpanel.service';
+import { LoadingService } from '../shared-components/spinner/loading.service';
 
 @Component({
   selector: 'app-metrics',
@@ -9,15 +12,97 @@ import { MetricsService } from 'src/app/services/metrics/metrics.service';
 export class MetricsComponent implements OnInit {
 
   bigChart: any[] = [];
-  cards: any[] = [];
   pieChart: any[] = [];
+  @Input() totalCustomers:any = 0;
+  @Input() totalProducts:any = 0;
+  @Input() totalOrders:any = 0;
 
-  constructor(private metricsService: MetricsService) { }
+  @Input() productChart:any = {
+    dataValues: [] = [],
+    productsTotal: 0,
+    item : "New Product"
+  }
+  @Input() customerChart:any = {
+    dataValues: [] = [],
+    customersTotal: 0,
+    item : "New Customer"
+  }
+  @Input() userChartSignUp:any = {
+    dataValues: [] = [],
+    usersTotal: 0,
+    item : "New Sign Up"
+  }
+  @Input() userChartSignIn:any = {
+    dataValues: [] = [],
+    usersTotal: 0,
+    item : "New Sign In"
+  }
+  chartDataLoading: boolean = true;
 
-  ngOnInit(): void {
+  constructor(private _date: DatePipe,private metricsService: MetricsService, private mixpanelService: MixpanelService,private loadingService:LoadingService) {
+    this.chartDataLoading = true;
+   }
+
+   async ngOnInit(): Promise<void> {
     this.bigChart = this.metricsService.bigChart();
-    this.cards = this.metricsService.cards();
     this.pieChart = this.metricsService.pieChart();
+    this.loadingService.show();
+    await this._createChartsData();
   }
 
+  private async _createChartsData(){
+    
+    await this.mixpanelService.getData().then(async (response:any) => {
+      console.log(response)
+      await this._createSignUpChartData(response);
+      await this._createSignInChartData(response);
+      await this._createCustomerChartData(response);
+      await this._createProductChartData(response);
+    });
+
+    this.chartDataLoading = false;
+    this.loadingService.hide();
+  }
+  
+
+  private async _createSignUpChartData(data:any){
+
+      const obj = data.series['A. Sign up - Total'];
+      const arr = Object.entries(obj);
+      arr.forEach((x:any) => {
+        x[0] = this._date.transform(x[0], 'MM.dd.yyyy');
+        this.userChartSignUp.dataValues.push(x);
+        this.userChartSignUp.usersTotal += x[1];    
+      });  
+   }
+
+   private async _createSignInChartData(data:any){
+      const obj = data.series['B. Sign in - Total'];
+      const arr = Object.entries(obj);
+      arr.forEach((x:any) => {
+        x[0] = this._date.transform(x[0], 'MM.dd.yyyy');
+        this.userChartSignIn.dataValues.push(x);
+        this.userChartSignIn.usersTotal += x[1];    
+      });  
+   }
+
+   private async _createCustomerChartData(data:any){
+    const obj = data.series['C. AddCustomer - Total'];
+    const arr = Object.entries(obj);
+    arr.forEach((x:any) => {
+      x[0] = this._date.transform(x[0], 'MM.dd.yyyy');
+      this.customerChart.dataValues.push(x);
+      this.customerChart.customersTotal += x[1];    
+    });  
+ }
+
+ private async _createProductChartData(data:any){
+  const obj = data.series['D. AddProduct - Total'];
+  const arr = Object.entries(obj);
+  arr.forEach((x:any) => {
+    x[0] = this._date.transform(x[0], 'MM.dd.yyyy');
+    this.productChart.dataValues.push(x);
+    this.productChart.productsTotal += x[1];    
+  });  
+}
 }

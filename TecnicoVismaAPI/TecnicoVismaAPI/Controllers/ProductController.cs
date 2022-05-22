@@ -131,5 +131,25 @@ namespace TecnicoVismaAPI.Controllers
             }
         }
 
+        [Authorize]
+        [HttpGet("getCategories")]
+        public async Task<IActionResult> GetCategories()
+        {
+            _logger.LogInformation($"GetCategories from Controller");
+            var response = new ResponseDTO<IEnumerable<CategoryDTO>>();
+            try
+            {
+                var products = await Task.FromResult(_business.GetCategories());
+                response.Data = products;
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"An error occurring getting Categories", e);
+                response.ErrorMessage = e.Message;
+                return BadRequest(response);
+            }
+        }
+
     }
 }

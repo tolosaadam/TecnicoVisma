@@ -69,5 +69,12 @@ namespace TecnicoVisma.Business
         {
             return _repository.GetProductNameById(id);
         }
+
+        public IEnumerable<CategoryDTO> GetCategories()
+        {
+            var categories = _repository.GetCategories();
+            var categoriesDTO = _mapper.Map<IEnumerable<Category>, IEnumerable<CategoryDTO>>(categories);
+            return categoriesDTO;
+        }
     }
 }

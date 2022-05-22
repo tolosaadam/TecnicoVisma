@@ -72,6 +72,7 @@ export class CustomerTableComponent implements OnInit {
       }
       else if(res.data != undefined){
         this.toast.success({detail:"Sucess Message",summary:"The customer have been added"});
+        
         this.dataSource.data = res.data;
       }
     });

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TecnicoVisma.Entities.Data;
@@ -28,7 +29,7 @@ namespace TecnicoVisma.Repositories
 
         public IEnumerable<Product> GetProducts()
         {
-            var products = _context.Products.ToList();
+            var products = _context.Products.AsNoTracking().Include(x => x.Category).ToList();
             return products;
         }
 
@@ -40,8 +41,6 @@ namespace TecnicoVisma.Repositories
 
         public IEnumerable<Product> Insert(Product product)
         {
-            product.CategoryId = 1; // Para testing
-
             _context.Products.Add(product);
             _context.SaveChanges();
             return GetProducts();
@@ -49,7 +48,6 @@ namespace TecnicoVisma.Repositories
 
         public IEnumerable<Product> Update(Product product)
         {
-            product.CategoryId = 1;
             _context.Products.Update(product);
             _context.SaveChanges();
             return GetProducts();
@@ -68,10 +66,10 @@ namespace TecnicoVisma.Repositories
             return name;
         }
 
-        //public IEnumerable<Product> GetSimilarProducts(Product product)
-        //{
-        //    var products = _context.Products.Where(x => x.Category.Id == product.Category.Id && x.Id != product.Id);
-        //    return products;
-        //}
+        public IEnumerable<Category> GetCategories()
+        {
+            var categories = _context.Categories.ToList();
+            return categories;
+        }
     }
 }

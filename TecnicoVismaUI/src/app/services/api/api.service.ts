@@ -103,6 +103,12 @@ export class ApiService {
     return this.http.delete<ApiResponseI>(direccion,{body,headers:this.getAuthorizationHeader()});    
   }
 
+  getCategories():Observable<ApiResponseI>{
+    let direccion = this.url + "product/getCategories";
+
+    return this.http.get<ApiResponseI>(direccion,{headers:this.getAuthorizationHeader()});
+  }
+
   //////// User Services ////////
 
   addUser(user: UserI){

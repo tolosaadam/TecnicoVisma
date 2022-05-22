@@ -14,6 +14,7 @@ namespace TecnicoVisma.Interfaces
         IEnumerable<Product> Delete(List<int> ids);
         decimal GetProductPriceById(int id);
         string GetProductNameById(int id);
+        IEnumerable<Category> GetCategories();
         int Count();
     }
 }

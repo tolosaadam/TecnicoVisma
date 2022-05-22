@@ -9,10 +9,9 @@ namespace TecnicoVisma.MapperProfiles
     {
         public ProductProfile()
         {
-            CreateMap<Product, ProductDTO>();
+            CreateMap<Product, ProductDTO>()
+                .ForMember(src => src.CategoryName, option => option.MapFrom(dest => dest.Category.Name));
             CreateMap<ProductDTO, Product>();
-            //.ForMember(src => src.Category, option => option.MapFrom(dest => dest.Category.CategoryName))
-            //.ForMember(src => src.Brand, option => option.MapFrom(dest => dest.Brand.BrandName));
         }
     }
 }

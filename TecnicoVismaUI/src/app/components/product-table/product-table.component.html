@@ -47,6 +47,10 @@
       <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.name}}</mat-cell>
   </ng-container>
+  <ng-container matColumnDef="categoryName"> 
+    <mat-header-cell *matHeaderCellDef> Category </mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.categoryName}}</mat-cell>
+</ng-container>
   <ng-container matColumnDef="details"> 
       <mat-header-cell *matHeaderCellDef> Details </mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.details}}</mat-cell>
@@ -59,10 +63,6 @@
       <mat-header-cell *matHeaderCellDef> Stock </mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.unitsInStock}}</mat-cell>
   </ng-container>
-  <!-- <ng-container matColumnDef="category"> 
-      <mat-header-cell *matHeaderCellDef> Category </mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.category.name}}</mat-cell>
-  </ng-container> -->
   <!-- <ng-container matColumnDef="imagePath"> 
       <mat-header-cell *matHeaderCellDef> Image </mat-header-cell>
       <mat-cell *matCellDef="let row" ><td><img [src]="createImgPath(row.imagePath)" alt="profile picture" style="width:60px; height:60px;"></td></mat-cell>

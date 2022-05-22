@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { MixpanelService } from '../mixpanel/mixpanel.service';
 
 @Injectable({
   providedIn: 'root'
@@ -6,6 +7,8 @@ import { Injectable } from '@angular/core';
 export class MetricsService {
 
   constructor() { }
+
+ 
   
     bigChart(){
       return [{
@@ -31,8 +34,8 @@ export class MetricsService {
     }];
     }
 
-    cards() {
-      return [71, 78, 39, 66];
+    cards():any{
+      return [71,78,39,66]
     }
 
     pieChart(){

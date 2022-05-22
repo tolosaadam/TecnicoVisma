@@ -6,6 +6,7 @@ import { ApiResponseI } from 'src/app/models/apiResponse.interface';
 import { CustomerI } from 'src/app/models/customer.interface';
 import { DialogDataI } from 'src/app/models/dialogData.interface';
 import { ApiService } from 'src/app/services/api/api.service';
+import { MixpanelService } from 'src/app/services/mixpanel/mixpanel.service';
 
 @Component({
   selector: 'app-customer-form',
@@ -43,11 +44,9 @@ export class CustomerFormComponent implements OnInit {
     address : new FormControl(this.data.data["key"] == "edit" ? this.data.data["data"][0]["address"] : '',Validators.required),
     mailAddress : new FormControl(this.data.data["key"] == "edit" ? this.data.data["data"][0]["mailAddress"] : '',[Validators.required,Validators.email],[this.usernameValidator()]),
     productDiscount : new FormControl(this.data.data["key"] == "edit" ? this.data.data["data"][0]["productDiscount"] : '',Validators.required),
-    // categoryId : new FormControl('',Validators.required),
-
   })
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data:DialogDataI, public dialogRef: MatDialogRef<CustomerFormComponent>,private api:ApiService) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data:DialogDataI, public dialogRef: MatDialogRef<CustomerFormComponent>,private api:ApiService,private mixpanelService: MixpanelService) { }
 
   ngOnInit(): void {
     this.api.getAllCustomerMailAddresses().subscribe(data =>{
@@ -67,8 +66,11 @@ export class CustomerFormComponent implements OnInit {
     this.customer.productDiscount = form.productDiscount;
     // this.product.imagePath = this.response.dbPath;
     if(this.data.data["key"] == "add"){
-      this.api.addCustomer(this.customer).subscribe(data => {
+      this.api.addCustomer(this.customer).subscribe(async data => {
         this.dataApiResponse = data;
+        if(!data.isError && data.data != undefined){
+          this.mixpanelService.track("AddCustomer",{MailAddress:this.customer.mailAddress});
+        }
         this.closeDialog(); 
       });
     }

@@ -1,14 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ISideNavToggle } from './models/sidenav.interface';
+import mixpanel from 'mixpanel-browser';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  title = 'TecnicoVismaUI';
+export class AppComponent implements OnInit{
 
+  ngOnInit():void{
+    mixpanel.init("5b90abf3d5e01516da41eb24e3a6af8e", {debug:true});
+  }
+  title = 'TecnicoVismaUI';
+  
   isSideNavCollapsed = false;
   screenWidth = 0;
 
@@ -16,6 +21,5 @@ export class AppComponent {
     this.screenWidth = data.screenWidth;
     this.isSideNavCollapsed = data.collapsed;
   }
-
 
 }

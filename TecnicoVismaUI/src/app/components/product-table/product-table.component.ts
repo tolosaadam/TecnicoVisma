@@ -16,9 +16,8 @@ import { MatPaginator } from '@angular/material/paginator';
 export class ProductTableComponent implements OnInit {
   products: ProductI[] = [];
   // displayedColumns: string[] = ['id', 'name', 'details', 'unitPrice','unitsInStock','category','brand','imagePath','actions']; 
-  displayedColumns: string[] = ['select','id', 'name', 'details', 'unitPrice','unitsInStock']; 
+  displayedColumns: string[] = ['select','id', 'name', 'categoryName','details', 'unitPrice','unitsInStock']; 
   selection = new SelectionModel<ProductI>(true, []);
-  // dataSelected = Object.assign(this.products);
   dataSource = new MatTableDataSource<ProductI>();
 
 
@@ -29,11 +28,9 @@ export class ProductTableComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.dataSource.paginator = this.paginator;
-    
+    this.dataSource.paginator = this.paginator;  
     this.api.getProducts().subscribe(data =>{
-      this.dataSource.data = data.data;
-      // this.dataSelected.data = data.data;    
+      this.dataSource.data = data.data;   
     });
   }
 

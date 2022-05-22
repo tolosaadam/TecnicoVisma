@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { MetricsComponent } from './metrics.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
@@ -22,6 +22,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
   ],
   exports:[
     MetricsComponent
-  ]
+  ],
+  providers:[DatePipe]
 })
 export class MetricsModule { }

@@ -15,18 +15,18 @@
 
     <br>
 
-    <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px" class="stats-cards">
+    <div *ngIf="!chartDataLoading" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px" class="stats-cards">
         <mat-card fxFlex="25"> 
-            <app-card-chart label="New Users" total="12k" percentage="50" [data]="cards"></app-card-chart>
+            <app-card-chart label="New Users Sign Up" [total]="userChartSignUp.usersTotal" percentage="50" [item]="userChartSignUp.item" [data]="userChartSignUp.dataValues"></app-card-chart>
         </mat-card>
         <mat-card fxFlex="25"> 
-            <app-card-chart label="Users Retention" total="10k" percentage="40" [data]="cards"></app-card-chart>
+            <app-card-chart label="Users Sign In" [total]="userChartSignIn.usersTotal" percentage="40" [item]="userChartSignIn.item" [data]="userChartSignIn.dataValues"></app-card-chart>
         </mat-card>
         <mat-card fxFlex="25"> 
-            <app-card-chart label="Users Engagement" total="8k" percentage="30" [data]="cards"></app-card-chart>
+            <app-card-chart label="New Customers" [total]="customerChart.customersTotal" percentage="30" [item]="customerChart.item" [data]="customerChart.dataValues"></app-card-chart>
         </mat-card>
         <mat-card fxFlex="25"> 
-            <app-card-chart label="Referral" total="6k" percentage="20" [data]="cards"></app-card-chart>
+            <app-card-chart label="Referral" [total]="productChart.productsTotal" percentage="20" [item]="productChart.item" [data]="productChart.dataValues"></app-card-chart>
         </mat-card>
         
     </div>

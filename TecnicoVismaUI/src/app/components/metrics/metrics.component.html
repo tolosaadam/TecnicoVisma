@@ -1,11 +1,11 @@
 <div class="container">
     <div class="charts">
-        <div fxFlex="60">
+        <div *ngIf="!chartDataLoading" fxFlex="60">
             <app-big-chart [data]="bigChart"></app-big-chart>
         </div>
         
-        <div fxFlex="40">
-            <app-pie-chart [data]="pieChart"></app-pie-chart>
+        <div *ngIf="!chartDataLoading" fxFlex="40">
+            <app-pie-chart [data]="productByCategoryChart"></app-pie-chart>
         </div>
 
     </div>
@@ -26,7 +26,7 @@
             <app-card-chart label="New Customers" [total]="customerChart.customersTotal" percentage="30" [item]="customerChart.item" [data]="customerChart.dataValues"></app-card-chart>
         </mat-card>
         <mat-card fxFlex="25"> 
-            <app-card-chart label="Referral" [total]="productChart.productsTotal" percentage="20" [item]="productChart.item" [data]="productChart.dataValues"></app-card-chart>
+            <app-card-chart label="New Products" [total]="productChart.productsTotal" percentage="20" [item]="productChart.item" [data]="productChart.dataValues"></app-card-chart>
         </mat-card>
         
     </div>

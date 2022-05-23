@@ -51,7 +51,11 @@ export class ProductFormComponent implements OnInit {
       this.api.addProduct(this.product).subscribe(data => {
         this.dataApiResponse = data;
         if(!data.isError && data.data != undefined){
-          this.mixpanelService.track("AddProduct",{Name:this.product.name});
+          this.categories.forEach(x => {
+            if(x.id == this.product.categoryId){
+              this.mixpanelService.track("AddProduct",{Name:this.product.name,Category:x.name});
+            }
+          });          
         }
         this.closeDialog();
       });

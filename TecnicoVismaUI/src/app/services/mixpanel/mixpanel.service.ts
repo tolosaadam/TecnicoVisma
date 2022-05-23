@@ -1,14 +1,16 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import mixpanel from 'mixpanel-browser';
+import { NgToastService } from 'ng-angular-popup';
 import { defer, from, map, Observable } from 'rxjs';
+import { LoadingService } from 'src/app/components/shared-components/spinner/loading.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MixpanelService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,private toast:NgToastService,private loadingService:LoadingService) { }
   
   /**
    * Initialize mixpanel.
@@ -33,9 +35,7 @@ export class MixpanelService {
   }
 
 	
-  async getData():Promise<Observable<any>>{
-
-
+  async getAllEventsData():Promise<Observable<any>>{
     var myHeaders = new Headers();
     myHeaders.append("Authorization", "Basic T3duZXIuOGRlZDRkLm1wLXNlcnZpY2UtYWNjb3VudDpDNWV6RURPYlZsU2Y0WFdaT2ZCeU1kcUN0eTFoN01xdg==");
     myHeaders.append("Cookie", "mp__origin=\"\"; mp__origin_referrer=\"https://mixpanel.com/project/2719248\"");
@@ -46,8 +46,30 @@ export class MixpanelService {
       redirect: 'follow'
     };
 
-    const response = await fetch("https://mixpanel.com/api/2.0/insights?project_id=2719248&bookmark_id=30109524", requestOptions);
-    const result_1 = await response.json();
-    return result_1;
+    return await fetch("https://mixpanel.com/api/2.0/insights?project_id=2719248&bookmark_id=30109524", requestOptions).then(response => {
+      return response.json()
+    }).catch(err => {
+      this.loadingService.hide()
+      this.toast.error({detail:"Error Message",summary:err});
+    });
+  }
+
+  async getAllProcutsCategoryData():Promise<Observable<any>>{
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", "Basic T3duZXIuOGRlZDRkLm1wLXNlcnZpY2UtYWNjb3VudDpDNWV6RURPYlZsU2Y0WFdaT2ZCeU1kcUN0eTFoN01xdg==");
+    myHeaders.append("Cookie", "mp__origin=\"\"; mp__origin_referrer=\"https://mixpanel.com/project/2719248\"");
+
+    var requestOptions:any = {
+      method: 'GET',
+      headers: myHeaders,
+      redirect: 'follow'
+    };
+
+    return await fetch("https://mixpanel.com/api/2.0/insights?project_id=2719248&bookmark_id=30116897", requestOptions).then(response => {
+      return response.json()
+    }).catch(err => {
+      this.loadingService.hide()
+      this.toast.error({detail:"Error Message",summary:err});
+    });
   }
 }

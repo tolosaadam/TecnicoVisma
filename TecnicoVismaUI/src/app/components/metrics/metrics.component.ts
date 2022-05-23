@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
+import { PieChartI } from 'src/app/models/pieChart-interface';
 import { MetricsService } from 'src/app/services/metrics/metrics.service';
 import { MixpanelService } from 'src/app/services/mixpanel/mixpanel.service';
 import { LoadingService } from '../shared-components/spinner/loading.service';
@@ -12,10 +13,11 @@ import { LoadingService } from '../shared-components/spinner/loading.service';
 export class MetricsComponent implements OnInit {
 
   bigChart: any[] = [];
-  pieChart: any[] = [];
-  @Input() totalCustomers:any = 0;
-  @Input() totalProducts:any = 0;
-  @Input() totalOrders:any = 0;
+
+
+  
+
+  @Input() productByCategoryChart:PieChartI[] = [];
 
   @Input() productChart:any = {
     dataValues: [] = [],
@@ -41,29 +43,54 @@ export class MetricsComponent implements OnInit {
 
   constructor(private _date: DatePipe,private metricsService: MetricsService, private mixpanelService: MixpanelService,private loadingService:LoadingService) {
     this.chartDataLoading = true;
+    
    }
 
    async ngOnInit(): Promise<void> {
     this.bigChart = this.metricsService.bigChart();
-    this.pieChart = this.metricsService.pieChart();
-    this.loadingService.show();
+    
     await this._createChartsData();
   }
 
-  private async _createChartsData(){
-    
-    await this.mixpanelService.getData().then(async (response:any) => {
-      console.log(response)
+  private async _createChartsData(){   
+    await this.mixpanelService.getAllEventsData().then(async (response:any) => {
+      this.loadingService.show(); 
       await this._createSignUpChartData(response);
       await this._createSignInChartData(response);
       await this._createCustomerChartData(response);
       await this._createProductChartData(response);
     });
+    await this.mixpanelService.getAllProcutsCategoryData().then(async (response:any) =>{
+      await this._createProductsByCategoryChartData(response);
+      console.log(response)
+    });
 
     this.chartDataLoading = false;
     this.loadingService.hide();
   }
-  
+
+
+  private async _createProductsByCategoryChartData(data:any){
+    const obj = data.series['AddProduct - Total'];
+    const arr = Object.entries(obj);
+    var totalProducts:number = 0;
+      arr.forEach((x:any) => {
+        if(x[0] == '$overall'){
+          totalProducts = x[1].all;
+        }              
+      });  
+      arr.forEach((x:any) => {
+        var pieChartItem:any = {
+          name: x[0],
+          y: (x[1].all * 100) / totalProducts
+        }
+        if('$overall' != pieChartItem.name){
+          this.productByCategoryChart.push(pieChartItem); 
+        }
+      })
+    console.log(this.productByCategoryChart);
+
+  }
 
   private async _createSignUpChartData(data:any){
 
@@ -94,15 +121,15 @@ export class MetricsComponent implements OnInit {
       this.customerChart.dataValues.push(x);
       this.customerChart.customersTotal += x[1];    
     });  
- }
+  }
 
- private async _createProductChartData(data:any){
-  const obj = data.series['D. AddProduct - Total'];
-  const arr = Object.entries(obj);
-  arr.forEach((x:any) => {
-    x[0] = this._date.transform(x[0], 'MM.dd.yyyy');
-    this.productChart.dataValues.push(x);
-    this.productChart.productsTotal += x[1];    
-  });  
-}
+  private async _createProductChartData(data:any){
+    const obj = data.series['D. AddProduct - Total'];
+    const arr = Object.entries(obj);
+    arr.forEach((x:any) => {
+      x[0] = this._date.transform(x[0], 'MM.dd.yyyy');
+      this.productChart.dataValues.push(x);
+      this.productChart.productsTotal += x[1];    
+    });  
+  }
 }

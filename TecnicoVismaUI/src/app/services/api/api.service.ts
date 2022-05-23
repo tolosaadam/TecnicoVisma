@@ -109,10 +109,10 @@ export class ApiService {
 
   //////// User Services ////////
 
-  addUser(user: UserI){
+  async addUser(user: UserI){
     let direccion = this.url + "user";
 
-    return this.http.post<ApiResponseI>(direccion,user);
+    return  this.http.post<ApiResponseI>(direccion,user);
   }
 
   getUser(id:number){
@@ -145,10 +145,10 @@ export class ApiService {
   //////// Document Services ////////
 
   
-  addFile(formData: any):Observable<ApiResponseI>{
+  async addFile(formData: any):Promise<Observable<ApiResponseI>>{
     let direccion = this.url + "document/addFile";
 
-    return this.http.post<ApiResponseI>(direccion,formData);
+    return this.http.post<ApiResponseI>(direccion, formData);
   }
 
   getDocument(serverPath:string){

@@ -1,5 +1,5 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AbstractControl, AsyncValidatorFn, FormBuilder, FormControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { NgToastService } from 'ng-angular-popup';
 import { delay, map, Observable, of } from 'rxjs';
@@ -22,7 +22,7 @@ export class RegistryComponent implements OnInit {
   public progress:number = 0;
   @Output() public onUploadFinished = new EventEmitter();
 
-
+  @Input() profileIMG = new FormData();
 
   user: UserI = {
     id:0,
@@ -90,7 +90,7 @@ export class RegistryComponent implements OnInit {
     return of(this.takenMailAddress.includes(mailAddress)).pipe(delay(1000));
   }
 
-  onSubmit(stepOne:IStepOne,stepTwo:IStepTwo,stepThree:IStepThree): void{
+  async onSubmit(stepOne:IStepOne,stepTwo:IStepTwo,stepThree:IStepThree): Promise<void>{
     if(!this.personalDataFormGroup.valid || !this.localizationDataFormGroup.valid || !this.loginFormGroup.valid){
       this.toast.info({detail:"Info Message",summary:"Please complete all the fields."});
     }
@@ -104,16 +104,23 @@ export class RegistryComponent implements OnInit {
       this.user.address = stepTwo.address;
       this.user.mailAddress = stepThree.mailAddress;
       this.user.password = stepThree.password;
-      this.api.addUser(this.user).subscribe((data:ApiResponseI) => {
-        if(data.isError){
-          this.toast.error({detail:"Error Message",summary:"An error has occurred, try again later."});
-        }
-        else{
-          this.toast.success({detail:"Sucess Message",summary:"You registered successfully"});
-          this.mixpanelService.track("Sign up");
-          this.navigate.goToLogin();
-        }
-      });  
+
+      if(this.files.length > 0){
+        var filetoUpload =  await this.uploadFile(this.files);
+        (await this.api.addFile(filetoUpload)).subscribe(async (response: ApiResponseI) => {
+          this.user.filePath = await response.data;
+          (await this.api.addUser(this.user)).subscribe(async (data:ApiResponseI) => {
+            if(data.isError){
+              this.toast.error({detail:"Error Message",summary:"An error has occurred, try again later."});
+            }
+            else{
+              this.toast.success({detail:"Sucess Message",summary:"You registered successfully"});
+              this.mixpanelService.track("Sign up");
+              this.navigate.goToLogin();
+            }
+          });  
+        });
+      }    
     }
   }
 
@@ -121,27 +128,26 @@ export class RegistryComponent implements OnInit {
     this.navigate.goToLogin();
   }
 
-  // onSelect(event:any) {
-  //   console.log(event);
-  //   this.files.push(...event.addedFiles);
-  // }
+  onSelect(event:any) {
+    if(this.files && this.files.length >= 1){
+      this.toast.info({detail:"Info Message",summary:"Please upload only one picture."});
+      this.onRemove(this.files[0]);
+    } 
+    this.files.push(...event.addedFiles); 
+  }
 
-  // onRemove(event:any) {
-  //   console.log(event);
-  //   this.files.splice(this.files.indexOf(event), 1);
-  // }
+  onRemove(event:any) {
+    this.files.splice(this.files.indexOf(event), 1);
+  }
 
-  public uploadFile = (files: any) => {
+  private async uploadFile(files:any){
     if(files.length === 0){
       return;
     }
-
     let fileToUpload = <File>files[0];
     const formData = new FormData();
     formData.append('file',fileToUpload,fileToUpload.name);
-    this.api.addFile(formData).subscribe((response:ApiResponseI) => {
-      this.user.filePath = response.data;
-    })
+    return formData;
   }
 
 }

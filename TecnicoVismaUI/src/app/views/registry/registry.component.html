@@ -111,30 +111,12 @@
                 </button> 
             </mat-form-field> 
 
-            <!-- <ngx-dropzone #drop (change)="onSelect($event)">
+            <ngx-dropzone #drop (change)="onSelect($event)">
                 <ngx-dropzone-label>Upload a image profile!</ngx-dropzone-label>
-                <ngx-dropzone-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)" [file]="f">
+                <ngx-dropzone-preview  *ngFor="let f of files" [removable]="true"  (removed)="onRemove(f)" [file]="f">
                     <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
                 </ngx-dropzone-preview>
-            </ngx-dropzone> -->
-
-                <div class="row" style="margin-bottom:15px">
-                    <div class="col-md-3">
-                        <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)"
-                        style="display:none">
-                        <button type="button" class="btn btn-success" (click)="file.click()">
-                            Upload File
-                        </button>
-                    </div>
-                    <div class="col-md-4">
-                        <span class="upload" *ngIf="progress > 0">
-                            {{progress}}%
-                        </span>
-                        <span class="upload" *ngIf="message">
-                            {{message}}
-                        </span>
-                    </div>
-                </div>
+            </ngx-dropzone>
             </div>
             <div class="stepper-buttons">
                 <button mat-stroked-button  (click)="stepper.reset()">

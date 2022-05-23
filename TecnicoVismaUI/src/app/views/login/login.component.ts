@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgToastService } from 'ng-angular-popup';
-import { ApiResponseI } from 'src/app/models/apiResponse.interface';
-import { loginFormI } from 'src/app/models/login.interface';
+import { ApiResponseI } from 'src/app/models/comunication-models/apiResponse.interface';
+import { loginFormI } from 'src/app/models/comunication-models/login.interface';
 import { ApiService } from 'src/app/services/api/api.service';
 import { NavigateService } from 'src/app/services/navigate/navigate.service';
 import { MixpanelService } from 'src/app/services/mixpanel/mixpanel.service';
@@ -13,7 +13,6 @@ import { MixpanelService } from 'src/app/services/mixpanel/mixpanel.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
   hide:boolean = true;
   credentials:loginFormI={
     mailAddress: '',
@@ -52,11 +51,9 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem('userJwt', data.data.token);
           sessionStorage.setItem('userSessionTime', data.data.sessionTime);
           sessionStorage.setItem('userId',data.data.user.id);
+
           this.mixpanelService.init(data.data.user.mailAddress,data.data.user.firstName,data.data.user.lastName);
-          this.mixpanelService.track("Sign in");
-  
-          
-          
+          this.mixpanelService.track("Sign in");         
           this.navigate.goToHome();
         }
       })   

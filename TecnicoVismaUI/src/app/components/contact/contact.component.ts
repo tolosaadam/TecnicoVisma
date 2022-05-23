@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgToastService } from 'ng-angular-popup';
-import { ApiResponseI } from 'src/app/models/apiResponse.interface';
+import { ApiResponseI } from 'src/app/models/comunication-models/apiResponse.interface';
 import { ContactI } from 'src/app/models/contact.interface';
 import { ApiService } from 'src/app/services/api/api.service';
 

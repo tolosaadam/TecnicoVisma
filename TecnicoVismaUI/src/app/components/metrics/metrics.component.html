@@ -1,10 +1,10 @@
-<div class="container">
+<div *ngIf="!chartDataLoading" class="container">
     <div class="charts">
-        <div *ngIf="!chartDataLoading" fxFlex="60">
-            <app-big-chart [data]="bigChart"></app-big-chart>
+        <div  fxFlex="60">
+            <app-big-chart [data]="allEventsChartArea"></app-big-chart>
         </div>
         
-        <div *ngIf="!chartDataLoading" fxFlex="40">
+        <div  fxFlex="40">
             <app-pie-chart [data]="productByCategoryChart"></app-pie-chart>
         </div>
 
@@ -15,7 +15,7 @@
 
     <br>
 
-    <div *ngIf="!chartDataLoading" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px" class="stats-cards">
+    <div  fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px" class="stats-cards">
         <mat-card fxFlex="25"> 
             <app-card-chart label="New Users Sign Up" [total]="userChartSignUp.usersTotal" percentage="50" [item]="userChartSignUp.item" [data]="userChartSignUp.dataValues"></app-card-chart>
         </mat-card>

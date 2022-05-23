@@ -2,9 +2,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { AbstractControl, AsyncValidatorFn, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { delay, map, Observable, of } from 'rxjs';
-import { ApiResponseI } from 'src/app/models/apiResponse.interface';
+import { ApiResponseI } from 'src/app/models/comunication-models/apiResponse.interface';
 import { CustomerI } from 'src/app/models/customer.interface';
-import { DialogDataI } from 'src/app/models/dialogData.interface';
+import { DialogDataI } from 'src/app/models/comunication-models/dialogData.interface';
 import { ApiService } from 'src/app/services/api/api.service';
 import { MixpanelService } from 'src/app/services/mixpanel/mixpanel.service';
 

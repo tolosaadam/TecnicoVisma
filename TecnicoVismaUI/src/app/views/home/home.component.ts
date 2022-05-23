@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ISideNavToggle } from 'src/app/models/sidenav.interface';
 
 @Component({
   selector: 'app-home',

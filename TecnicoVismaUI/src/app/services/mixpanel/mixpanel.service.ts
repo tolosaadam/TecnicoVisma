@@ -47,10 +47,11 @@ export class MixpanelService {
     };
 
     return await fetch("https://mixpanel.com/api/2.0/insights?project_id=2719248&bookmark_id=30109524", requestOptions).then(response => {
-      return response.json()
+      return response.json();
     }).catch(err => {
-      this.loadingService.hide()
-      this.toast.error({detail:"Error Message",summary:err});
+      this.loadingService.hide();
+      this.toast.error({detail:"Error Message",summary:'Failure to load real metric data.'});
+      return "error"
     });
   }
 
@@ -66,10 +67,11 @@ export class MixpanelService {
     };
 
     return await fetch("https://mixpanel.com/api/2.0/insights?project_id=2719248&bookmark_id=30116897", requestOptions).then(response => {
-      return response.json()
+      return response.json();
     }).catch(err => {
-      this.loadingService.hide()
-      this.toast.error({detail:"Error Message",summary:err});
+      this.loadingService.hide();
+      this.toast.error({detail:"Error Message",summary:"Failure to load real metric data."});
+      return "error"
     });
   }
 }

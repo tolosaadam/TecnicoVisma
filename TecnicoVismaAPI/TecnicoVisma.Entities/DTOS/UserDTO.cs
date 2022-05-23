@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace TecnicoVisma.Entities.DTOS
 {
+
     public class UserDTO
     {
         public int Id { get; set; }
@@ -18,5 +19,6 @@ namespace TecnicoVisma.Entities.DTOS
         public string Address { get; set; }
         public string MailAddress { get; set; }
         public string Password { get; set; }
+        public string FilePath { get; set; }
     }
 }

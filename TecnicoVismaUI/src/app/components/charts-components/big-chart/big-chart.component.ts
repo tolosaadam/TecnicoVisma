@@ -22,14 +22,11 @@ export class BigChartComponent implements OnInit {
           type: 'area'
       },
       title: {
-          text: 'Random DATA'
-      },
-      subtitle: {
-          text: 'Demo'
+          text: 'All Events DATA'
       },
       tooltip: {
           split: true,
-          valueSuffix: ' millions'
+          valueSuffix: ' events'
       },
       credits: {
         enabled: false

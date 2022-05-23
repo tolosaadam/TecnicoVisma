@@ -1,13 +1,15 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AbstractControl, AsyncValidatorFn, FormBuilder, FormControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { NgToastService } from 'ng-angular-popup';
 import { delay, map, Observable, of } from 'rxjs';
-import { ApiResponseI } from 'src/app/models/apiResponse.interface';
-import { IStepOne, IStepThree, IStepTwo } from 'src/app/models/stepper.interface';
+import { ApiResponseI } from 'src/app/models/comunication-models/apiResponse.interface';
+import { IStepOne, IStepThree, IStepTwo } from 'src/app/models/comunication-models/stepper.interface';
 import { UserI } from 'src/app/models/user.interface';
 import { ApiService } from 'src/app/services/api/api.service';
+import { MixpanelService } from 'src/app/services/mixpanel/mixpanel.service';
 import { NavigateService } from 'src/app/services/navigate/navigate.service';
+
 
 @Component({
   selector: 'app-registry',
@@ -15,6 +17,13 @@ import { NavigateService } from 'src/app/services/navigate/navigate.service';
   styleUrls: ['./registry.component.scss']
 })
 export class RegistryComponent implements OnInit {
+
+  public message:string = '';
+  public progress:number = 0;
+  @Output() public onUploadFinished = new EventEmitter();
+
+
+
   user: UserI = {
     id:0,
     firstName: '',
@@ -25,7 +34,8 @@ export class RegistryComponent implements OnInit {
     postalCode: '',
     address: '',
     mailAddress: '',
-    password: ''
+    password: '',
+    filePath: ''
   };
 
   personalDataFormGroup = this._formBuilder.group({
@@ -41,16 +51,20 @@ export class RegistryComponent implements OnInit {
   });
   loginFormGroup = this._formBuilder.group({
     mailAddress: ['', [Validators.required, Validators.email], [this.usernameValidator()]],
-    password: ['', Validators.required],
+    password: ['', Validators.required]
   });
   
   takenMailAddress:string[] = [];
   stepperOrientation:any;
   hide:boolean = true;
 
+  files: File[] = [];
+
+  ImageBaseData!: ArrayBuffer;
 
 
-  constructor(private api:ApiService, private navigate:NavigateService,private _formBuilder: FormBuilder, breakpointObserver: BreakpointObserver, private toast:NgToastService) {
+
+  constructor(private mixpanelService: MixpanelService,private api:ApiService, private navigate:NavigateService,private _formBuilder: FormBuilder, breakpointObserver: BreakpointObserver, private toast:NgToastService) {
     this.stepperOrientation = breakpointObserver
       .observe('(min-width: 920px)')
       .pipe(map(({matches}) => (matches ? 'horizontal' : 'vertical')));
@@ -61,7 +75,6 @@ export class RegistryComponent implements OnInit {
       this.takenMailAddress = data.data;  
     });
   }
-
 
   usernameValidator(): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
@@ -97,6 +110,7 @@ export class RegistryComponent implements OnInit {
         }
         else{
           this.toast.success({detail:"Sucess Message",summary:"You registered successfully"});
+          this.mixpanelService.track("Sign up");
           this.navigate.goToLogin();
         }
       });  
@@ -105,6 +119,29 @@ export class RegistryComponent implements OnInit {
 
   goToLogin(): void{
     this.navigate.goToLogin();
+  }
+
+  // onSelect(event:any) {
+  //   console.log(event);
+  //   this.files.push(...event.addedFiles);
+  // }
+
+  // onRemove(event:any) {
+  //   console.log(event);
+  //   this.files.splice(this.files.indexOf(event), 1);
+  // }
+
+  public uploadFile = (files: any) => {
+    if(files.length === 0){
+      return;
+    }
+
+    let fileToUpload = <File>files[0];
+    const formData = new FormData();
+    formData.append('file',fileToUpload,fileToUpload.name);
+    this.api.addFile(formData).subscribe((response:ApiResponseI) => {
+      this.user.filePath = response.data;
+    })
   }
 
 }

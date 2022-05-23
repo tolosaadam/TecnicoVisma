@@ -102,5 +102,25 @@ namespace TecnicoVismaAPI.Controllers
                 return BadRequest();
             }
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetUser(int id)
+        {
+            
+            _logger.LogInformation($"Getting a user from controller");
+            var response = new ResponseDTO<UserDTO>();
+            try
+            {
+                var user = await Task.FromResult(_business.GetUser(id));
+                response.Data = user;
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"An error getting the user id = {id}", e);
+                response.ErrorMessage = e.Message;
+                return BadRequest();
+            }
+        }
     }
 }

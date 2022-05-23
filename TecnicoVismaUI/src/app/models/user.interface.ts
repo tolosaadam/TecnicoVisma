@@ -9,4 +9,5 @@ export interface UserI{
     address: string;
     mailAddress: string;
     password: string;
+    filePath:string;
 }

@@ -3,9 +3,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { NgToastService } from 'ng-angular-popup';
-import { ApiResponseI } from 'src/app/models/apiResponse.interface';
+import { ApiResponseI } from 'src/app/models/comunication-models/apiResponse.interface';
 import { CustomerI } from 'src/app/models/customer.interface';
-import { DialogDataI } from 'src/app/models/dialogData.interface';
+import { DialogDataI } from 'src/app/models/comunication-models/dialogData.interface';
 import { ApiService } from 'src/app/services/api/api.service';
 import { DialogService } from 'src/app/services/dialog/dialog.service';
 

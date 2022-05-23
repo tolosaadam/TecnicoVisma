@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from 'src/app/components/shared-components/confirmation-dialog/confirmation-dialog.component';
 import { CustomerFormComponent } from 'src/app/components/shared-components/customer-form/customer-form.component';
 import { ProductFormComponent } from 'src/app/components/shared-components/product-form/product-form.component';
-import { DialogDataI } from 'src/app/models/dialogData.interface';
+import { DialogDataI } from 'src/app/models/comunication-models/dialogData.interface';
 
 @Injectable({
   providedIn: 'root'

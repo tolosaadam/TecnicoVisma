@@ -1,12 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ApiResponseI } from 'src/app/models/apiResponse.interface';
+import { ApiResponseI } from 'src/app/models/comunication-models/apiResponse.interface';
 import { ContactI } from 'src/app/models/contact.interface';
 import { CustomerI } from 'src/app/models/customer.interface';
-import { loginFormI } from 'src/app/models/login.interface';
+import { loginFormI } from 'src/app/models/comunication-models/login.interface';
 import { OrderI } from 'src/app/models/order.interface';
-import { OrderDetailsI } from 'src/app/models/orderDetails.interface';
 import { ProductOperationI } from 'src/app/models/product-operation';
 import { UserI } from 'src/app/models/user.interface';
 
@@ -73,7 +72,6 @@ export class ApiService {
 
   getAllCustomerExpenses(){
     let direccion = this.url + "order/getAllCustomerExpenses";
-    console.log(direccion)
 
     return this.http.get<ApiResponseI>(direccion,{headers:this.getAuthorizationHeader()});
   }
@@ -117,6 +115,12 @@ export class ApiService {
     return this.http.post<ApiResponseI>(direccion,user);
   }
 
+  getUser(id:number){
+    let direccion = this.url + "user/" + id;
+
+    return this.http.get<ApiResponseI>(direccion);
+  }
+
   authenticateUser(credentials: loginFormI){
     let direccion = this.url + "user/authenticate";
     return this.http.post<ApiResponseI>(direccion,credentials);
@@ -136,5 +140,19 @@ export class ApiService {
   sendContactMail(data:ContactI){
     let direccion = this.url + "contact/sendMail";
     return this.http.post<ApiResponseI>(direccion,data,{headers:this.getAuthorizationHeader()});
+  }
+
+  //////// Document Services ////////
+
+  
+  addFile(formData: any):Observable<ApiResponseI>{
+    let direccion = this.url + "document/addFile";
+
+    return this.http.post<ApiResponseI>(direccion,formData);
+  }
+
+  getDocument(serverPath:string){
+    let direccion = this.url + "document/" + "getFile/" + serverPath;
+    return this.http.get<ApiResponseI>(direccion,{headers:this.getAuthorizationHeader()});
   }
 }

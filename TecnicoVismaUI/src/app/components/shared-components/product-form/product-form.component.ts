@@ -1,9 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { ApiResponseI } from 'src/app/models/apiResponse.interface';
+import { ApiResponseI } from 'src/app/models/comunication-models/apiResponse.interface';
 import { CategoryI } from 'src/app/models/category.interface';
-import { DialogDataI } from 'src/app/models/dialogData.interface';
+import { DialogDataI } from 'src/app/models/comunication-models/dialogData.interface';
 import { ProductOperationI } from 'src/app/models/product-operation';
 import { ProductI } from 'src/app/models/product.interface';
 import { ApiService } from 'src/app/services/api/api.service';

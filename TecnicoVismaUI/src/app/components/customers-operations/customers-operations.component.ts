@@ -7,7 +7,7 @@ import { MatStepper } from '@angular/material/stepper';
 import { MatTableDataSource } from '@angular/material/table';
 import { NgToastService } from 'ng-angular-popup';
 import { map} from 'rxjs';
-import { ApiResponseI } from 'src/app/models/apiResponse.interface';
+import { ApiResponseI } from 'src/app/models/comunication-models/apiResponse.interface';
 import { CustomerI } from 'src/app/models/customer.interface';
 import { OrderI } from 'src/app/models/order.interface';
 import { OrderDetailsSummaryI } from 'src/app/models/orderSummary.interface';

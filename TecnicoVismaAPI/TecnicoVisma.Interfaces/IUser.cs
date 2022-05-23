@@ -14,5 +14,6 @@ namespace TecnicoVisma.Interfaces
         User CheckUserAvailabity(string mailAddress);
         User Insert(User user);
         List<string> GetAllMailAddresses();
+        User GetUser(int id);
     }
 }

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ISideNavToggle } from './models/sidenav.interface';
 import mixpanel from 'mixpanel-browser';
 
 @Component({
@@ -14,12 +13,4 @@ export class AppComponent implements OnInit{
   }
   title = 'TecnicoVismaUI';
   
-  isSideNavCollapsed = false;
-  screenWidth = 0;
-
-  onToggleSideNav(data: ISideNavToggle): void{
-    this.screenWidth = data.screenWidth;
-    this.isSideNavCollapsed = data.collapsed;
-  }
-
 }

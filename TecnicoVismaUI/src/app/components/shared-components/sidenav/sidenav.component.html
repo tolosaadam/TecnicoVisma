@@ -1,12 +1,11 @@
 <mat-nav-list>
-    <div class="profile-card">        
+    <div *ngIf="!imageLoading" class="profile-card">        
         <div class="header">
-            <h2>{{user.name}} {{user.lastName}}</h2>
-            <h4>{{user.mailAddress}}</h4>
+            <h2>{{userDTO.firstName}} {{userDTO.lastName}}</h2>
+            <h4>{{userDTO.mailAddress}}</h4>
         </div>
-        <img src="assets/images/diego.jpg" alt="Tolosa Adam">
+        <img  [src]="profileIMG" alt="Profile picture">
     </div>
-
     <mat-divider></mat-divider>
 
     <h2 matSubheader >Pages</h2>

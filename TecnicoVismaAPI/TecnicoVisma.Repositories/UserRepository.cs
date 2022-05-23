@@ -42,5 +42,11 @@ namespace TecnicoVisma.Repositories
             _context.SaveChanges();
             return user;
         }
+
+        public User GetUser(int id)
+        {
+            var user = _context.Users.FirstOrDefault(x => x.Id == id);
+            return user;
+        }
     }
 }

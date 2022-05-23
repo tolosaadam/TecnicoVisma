@@ -43,8 +43,7 @@ export class MetricsService {
 
         name: 'Chrome',
         y: 61.41,
-        // sliced: true,
-        // selected: true
+        selected: true
     }, {
         name: 'Video Games',
         y: 22.5

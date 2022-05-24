@@ -40,6 +40,16 @@ _The Project has Unit tests, where the methods of the Business layer of each Cla
 * [Visual Studio 2019](https://visualstudio.microsoft.com/es/vs/older-downloads/) - Compiler for the API.
 * [Visual Studio Code](https://code.visualstudio.com/download) - Compiler for the Front End.
 
+## Angular Libraries 
+
+* [Angular Material]  -> npm i --save @angular/material
+* [Angular Flex-Layout] 
+* [Highcharts]
+* [Highcharts Angular]
+* [ng-angular-popup]
+* [mix panel]
+* [ngx dropzone]
+
 ## Authors ✒️
 
 * **Adam Ezequiel Tolosa** - *Unique Contributor* - [Adam Tolosa](https://github.com/tolosaadam)

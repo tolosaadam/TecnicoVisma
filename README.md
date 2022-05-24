@@ -42,7 +42,7 @@ _The Project has Unit tests, where the methods of the Business layer of each Cla
 
 ## Angular Libraries 
 
-* [Angular Material]  -> npm i --save @angular/material
+* [Angular Material](https://www.npmjs.com/package/@angular/material)  -> npm i --save @angular/material
 * [Angular Flex-Layout] 
 * [Highcharts]
 * [Highcharts Angular]

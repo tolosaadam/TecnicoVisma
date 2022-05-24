@@ -53,14 +53,6 @@ _The Project has Unit tests, where the methods of the Business layer of each Cla
 * [ngx dropzone](https://www.npmjs.com/package/ngx-dropzone) - npm i --save ngx-dropzone
 
 
-## Funcionality Video 📺
-
-_Showing a video of full functionality_
-
-[Watch the video](https://youtu.be/uD4dv5lOyro) 🎥🎥🎥🎥🎥🎥
-
-
-
 ## Database Diagram 🔢
 
 ![image](https://user-images.githubusercontent.com/67810957/170068618-a7d1f116-87d6-45ca-be20-7dc157635e82.png)
@@ -68,6 +60,12 @@ _Showing a video of full functionality_
 ## Mixpanel Graphs 📊
 
 ![image](https://user-images.githubusercontent.com/67810957/170069127-18210a4a-e3c7-4e1a-98b0-32f9870abfa9.png)
+
+## Funcionality Video 📺
+
+_Showing a video of full functionality_
+
+[Watch the video](https://youtu.be/uD4dv5lOyro) 🎥🎥🎥🎥🎥🎥
 
 ## Authors ✒️
 

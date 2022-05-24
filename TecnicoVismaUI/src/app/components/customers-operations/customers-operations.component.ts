@@ -109,7 +109,7 @@ export class CustomersOperationsComponent implements OnInit, OnDestroy {
 
   enableQuantityInput(orderDetails:any){
     if(orderDetails.value.productId && orderDetails.controls.productQuantity.disabled){
-      orderDetails.controls.productQuantity.enable()     
+      orderDetails.controls.productQuantity.enable();     
     }
   }
 
@@ -121,6 +121,7 @@ export class CustomersOperationsComponent implements OnInit, OnDestroy {
       var productId = orderDetails.get('productId').value;
       var productUnitPrice:number = 0;
       var productDiscount:number = 0;
+      var productStock:number = 0;
 
       this.customers.forEach(x => {
         if(x.id == customerId){
@@ -131,10 +132,19 @@ export class CustomersOperationsComponent implements OnInit, OnDestroy {
       this.products.forEach(x => {
         if(x.id == productId){
           productUnitPrice = x.unitPrice
+          productStock = x.unitsInStock
         }
       });
       var totalPrice = productQuantity * (productUnitPrice - ((productUnitPrice * productDiscount)/100));   
-      orderDetails.get('price').setValue(totalPrice);   
+      orderDetails.get('price').setValue(totalPrice);
+      orderDetails.get('stock').setValue(productStock);
+
+      if(orderDetails.value.productQuantity > orderDetails.value.stock){
+        orderDetails.controls.productQuantity.setErrors({invalidNumber:true});
+      }
+      else{
+        orderDetails.controls.productQuantity.setErrors(null);
+      }
     }     
   }
   
@@ -145,6 +155,19 @@ export class CustomersOperationsComponent implements OnInit, OnDestroy {
       }
     });
   }
+
+  checkEqualsProducts(orderForm:any,orderDetails:any){
+    var flag = 0;
+    orderForm.value.orderDetails.forEach((x:any) => {
+      if(orderDetails.value.productId == x.productId){
+        flag += 1;       
+      }
+    });
+    if(flag > 1){
+      orderDetails.get('productId').setValue(null);
+      this.toast.info({detail:"Info Message",summary:"You can't repeat the products."});
+    }
+  }
   
   ///////////// AVM ORDER DETAILS /////////////
 
@@ -153,7 +176,8 @@ export class CustomersOperationsComponent implements OnInit, OnDestroy {
       const orderDetailsForm = this._formBuilder.group({
         productId: ['', Validators.required],
         productQuantity: [{value: 0, disabled:true}, Validators.required],
-        price : ['', Validators.required]
+        price : ['', Validators.required],
+        stock: ['',Validators.required]
       }); 
       this.orderDetails.push(orderDetailsForm);
     }
@@ -169,26 +193,32 @@ export class CustomersOperationsComponent implements OnInit, OnDestroy {
   clearOrderDetails():void{
     this.customerIdSelect.options.forEach((data: MatOption) => data.deselect());
     this.orderDetails.clear();
+
+    this.api.getProducts().subscribe((data:ApiResponseI) => {
+      if(data.isError){
+        
+      }
+      else{
+        this.products = data.data;
+      }
+    })
   } 
   get orderDetails() {
     return this.orderForm.controls["orderDetails"] as FormArray;
   }
 
-
-
   //////////// STEPPER - SUBMIT FORM - API CALLS VALIDATIONS ////////////////
   
   onSubmit(){
-
-    this.api.addOrder(this.order).subscribe((data:ApiResponseI) => {
-      if(data.isError){
-        this.toast.error({detail:"Error Message",summary:"An error has occurred, try again later."});
-      }
-      else{
+    this.api.addOrder(this.order).subscribe({
+      next: (response:ApiResponseI) =>{
         this.clearOrderDetails();
         this.toast.success({detail:"Success Message",summary:"Order added Sucessfully."});
+      },
+      error: (error:any) =>{
+        this.toast.error({detail:"Error Message",summary:"An error has occurred, try again later."});
       }
-    })
+    });
   }
 
   
@@ -211,15 +241,13 @@ export class CustomersOperationsComponent implements OnInit, OnDestroy {
     {
       this.order.customerId = form.customerId;
       this.order.orderDetails = form.orderDetails;
-      this.api.getOrderSummary(this.order).subscribe((data:ApiResponseI) => {
-        if(data.isError){
-          this.toast.error({detail:"Error Message",summary:"An error has occurred, try again later."});
-        }
-        else{
-          this.order.totalOrder = data.data.totalOrder;
-          this.order.orderDetails = data.data.orderDetails;
-          this.dataSource.data = data.data.orderDetailsSummary;
-          this.order.orderDetails = data.data.orderDetailsSummary.map((x:OrderDetailsSummaryI) => (
+
+      this.api.getOrderSummary(this.order).subscribe({
+        next: (response:ApiResponseI) =>{
+          this.order.totalOrder = response.data.totalOrder;
+          this.order.orderDetails = response.data.orderDetails;
+          this.dataSource.data = response.data.orderDetailsSummary;
+          this.order.orderDetails = response.data.orderDetailsSummary.map((x:OrderDetailsSummaryI) => (
             {
               id: 0,
               orderId:0,
@@ -227,9 +255,14 @@ export class CustomersOperationsComponent implements OnInit, OnDestroy {
               productQuantity:x.productQuantity,
               price:x.totalDiscountedPrice
             }));
-          stepper.next();     
+          stepper.next();
+        },
+        error: (error:any) => {
+          console.log(error)
+            this.toast.error({detail:"Error Message",summary:"An error has occurred, try again later."});         
         }
-      })
+      });
+
     }
   }
 }

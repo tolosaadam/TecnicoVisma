@@ -45,6 +45,7 @@ namespace TecnicoVisma.Business
 
         public OrderDTO CreateOrder(OrderDTO orderDTO)
         {
+            _orderDetailsBusiness.DeleteProductsFromStock(orderDTO.OrderDetails);
             var order = _mapper.Map<OrderDTO, Order>(orderDTO);
             var orders = _repository.Insert(order);
             var ordersDTO = _mapper.Map<Order, OrderDTO>(orders);

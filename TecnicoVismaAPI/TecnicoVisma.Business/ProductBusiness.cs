@@ -76,5 +76,28 @@ namespace TecnicoVisma.Business
             var categoriesDTO = _mapper.Map<IEnumerable<Category>, IEnumerable<CategoryDTO>>(categories);
             return categoriesDTO;
         }
+
+        public bool ValidateProductsStock(List<ProductStockValidator> productsToCheck)
+        {
+            foreach(ProductStockValidator productToCheck in productsToCheck)
+            {
+                var product = GetProduct(productToCheck.Id);
+                if(product.UnitsInStock < productToCheck.ProductQuantity)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public void DeleteProductsFromStock(List<ProductStockValidator> productsToCheck)
+        {
+            foreach(ProductStockValidator productToCheck in productsToCheck)
+            {
+                var product = _repository.GetProduct(productToCheck.Id);
+                product.UnitsInStock -= productToCheck.ProductQuantity;
+                _repository.Update(product);
+            }
+        }
     }
 }

@@ -9,7 +9,7 @@ import mixpanel from 'mixpanel-browser';
 export class AppComponent implements OnInit{
 
   ngOnInit():void{
-    mixpanel.init("5b90abf3d5e01516da41eb24e3a6af8e", {debug:true});
+    mixpanel.init("5b90abf3d5e01516da41eb24e3a6af8e");
   }
   title = 'TecnicoVismaUI';
   

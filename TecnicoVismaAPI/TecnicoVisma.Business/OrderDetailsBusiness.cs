@@ -53,20 +53,46 @@ namespace TecnicoVisma.Business
             return ordersDetailsDTO;
         }
 
+        public void DeleteProductsFromStock(IEnumerable<OrderDetailsDTO> ordersDetailsDTO)
+        {
+            var productsStockValidator = new List<ProductStockValidator>();
+
+            foreach (OrderDetailsDTO orderDetailsDTO in ordersDetailsDTO)
+            {
+                var productStockValidator = new ProductStockValidator()
+                {
+                    Id = orderDetailsDTO.ProductId,
+                    ProductQuantity = orderDetailsDTO.ProductQuantity
+                };
+                productsStockValidator.Add(productStockValidator);
+            }
+
+            _productBusiness.DeleteProductsFromStock(productsStockValidator);
+        }
+
 
         public IEnumerable<OrderDetailsSummaryDTO> CalculateAndValidateAllPrices(int customerId, IEnumerable<OrderDetailsDTO> ordersDetailsDTO)
         {
-
+            var productsToCheck = new List<ProductStockValidator>();
+            
             var ordersDetailsSummaryDTO = new List<OrderDetailsSummaryDTO>();
             foreach (OrderDetailsDTO orderDetailsDTO in ordersDetailsDTO)
             {
+                ///// Product Stock Validator
+                var productToCheck = new ProductStockValidator()
+                {
+                    Id = orderDetailsDTO.ProductId,
+                    ProductQuantity = orderDetailsDTO.ProductQuantity
+                };
+                productsToCheck.Add(productToCheck);
+                /////
+
                 var productName = _productBusiness.GetProductName(orderDetailsDTO.ProductId);
 
                 var unitPrice = _productBusiness.GetProductPrice(orderDetailsDTO.ProductId);
                 var productDiscount = _customerBusiness.GetProductDiscount(customerId);
                 var discount = ((unitPrice * productDiscount) / 100);
                 var price = orderDetailsDTO.ProductQuantity * (unitPrice - discount);
-
 
                 OrderDetailsSummaryDTO orderDetailsSummaryDTO = new()
                 {
@@ -82,6 +108,11 @@ namespace TecnicoVisma.Business
                 };
                 ordersDetailsSummaryDTO.Add(orderDetailsSummaryDTO);
 
+            }
+
+            if (!_productBusiness.ValidateProductsStock(productsToCheck))
+            {
+                throw (new Exception());
             }
 
             return ordersDetailsSummaryDTO;

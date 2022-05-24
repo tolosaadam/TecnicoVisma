@@ -107,7 +107,8 @@ export class RegistryComponent implements OnInit {
 
       if(this.files.length > 0){
         var filetoUpload =  await this.uploadFile(this.files);
-        (await this.api.addFile(filetoUpload)).subscribe(async (response: ApiResponseI) => {
+        (await this.api.addFile(filetoUpload).catch(onunhandledrejection)).subscribe(async (response: ApiResponseI) => {
+
           this.user.filePath = await response.data;
           (await this.api.addUser(this.user)).subscribe(async (data:ApiResponseI) => {
             if(data.isError){
@@ -119,6 +120,21 @@ export class RegistryComponent implements OnInit {
               this.navigate.goToLogin();
             }
           });  
+        },
+        (error:any) => {
+          this.toast.error({detail:"Error Message",summary:"An error has occurred, try again later."});
+        });
+      }
+      else{
+        (await this.api.addUser(this.user)).subscribe(async (data:ApiResponseI) => {
+          if(data.isError){
+            this.toast.error({detail:"Error Message",summary:"An error has occurred, try again later."});
+          }
+          else{
+            this.toast.success({detail:"Sucess Message",summary:"You registered successfully"});
+            this.mixpanelService.track("Sign up");
+            this.navigate.goToLogin();
+          }
         });
       }    
     }

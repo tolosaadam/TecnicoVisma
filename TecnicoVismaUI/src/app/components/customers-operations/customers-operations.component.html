@@ -43,7 +43,7 @@
                                         <form fxLayout="row" class="form-orderDetails" [formGroupName]="i">
                                             <mat-form-field  fxFlex="23" appearance="fill">
                                                 <mat-label>Product</mat-label>
-                                                <mat-select  #productIdSelect formControlName="productId" (selectionChange)="enableQuantityInput(orderDetailsForm)" (selectionChange)="getOrderDetailsTotalPrice(orderDetailsForm)">
+                                                <mat-select  #productIdSelect formControlName="productId" (selectionChange)="checkEqualsProducts(orderForm,orderDetailsForm)" (selectionChange)="enableQuantityInput(orderDetailsForm)" (selectionChange)="getOrderDetailsTotalPrice(orderDetailsForm)">
                                                 <mat-option *ngFor="let product of products" [value]="product.id">                                               
                                                     {{product.name}}                                                                                                   
                                                 </mat-option>
@@ -51,7 +51,11 @@
                                             </mat-form-field>
                                             <mat-form-field fxFlex="23" appearance="fill">
                                                 <mat-label>Product Quantity</mat-label>
-                                                <input type="number" matInput formControlName="productQuantity" placeholder="Enter product quantity" required   (input)="getOrderDetailsTotalPrice(orderDetailsForm)">
+                                                <input type="number" matInput formControlName="productQuantity" min="0" max="orderDetailsForm.value.stock" placeholder="Enter product quantity" required   (input)="getOrderDetailsTotalPrice(orderDetailsForm)">
+                                            </mat-form-field>
+                                            <mat-form-field fxFlex="23" appearance="fill">
+                                                <mat-label>Stock</mat-label>
+                                                <input type="number" matInput formControlName="stock" required [readonly]='true'>
                                             </mat-form-field>
                                             
                                             <div class="discount-total-container " fxFlex="23">

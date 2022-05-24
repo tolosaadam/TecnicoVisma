@@ -71,27 +71,26 @@ namespace TecnicoVismaAPI.Controllers
                 var foldername = Path.Combine("Resources", "Images");
                 var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), foldername);
 
-                if(file.Length > 0)
+              
+                
+                var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+                var fullPath = Path.Combine(pathToSave, fileName);
+                using (var stream = new FileStream(fullPath, FileMode.Create))
                 {
-                    var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
-                    var fullPath = Path.Combine(pathToSave, fileName);
-                    using (var stream = new FileStream(fullPath, FileMode.Create))
-                    {
-                        file.CopyTo(stream);
-                    }
+                    file.CopyTo(stream);
+                }
 
-                    response.Data = fileName;
-                    return Ok(response);
-                }
-                else
-                {
-                    return BadRequest();
-                }
+                response.Data = fileName;
+                return Ok(response);
+                
+
 
             }
             catch(Exception e)
             {
-                return StatusCode(500, $"Internal server error: {e}");
+
+                response.ErrorMessage = e.Message;
+                return BadRequest(response);
             }
         }
 

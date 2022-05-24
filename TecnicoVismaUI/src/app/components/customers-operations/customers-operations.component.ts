@@ -1,6 +1,6 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, Input, OnInit, ViewChild, OnDestroy } from '@angular/core';
-import { FormArray, FormBuilder, ValidationErrors, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { MatOption } from '@angular/material/core';
 import { MatSelect } from '@angular/material/select';
 import { MatStepper } from '@angular/material/stepper';

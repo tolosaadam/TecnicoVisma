@@ -42,13 +42,14 @@ _The Project has Unit tests, where the methods of the Business layer of each Cla
 
 ## Angular Libraries 
 
-* [Angular Material](https://www.npmjs.com/package/@angular/material)  -> npm i --save @angular/material
-* [Angular Flex-Layout] 
-* [Highcharts]
-* [Highcharts Angular]
-* [ng-angular-popup]
-* [mix panel]
-* [ngx dropzone]
+* [Angular Material](https://www.npmjs.com/package/@angular/material)  - npm i --save @angular/material
+* [Angular Flex-Layout](https://www.npmjs.com/package/@angular/flex-layout) - npm i --save @angular/flex-layout
+* [Highcharts](https://www.npmjs.com/package/highcharts) - npm i --save highcharts
+* [Highcharts Angular](https://www.npmjs.com/package/highcharts-angular) - npm i --save highcharts-angular
+* [ng-angular-popup](https://www.npmjs.com/package/ng-angular-popup) - npm i --save ng-angular-popup
+* [mix panel_browser](https://www.npmjs.com/package/mixpanel-browser) - npm i --save mixpanel-browser
+* [mix_panel_types](https://www.npmjs.com/package/@types/mixpanel) - npm i --save @types/mixpanel
+* [ngx dropzone](https://www.npmjs.com/package/ngx-dropzone) - npm i --save ngx-dropzone
 
 ## Authors ✒️
 

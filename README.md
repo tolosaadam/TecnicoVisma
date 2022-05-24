@@ -55,7 +55,7 @@ _The Project has Unit tests, where the methods of the Business layer of each Cla
 
 ## Funcionality Video 📺
 
-[![Watch the video](https://user-images.githubusercontent.com/67810957/170079314-c3eee1f2-6d21-45e1-b80b-4d98c42150b2.png)](https://youtu.be/uD4dv5lOyro)
+[Watch the video](https://youtu.be/uD4dv5lOyro) 🎥🎥🎥🎥🎥🎥
 
 ## Database Diagram 🔢
 

@@ -5,7 +5,7 @@
     <DockerTargetOS>Linux</DockerTargetOS>
     <ProjectGuid>2a6eaf0e-bf13-4153-b0fc-16649fde0a7a</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
-    <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
+    <DockerServiceUrl>http://localhost:4200</DockerServiceUrl>
     <DockerServiceName>tecnicovismaapi</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>

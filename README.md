@@ -42,6 +42,7 @@ _The Project has Unit tests, where the methods of the Business layer of each Cla
 
 ## Libraries 📚
 
+
 * [Angular Material](https://www.npmjs.com/package/@angular/material)  - npm i --save @angular/material
 * [Angular Flex-Layout](https://www.npmjs.com/package/@angular/flex-layout) - npm i --save @angular/flex-layout
 * [Highcharts](https://www.npmjs.com/package/highcharts) - npm i --save highcharts
@@ -54,7 +55,7 @@ _The Project has Unit tests, where the methods of the Business layer of each Cla
 
 ## Funcionality Video 📺
 
-[![Watch the video](https://user-images.githubusercontent.com/67810957/170079003-21c932e0-8d4b-4c08-9abd-fa81e7be2586.png)](https://youtu.be/uD4dv5lOyro)
+[![Watch the video](https://user-images.githubusercontent.com/67810957/170079314-c3eee1f2-6d21-45e1-b80b-4d98c42150b2.png)](https://youtu.be/uD4dv5lOyro)
 
 ## Database Diagram 🔢
 

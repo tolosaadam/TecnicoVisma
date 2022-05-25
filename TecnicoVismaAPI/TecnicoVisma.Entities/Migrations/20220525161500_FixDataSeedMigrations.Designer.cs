@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TecnicoVisma.Entities.Data;
 
 namespace TecnicoVisma.Entities.Migrations
 {
     [DbContext(typeof(TecnicoVismaDBContext))]
-    partial class TecnicoVismaDBContextModelSnapshot : ModelSnapshot
+    [Migration("20220525161500_FixDataSeedMigrations")]
+    partial class FixDataSeedMigrations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -239,7 +241,7 @@ namespace TecnicoVisma.Entities.Migrations
                         {
                             Id = 1,
                             Address = "asd 1234",
-                            Birthday = DateTime.Parse(DateTime.Now.ToString("yyy-MM-dd H:mm:ss")),
+                            Birthday = new DateTime(2022, 5, 25, 13, 14, 59, 0, DateTimeKind.Unspecified),
                             FilePath = "",
                             FirstName = "Admin",
                             Gender = "Anonymous",
@@ -247,7 +249,7 @@ namespace TecnicoVisma.Entities.Migrations
                             MailAddress = "admin@admin.com",
                             Password = "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918",
                             PostalCode = "1234",
-                            RegisteredDate = DateTime.Parse(DateTime.Now.ToString("yyy-MM-dd H:mm:ss"))
+                            RegisteredDate = new DateTime(2022, 5, 25, 13, 14, 59, 0, DateTimeKind.Unspecified)
                         });
                 });
 

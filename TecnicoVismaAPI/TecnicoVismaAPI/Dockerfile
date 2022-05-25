@@ -21,6 +21,8 @@ COPY ["TecnicoVisma.Repositories/TecnicoVisma.Repositories.csproj", "TecnicoVism
 
 COPY ["TecnicoVisma.JWTAuthenticationManager/TecnicoVisma.JWTAuthenticationManager.csproj", "TecnicoVisma.JWTAuthenticationManager/"]
 
+COPY ["TecnicoVisma.Helpers/TecnicoVisma.Helpers.csproj", "TecnicoVisma.Helpers/"]
+
 RUN dotnet restore "TecnicoVismaAPI/TecnicoVismaAPI.csproj"
 COPY . .
 WORKDIR "/src/TecnicoVismaAPI"

@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TecnicoVisma.Entities.Data;
 
 namespace TecnicoVisma.Entities.Migrations
 {
     [DbContext(typeof(TecnicoVismaDBContext))]
-    partial class TecnicoVismaDBContextModelSnapshot : ModelSnapshot
+    [Migration("20220525160210_UserDataAdminMigration")]
+    partial class UserDataAdminMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,43 +31,6 @@ namespace TecnicoVisma.Entities.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Clothes"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Home"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Electronic"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Software"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Video Games"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "Vehicles"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Name = "Footwear"
-                        });
                 });
 
             modelBuilder.Entity("TecnicoVisma.Entities.Models.Customer", b =>
@@ -239,7 +204,7 @@ namespace TecnicoVisma.Entities.Migrations
                         {
                             Id = 1,
                             Address = "asd 1234",
-                            Birthday = DateTime.Parse(DateTime.Now.ToString("yyy-MM-dd H:mm:ss")),
+                            Birthday = new DateTime(2022, 5, 25, 13, 2, 9, 0, DateTimeKind.Unspecified),
                             FilePath = "",
                             FirstName = "Admin",
                             Gender = "Anonymous",
@@ -247,7 +212,7 @@ namespace TecnicoVisma.Entities.Migrations
                             MailAddress = "admin@admin.com",
                             Password = "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918",
                             PostalCode = "1234",
-                            RegisteredDate = DateTime.Parse(DateTime.Now.ToString("yyy-MM-dd H:mm:ss"))
+                            RegisteredDate = new DateTime(2022, 5, 25, 13, 2, 9, 0, DateTimeKind.Unspecified)
                         });
                 });
 

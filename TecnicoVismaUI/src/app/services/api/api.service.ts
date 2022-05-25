@@ -18,12 +18,9 @@ export class ApiService {
   apiUrl:string = "";
 
   jwtUser:any = localStorage.getItem('userJwt');
-  
-
-  
 
   constructor(private settingsService:SettingsService, private http:HttpClient) {
-    this.apiUrl = this.settingsService.settings.API_URL;
+    this.apiUrl = this.settingsService.settings.apiURL;
    }
 
   getAuthorizationHeader():HttpHeaders{

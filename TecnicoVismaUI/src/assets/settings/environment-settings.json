@@ -1,8 +1,8 @@
 {
     "mixpanelToken": "${MIX_PANEL_TOKEN}",
-    "mixpanelProjectID":"${MIX_PANEL_TOKEN}",
-    "mixpanelCredentials":"${MIX_PANEL_TOKEN}",
-    "mixpanelPorductsBookMarkID":"${MIX_PANEL_TOKEN}",
-    "mixpanelAllEventsBookMarkID":"${MIX_PANEL_TOKEN}",
+    "mixpanelProjectID":"${MIX_PANEL_PROJECT_ID}",
+    "mixpanelCredentials":"${MIX_PANEL_CRENDENTIALS}",
+    "mixpanelPorductsBookMarkID":"${MIX_PANEL_PRODUCTS_BOOKMARK_ID}",
+    "mixpanelAllEventsBookMarkID":"${MIX_PANEL_PRODUCTS_ALLEVENTS_ID}",
     "apiURL":"${API_URL}"
 }

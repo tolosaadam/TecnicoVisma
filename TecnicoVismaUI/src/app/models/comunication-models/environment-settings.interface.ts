@@ -4,5 +4,5 @@ export class SettingsI {
     mixpanelCredentials: string = '';  
     mixpanelPorductsBookMarkID: string = '';  
     mixpanelAllEventsBookMarkID: string = '';  
-    API_URL: string = '';  
+    apiURL: string = '';  
 }

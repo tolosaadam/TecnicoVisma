@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TecnicoVisma.JWTAuthenticat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TecnicoVismaAPI", "TecnicoVismaAPI\TecnicoVismaAPI.csproj", "{944C4126-E4F3-4813-8332-445395CD2BC5}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TecnicoVisma.Helpers", "TecnicoVisma.Helpers\TecnicoVisma.Helpers.csproj", "{F4CD342C-FB48-4245-BE06-CC806953A65D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{944C4126-E4F3-4813-8332-445395CD2BC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{944C4126-E4F3-4813-8332-445395CD2BC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{944C4126-E4F3-4813-8332-445395CD2BC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4CD342C-FB48-4245-BE06-CC806953A65D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4CD342C-FB48-4245-BE06-CC806953A65D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4CD342C-FB48-4245-BE06-CC806953A65D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4CD342C-FB48-4245-BE06-CC806953A65D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

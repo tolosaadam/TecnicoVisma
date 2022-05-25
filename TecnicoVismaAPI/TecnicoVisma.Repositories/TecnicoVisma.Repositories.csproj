@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TecnicoVisma.Helpers\TecnicoVisma.Helpers.csproj" />
     <ProjectReference Include="..\TecnicoVisma.Interfaces\TecnicoVisma.Interfaces.csproj" />
   </ItemGroup>
 

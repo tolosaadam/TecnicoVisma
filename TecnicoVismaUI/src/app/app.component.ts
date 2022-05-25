@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import mixpanel from 'mixpanel-browser';
+import { SettingsService } from './services/settings/settings.service';
 
 @Component({
   selector: 'app-root',
@@ -8,8 +9,13 @@ import mixpanel from 'mixpanel-browser';
 })
 export class AppComponent implements OnInit{
 
+  mixPanelToken:string = '';
+  constructor(private settingsService:SettingsService) {
+    this.mixPanelToken = this.settingsService.settings.mixpanelToken;
+  }
+
   ngOnInit():void{
-    mixpanel.init("5b90abf3d5e01516da41eb24e3a6af8e");
+    mixpanel.init(this.mixPanelToken);
   }
   title = 'TecnicoVismaUI';
   

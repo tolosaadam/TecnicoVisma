@@ -258,7 +258,6 @@ export class CustomersOperationsComponent implements OnInit, OnDestroy {
           stepper.next();
         },
         error: (error:any) => {
-          console.log(error)
             this.toast.error({detail:"Error Message",summary:"An error has occurred, try again later."});         
         }
       });

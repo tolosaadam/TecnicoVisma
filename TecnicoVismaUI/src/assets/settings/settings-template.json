@@ -1,0 +1,8 @@
+{
+    "mixpanelToken": "${MIX_PANEL_TOKEN}",
+    "mixpanelProjectID":"${MIX_PANEL_TOKEN}",
+    "mixpanelCredentials":"${MIX_PANEL_TOKEN}",
+    "mixpanelPorductsBookMarkID":"${MIX_PANEL_TOKEN}",
+    "mixpanelAllEventsBookMarkID":"${MIX_PANEL_TOKEN}",
+    "apiURL":"${API_URL}"
+}

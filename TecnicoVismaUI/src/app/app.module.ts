@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,7 +12,12 @@ import { NgToastModule } from 'ng-angular-popup';
 import { RegistryModule } from './views/registry/registry.module';
 import {AppHttpInterceptor} from './utils/HttpInterceptor';
 import { SharedComponentsModule } from './components/shared-components/shared-components.module';
+import { SettingsHttpService } from './services/settings/settings-http.service';
 
+
+export function app_Init(settingsHttpService: SettingsHttpService){
+  return () => settingsHttpService.initializeApp();
+}
 
 
 @NgModule({
@@ -36,6 +41,12 @@ import { SharedComponentsModule } from './components/shared-components/shared-co
     provide: HTTP_INTERCEPTORS,
     useClass: AppHttpInterceptor,
     multi: true
+  },
+  {
+    provide: APP_INITIALIZER,
+    useFactory: app_Init,
+    deps: [SettingsHttpService],
+    multi:true
   }],
   bootstrap: [AppComponent]
 })

@@ -8,20 +8,23 @@ import { loginFormI } from 'src/app/models/comunication-models/login.interface';
 import { OrderI } from 'src/app/models/order.interface';
 import { ProductOperationI } from 'src/app/models/product-operation';
 import { UserI } from 'src/app/models/user.interface';
+import { SettingsService } from '../settings/settings.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  url:string = "http://localhost:5000/api/";
+  apiUrl:string = "";
 
   jwtUser:any = localStorage.getItem('userJwt');
   
 
   
 
-  constructor(private http:HttpClient) { }
+  constructor(private settingsService:SettingsService, private http:HttpClient) {
+    this.apiUrl = this.settingsService.settings.API_URL;
+   }
 
   getAuthorizationHeader():HttpHeaders{
     return new HttpHeaders().set("Authorization", "Bearer " + sessionStorage.getItem('userJwt'));
@@ -30,129 +33,129 @@ export class ApiService {
   //////// Customers Services ////////
   
   getCustomers():Observable<ApiResponseI>{
-    let direccion = this.url + "customer";
+    let direction = this.apiUrl + "customer";
 
-    return this.http.get<ApiResponseI>(direccion,{headers:this.getAuthorizationHeader()});
+    return this.http.get<ApiResponseI>(direction,{headers:this.getAuthorizationHeader()});
   }
   
   addCustomer(product: CustomerI){
-    let direccion = this.url + "customer";
+    let direction = this.apiUrl + "customer";
 
-    return this.http.post<ApiResponseI>(direccion,product,{headers:this.getAuthorizationHeader()});
+    return this.http.post<ApiResponseI>(direction,product,{headers:this.getAuthorizationHeader()});
   }
 
   editCustomer(product: CustomerI){
-    let direccion = this.url + "customer/update";
-    return this.http.put<ApiResponseI>(direccion,product,{headers:this.getAuthorizationHeader()});
+    let direction = this.apiUrl + "customer/update";
+    return this.http.put<ApiResponseI>(direction,product,{headers:this.getAuthorizationHeader()});
   }
 
   removeCustomer(ids: number[]){
-    let direccion = this.url + "customer/remove";
+    let direction = this.apiUrl + "customer/remove";
     const body = ids
-    return this.http.delete<ApiResponseI>(direccion,{body,headers:this.getAuthorizationHeader()});    
+    return this.http.delete<ApiResponseI>(direction,{body,headers:this.getAuthorizationHeader()});    
   }
 
   getAllCustomerMailAddresses(){
-    let direccion = this.url + "customer/mailAddresses";
-    return this.http.get<ApiResponseI>(direccion,{headers:this.getAuthorizationHeader()});
+    let direction = this.apiUrl + "customer/mailAddresses";
+    return this.http.get<ApiResponseI>(direction,{headers:this.getAuthorizationHeader()});
   }
 
   //////// Orders Services ////////
 
   addOrder(order:OrderI){
-    let direccion = this.url + "order";
+    let direction = this.apiUrl + "order";
 
-    return this.http.post<ApiResponseI>(direccion,order,{headers:this.getAuthorizationHeader()});
+    return this.http.post<ApiResponseI>(direction,order,{headers:this.getAuthorizationHeader()});
   }
 
   getOrderSummary(order:OrderI){
-    let direccion = this.url + "order/getOrderSummary";
-    return this.http.post<ApiResponseI>(direccion,order,{headers:this.getAuthorizationHeader()});
+    let direction = this.apiUrl + "order/getOrderSummary";
+    return this.http.post<ApiResponseI>(direction,order,{headers:this.getAuthorizationHeader()});
   }
 
   getAllCustomerExpenses(){
-    let direccion = this.url + "order/getAllCustomerExpenses";
+    let direction = this.apiUrl + "order/getAllCustomerExpenses";
 
-    return this.http.get<ApiResponseI>(direccion,{headers:this.getAuthorizationHeader()});
+    return this.http.get<ApiResponseI>(direction,{headers:this.getAuthorizationHeader()});
   }
 
   //////// Products Services ////////
 
   getProducts():Observable<ApiResponseI>{
-    let direccion = this.url + "product";
+    let direction = this.apiUrl + "product";
 
-    return this.http.get<ApiResponseI>(direccion,{headers:this.getAuthorizationHeader()});
+    return this.http.get<ApiResponseI>(direction,{headers:this.getAuthorizationHeader()});
   }
 
   addProduct(product: ProductOperationI){
-    let direccion = this.url + "product";
+    let direction = this.apiUrl + "product";
 
-    return this.http.post<ApiResponseI>(direccion,product,{headers:this.getAuthorizationHeader()});
+    return this.http.post<ApiResponseI>(direction,product,{headers:this.getAuthorizationHeader()});
   }
 
   editProduct(product: ProductOperationI){
-    let direccion = this.url + "product/update";
-    return this.http.put<ApiResponseI>(direccion,product,{headers:this.getAuthorizationHeader()});
+    let direction = this.apiUrl + "product/update";
+    return this.http.put<ApiResponseI>(direction,product,{headers:this.getAuthorizationHeader()});
   }
 
   removeProduct(ids: number[]){
-    let direccion = this.url + "product/remove";
+    let direction = this.apiUrl + "product/remove";
     const body = ids
-    return this.http.delete<ApiResponseI>(direccion,{body,headers:this.getAuthorizationHeader()});    
+    return this.http.delete<ApiResponseI>(direction,{body,headers:this.getAuthorizationHeader()});    
   }
 
   getCategories():Observable<ApiResponseI>{
-    let direccion = this.url + "product/getCategories";
+    let direction = this.apiUrl + "product/getCategories";
 
-    return this.http.get<ApiResponseI>(direccion,{headers:this.getAuthorizationHeader()});
+    return this.http.get<ApiResponseI>(direction,{headers:this.getAuthorizationHeader()});
   }
 
   //////// User Services ////////
 
   async addUser(user: UserI){
-    let direccion = this.url + "user";
+    let direction = this.apiUrl + "user";
 
-    return  this.http.post<ApiResponseI>(direccion,user);
+    return  this.http.post<ApiResponseI>(direction,user);
   }
 
   getUser(id:number){
-    let direccion = this.url + "user/" + id;
+    let direction = this.apiUrl + "user/" + id;
 
-    return this.http.get<ApiResponseI>(direccion);
+    return this.http.get<ApiResponseI>(direction);
   }
 
   authenticateUser(credentials: loginFormI){
-    let direccion = this.url + "user/authenticate";
-    return this.http.post<ApiResponseI>(direccion,credentials);
+    let direction = this.apiUrl + "user/authenticate";
+    return this.http.post<ApiResponseI>(direction,credentials);
   }
 
   getAllMailAddresses(){
-    let direccion = this.url + "user/mailAddresses";
-    return this.http.get<ApiResponseI>(direccion);
+    let direction = this.apiUrl + "user/mailAddresses";
+    return this.http.get<ApiResponseI>(direction);
   }
 
 
   getTokenLifeTime(token:string){
-    let direccion = this.url + "user/tokenLifeTime/" + token;
-    return this.http.get<number>(direccion);
+    let direction = this.apiUrl + "user/tokenLifeTime/" + token;
+    return this.http.get<number>(direction);
   }
 
   sendContactMail(data:ContactI){
-    let direccion = this.url + "contact/sendMail";
-    return this.http.post<ApiResponseI>(direccion,data,{headers:this.getAuthorizationHeader()});
+    let direction = this.apiUrl + "contact/sendMail";
+    return this.http.post<ApiResponseI>(direction,data,{headers:this.getAuthorizationHeader()});
   }
 
   //////// Document Services ////////
 
   
   async addFile(formData: any):Promise<Observable<ApiResponseI>>{
-    let direccion = this.url + "document/addFile";
+    let direction = this.apiUrl + "document/addFile";
 
-    return this.http.post<ApiResponseI>(direccion, formData);
+    return this.http.post<ApiResponseI>(direction, formData);
   }
 
   getDocument(serverPath:string){
-    let direccion = this.url + "document/" + "getFile/" + serverPath;
-    return this.http.get<ApiResponseI>(direccion,{headers:this.getAuthorizationHeader()});
+    let direction = this.apiUrl + "document/" + "getFile/" + serverPath;
+    return this.http.get<ApiResponseI>(direction,{headers:this.getAuthorizationHeader()});
   }
 }

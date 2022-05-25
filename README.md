@@ -20,11 +20,11 @@ _Install Visual Studio 2019._
 
 _Start Docker Desktop, Then open the "TecnicoVisma" solution with Visual Studio 2019, and run it in "DockerCompose" mode._
 
-_Once the containers are running, This url will open automatically: http:localhost:4200_
+_Once the containers are running, This url will open automatically: "http:localhost:4200"._
 
 _You can also open a console in this path '~\TecnicoVisma\TecnicoVismaAPI' and type "docker-compose up"._
 
-_Once the containers are running, enter the following URL in the browser: http:localhost:4200_
+_Once the containers are running, enter the following URL in the browser: "http:localhost:4200"._
 
 
 ## Some Features 🧙‍♂️🧙‍♂
@@ -33,7 +33,7 @@ _For the back end, was used repository as a design pattern._
 
 _Each endpoint already inside the application has a "JWT" authentication factor._
 
-_User passwords are encrypted using the "sha256hash" factor._
+_User passwords are encrypted using the "sha256" factor._
 
 _Added a metric tracking system, using the "mix panel" library exporting and importing data from their website._
 

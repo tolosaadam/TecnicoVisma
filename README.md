@@ -39,6 +39,8 @@ _User passwords are encrypted using the "sha256" factor._
 
 _Added a metric tracking system, using the "mix panel" library exporting and importing data from their website._
 
+_Injection of environment variables from docker compose to angular for sensitive data._
+
 
 ## Built with 🛠️
 

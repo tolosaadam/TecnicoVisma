@@ -46,7 +46,7 @@ _Injection of environment variables from docker compose to angular for sensitive
 
 * [Docker](https://www.docker.com/products/docker-desktop) - Application of containers for virtual environments.
 * [MySQL WorkBench](https://dev.mysql.com/downloads/workbench/) - Database engine.
-* [.Net  5](https://visualstudio.microsoft.com/es/vs/older-downloads/) - Framework para la API.
+* [.Net  5](https://visualstudio.microsoft.com/es/vs/older-downloads/) - Framework for the API.
 * Angular  - From command line.
 * TypeScript - From command line.
 * [Visual Studio 2019](https://visualstudio.microsoft.com/es/vs/older-downloads/) - Compiler for the API.

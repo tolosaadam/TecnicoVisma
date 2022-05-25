@@ -1,6 +1,6 @@
 # Visma Challange
 
-_Project to add invoices with products to certain customers based on discounts_
+_Project to add invoices with products to certain customers based on discounts._
 
 ## Starting 🚀
 
@@ -9,25 +9,33 @@ _In order to run the application, just clone the project and run it in "Docker -
 
 ## Pre requirements 📋
 
-_Download Docker Desktop,_
-_Download Visual Studio 2019_
+_Download Docker Desktop._
+_Download Visual Studio 2019._
 
 ## Installation 🔧
 
-_Install Docker Desktop_
+_Install Docker Desktop._
 
-_Install Visual Studio 2019_
+_Install Visual Studio 2019._
 
-_Start Docker Desktop, Then open the "TecnicoVisma" solution with Visual Studio 2019, and run it in "DockerCompose" mode_
+_Start Docker Desktop, Then open the "TecnicoVisma" solution with Visual Studio 2019, and run it in "DockerCompose" mode._
+
+_Once the containers are running, This url will open automatically: http:localhost:4200_
+
+_You can also open a console in this path '~\TecnicoVisma\TecnicoVismaAPI' and type "docker-compose up"._
 
 _Once the containers are running, enter the following URL in the browser: http:localhost:4200_
 
-_The API swagger documentation is raised at the following URL: http:localhost:3000_
 
+## Some Features 🧙‍♂️🧙‍♂
 
-## Running the tests ⚙️
+_For the back end, was used repository as a design pattern._
 
-_The Project has Unit tests, where the methods of the Business layer of each Class are tested._
+_Each endpoint already inside the application has a "JWT" authentication factor._
+
+_User passwords are encrypted using the "sha256hash" factor._
+
+_Added a metric tracking system, using the "mix panel" library exporting and importing data from their website._
 
 
 ## Built with 🛠️
@@ -41,7 +49,6 @@ _The Project has Unit tests, where the methods of the Business layer of each Cla
 * [Visual Studio Code](https://code.visualstudio.com/download) - Compiler for the Front End.
 
 ## Libraries 📚
-
 
 * [Angular Material](https://www.npmjs.com/package/@angular/material)  - npm i --save @angular/material
 * [Angular Flex-Layout](https://www.npmjs.com/package/@angular/flex-layout) - npm i --save @angular/flex-layout

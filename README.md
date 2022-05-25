@@ -2,6 +2,7 @@
 
 _Project to add invoices with products to certain customers based on discounts._
 
+
 ## Starting 🚀
 
 _In order to run the application, just clone the project and run it in "Docker - compose" mode from Visual Studio._
@@ -11,6 +12,7 @@ _In order to run the application, just clone the project and run it in "Docker -
 
 _Download Docker Desktop._
 _Download Visual Studio 2019._
+
 
 ## Installation 🔧
 
@@ -47,6 +49,7 @@ _Added a metric tracking system, using the "mix panel" library exporting and imp
 * TypeScript - From command line.
 * [Visual Studio 2019](https://visualstudio.microsoft.com/es/vs/older-downloads/) - Compiler for the API.
 * [Visual Studio Code](https://code.visualstudio.com/download) - Compiler for the Front End.
+* 
 
 ## Libraries 📚
 
@@ -64,15 +67,18 @@ _Added a metric tracking system, using the "mix panel" library exporting and imp
 
 ![image](https://user-images.githubusercontent.com/67810957/170068618-a7d1f116-87d6-45ca-be20-7dc157635e82.png)
 
+
 ## Mixpanel Graphs 📊
 
 ![image](https://user-images.githubusercontent.com/67810957/170069127-18210a4a-e3c7-4e1a-98b0-32f9870abfa9.png)
+
 
 ## Funcionality Video 📺
 
 _Showing a video of full functionality_
 
 [Watch the video](https://youtu.be/uD4dv5lOyro) 🎥🎥🎥🎥🎥🎥
+
 
 ## Authors ✒️
 

@@ -8,6 +8,19 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
 COPY ["TecnicoVismaAPI/TecnicoVismaAPI.csproj", "TecnicoVismaAPI/"]
+
+COPY ["TecnicoVisma.Business/TecnicoVisma.Business.csproj", "TecnicoVisma.Business/"]
+
+COPY ["TecnicoVisma.Entities/TecnicoVisma.Entities.csproj", "TecnicoVisma.Entities/"]
+
+COPY ["TecnicoVisma.Interfaces/TecnicoVisma.Interfaces.csproj", "TecnicoVisma.Interfaces/"]
+
+COPY ["TecnicoVisma.MapperProfiles/TecnicoVisma.MapperProfiles.csproj", "TecnicoVisma.MapperProfiles/"]
+
+COPY ["TecnicoVisma.Repositories/TecnicoVisma.Repositories.csproj", "TecnicoVisma.Repositories/"]
+
+COPY ["TecnicoVisma.JWTAuthenticationManager/TecnicoVisma.JWTAuthenticationManager.csproj", "TecnicoVisma.JWTAuthenticationManager/"]
+
 RUN dotnet restore "TecnicoVismaAPI/TecnicoVismaAPI.csproj"
 COPY . .
 WORKDIR "/src/TecnicoVismaAPI"

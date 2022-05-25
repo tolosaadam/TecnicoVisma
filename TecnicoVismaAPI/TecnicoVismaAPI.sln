@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31424.327
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TecnicoVismaAPI", "TecnicoVismaAPI\TecnicoVismaAPI.csproj", "{6E620C67-3EBD-43BF-9195-792AC07F3956}"
-EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{2A6EAF0E-BF13-4153-B0FC-16649FDE0A7A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TecnicoVisma.Business", "TecnicoVisma.Business\TecnicoVisma.Business.csproj", "{EFD5F9A0-88E7-4078-BF9F-3B63A3DA8884}"
@@ -17,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TecnicoVisma.MapperProfiles
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TecnicoVisma.Repositories", "TecnicoVisma.Repositories\TecnicoVisma.Repositories.csproj", "{FF4EFAD0-D82A-4D09-BF9D-044EA3194601}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TecnicoVisma.JWTAuthenticationManager", "..\TecnicoVisma.JWTAuthenticationManager\TecnicoVisma.JWTAuthenticationManager.csproj", "{BFCBCD1D-AEA7-4C1A-B37B-924C57BF9FF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TecnicoVisma.JWTAuthenticationManager", "TecnicoVisma.JWTAuthenticationManager\TecnicoVisma.JWTAuthenticationManager.csproj", "{AA6989FB-ADE8-47CC-AAD0-88565DD39654}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TecnicoVismaAPI", "TecnicoVismaAPI\TecnicoVismaAPI.csproj", "{944C4126-E4F3-4813-8332-445395CD2BC5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +25,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6E620C67-3EBD-43BF-9195-792AC07F3956}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6E620C67-3EBD-43BF-9195-792AC07F3956}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6E620C67-3EBD-43BF-9195-792AC07F3956}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6E620C67-3EBD-43BF-9195-792AC07F3956}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2A6EAF0E-BF13-4153-B0FC-16649FDE0A7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2A6EAF0E-BF13-4153-B0FC-16649FDE0A7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A6EAF0E-BF13-4153-B0FC-16649FDE0A7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -53,10 +49,14 @@ Global
 		{FF4EFAD0-D82A-4D09-BF9D-044EA3194601}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF4EFAD0-D82A-4D09-BF9D-044EA3194601}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF4EFAD0-D82A-4D09-BF9D-044EA3194601}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BFCBCD1D-AEA7-4C1A-B37B-924C57BF9FF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BFCBCD1D-AEA7-4C1A-B37B-924C57BF9FF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BFCBCD1D-AEA7-4C1A-B37B-924C57BF9FF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BFCBCD1D-AEA7-4C1A-B37B-924C57BF9FF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA6989FB-ADE8-47CC-AAD0-88565DD39654}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA6989FB-ADE8-47CC-AAD0-88565DD39654}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA6989FB-ADE8-47CC-AAD0-88565DD39654}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA6989FB-ADE8-47CC-AAD0-88565DD39654}.Release|Any CPU.Build.0 = Release|Any CPU
+		{944C4126-E4F3-4813-8332-445395CD2BC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{944C4126-E4F3-4813-8332-445395CD2BC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{944C4126-E4F3-4813-8332-445395CD2BC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{944C4126-E4F3-4813-8332-445395CD2BC5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

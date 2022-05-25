@@ -7,8 +7,9 @@ using System.IO;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using TecnicoVisma.Entities.DTOS;
-using System.Drawing;
 using Microsoft.AspNetCore.Authorization;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Formats;
 
 namespace TecnicoVismaAPI.Controllers
 {
@@ -35,21 +36,24 @@ namespace TecnicoVismaAPI.Controllers
             try
             {
                 var folderName = Path.Combine("Resources", "Images", pathFile);
+                string base64String;
+                IImageFormat format;
 
-                using (Image image = Image.FromFile(folderName))
+                using (var image = SixLabors.ImageSharp.Image.Load(folderName, out format))
                 {
-                    using (MemoryStream m = new())
-                    {
-                        image.Save(m, image.RawFormat);
-                        byte[] imageBytes = m.ToArray();
-
-                        // Convert byte[] to Base64 String
-                        string base64String = Convert.ToBase64String(imageBytes);
-                      
-                        var completeImageBase64 = $"data:image/{image.RawFormat.ToString().ToLower()};base64," + base64String;
-                        response.Data = completeImageBase64;
+                    using (var ms = new MemoryStream())
+                    {                        
+                        image.Save(ms, format);
+                        image.Dispose();
+                        byte[] imageBytes = ms.ToArray();
+                        base64String = Convert.ToBase64String(imageBytes);
+                        imageBytes = null;
+                        ms.Dispose();
                     }
                 }
+                var completeImageBase64 = $"data:image/{format.Name.ToLower()};base64," + base64String;
+                
+                response.Data = completeImageBase64;        
                 return Ok(response);
             }
             catch (Exception e)
@@ -59,7 +63,6 @@ namespace TecnicoVismaAPI.Controllers
                 return BadRequest(response);
             }
         }
-      
 
         [HttpPost("addFile"), DisableRequestSizeLimit]
         public IActionResult AddFile()

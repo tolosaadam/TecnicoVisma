@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TecnicoVismaAPI\TecnicoVisma.Interfaces\TecnicoVisma.Interfaces.csproj" />
+    <ProjectReference Include="..\TecnicoVisma.Interfaces\TecnicoVisma.Interfaces.csproj" />
   </ItemGroup>
 
 </Project>

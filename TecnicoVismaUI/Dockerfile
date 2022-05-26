@@ -16,6 +16,3 @@ FROM nginx:alpine
 
 COPY --from=build /app/dist/tecnico-visma-ui /usr/share/nginx/html/
 
-# When the container starts, replace the environment variables form settings-template.json to environment-settings.json
-CMD ["/bin/sh",  "-c",  "envsubst < /usr/share/nginx/html/assets/settings/settings-template.json > /usr/share/nginx/html/assets/settings/environment-settings.json && exec nginx -g 'daemon off;'"]
-

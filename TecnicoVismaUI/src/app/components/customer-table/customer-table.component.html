@@ -80,10 +80,6 @@
   <mat-cell *matCellDef="let row">{{row.productDiscount}}%</mat-cell>
 </ng-container>
 
-  <!-- <ng-container matColumnDef="imagePath"> 
-      <mat-header-cell *matHeaderCellDef> Image </mat-header-cell>
-      <mat-cell *matCellDef="let row" ><td><img [src]="createImgPath(row.imagePath)" alt="profile picture" style="width:60px; height:60px;"></td></mat-cell>
-  </ng-container> -->
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></mat-row>
 

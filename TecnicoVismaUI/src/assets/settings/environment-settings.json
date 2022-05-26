@@ -1,8 +1,8 @@
 {
-    "mixpanelToken": "${MIX_PANEL_TOKEN}",
-    "mixpanelProjectID":"${MIX_PANEL_PROJECT_ID}",
-    "mixpanelCredentials":"${MIX_PANEL_CRENDENTIALS}",
-    "mixpanelPorductsBookMarkID":"${MIX_PANEL_PRODUCTS_BOOKMARK_ID}",
-    "mixpanelAllEventsBookMarkID":"${MIX_PANEL_PRODUCTS_ALLEVENTS_ID}",
-    "apiURL":"${API_URL}"
+    "mixpanelToken": "5b90abf3d5e01516da41eb24e3a6af8e",
+    "mixpanelProjectID":"2719248",
+    "mixpanelCredentials":"T3duZXIuOGRlZDRkLm1wLXNlcnZpY2UtYWNjb3VudDpDNWV6RURPYlZsU2Y0WFdaT2ZCeU1kcUN0eTFoN01xdg==",
+    "mixpanelPorductsBookMarkID":"30116897",
+    "mixpanelAllEventsBookMarkID":"30109524",
+    "apiURL":"https://visma-latam-api.herokuapp.com/api/"
 }

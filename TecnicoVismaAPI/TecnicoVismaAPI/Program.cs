@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -16,7 +17,9 @@ namespace TecnicoVismaAPI
     {
         public static void Main(string[] args)
         {
-            IHost host = CreateHostBuilder(args).Build();
+            var host = CreateWebHostBuilder(args).
+               UseKestrel().UseUrls("http://0.0.0.0:" + Environment.GetEnvironmentVariable("PORT")).
+               Build();
 
             using (var scope = host.Services.CreateScope())
             {
@@ -33,5 +36,13 @@ namespace TecnicoVismaAPI
                 {
                     webBuilder.UseStartup<Startup>();
                 });
+
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+            WebHost.CreateDefaultBuilder(args).UseStartup<Startup>()
+            .ConfigureLogging(logging =>
+            {
+                logging.ClearProviders();
+                logging.SetMinimumLevel(LogLevel.Trace);
+            });
     }
 }

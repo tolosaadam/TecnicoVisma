@@ -96,28 +96,33 @@ export class MetricsComponent implements OnInit {
  }
   
   private async _createProductsByCategoryChartData(data:any){
-    const obj = data.series['AddProduct - Total'];
-    const arr = Object.entries(obj);
-    var totalProducts:number = 0;
-      arr.forEach((x:any) => {
-        if(x[0] == '$overall'){
-          totalProducts = x[1].all;
-        }              
-      });  
-      arr.forEach((x:any) => {
-        var pieChartItem:any = {
-          name: x[0],
-          y: (x[1].all * 100) / totalProducts
-        }
-        if('$overall' != pieChartItem.name){
-          this.productByCategoryChart.push(pieChartItem); 
-        }
-      })
+    try{
+      const obj = data.series['AddProduct - Total'];
+      const arr = Object.entries(obj);
+      var totalProducts:number = 0;
+        arr.forEach((x:any) => {
+          if(x[0] == '$overall'){
+            totalProducts = x[1].all;
+          }              
+        });  
+        arr.forEach((x:any) => {
+          var pieChartItem:any = {
+            name: x[0],
+            y: (x[1].all * 100) / totalProducts
+          }
+          if('$overall' != pieChartItem.name){
+            this.productByCategoryChart.push(pieChartItem); 
+          }
+        })
+    }
+    catch{
+      return;
+    }
 
   }
 
   private async _createSignUpChartData(data:any){
-
+    try{
       const obj = data.series['A. Sign up - Total'];
       const arr = Object.entries(obj);
       arr.forEach((x:any) => {
@@ -125,9 +130,14 @@ export class MetricsComponent implements OnInit {
         this.userChartSignUp.dataValues.push(x);
         this.userChartSignUp.usersTotal += x[1];    
       });  
+    }
+    catch{
+      return;
+    }     
    }
 
    private async _createSignInChartData(data:any){
+    try{
       const obj = data.series['B. Sign in - Total'];
       const arr = Object.entries(obj);
       arr.forEach((x:any) => {
@@ -135,25 +145,39 @@ export class MetricsComponent implements OnInit {
         this.userChartSignIn.dataValues.push(x);
         this.userChartSignIn.usersTotal += x[1];    
       });  
+    }
+    catch{
+      return;
+    }
    }
 
    private async _createCustomerChartData(data:any){
-    const obj = data.series['C. AddCustomer - Total'];
-    const arr = Object.entries(obj);
-    arr.forEach((x:any) => {
-      x[0] = this._date.transform(x[0], 'MM.dd.yyyy');
-      this.customerChart.dataValues.push(x);
-      this.customerChart.customersTotal += x[1];    
-    });  
+    try{
+      const obj = data.series['C. AddCustomer - Total'];
+      const arr = Object.entries(obj);
+      arr.forEach((x:any) => {
+        x[0] = this._date.transform(x[0], 'MM.dd.yyyy');
+        this.customerChart.dataValues.push(x);
+        this.customerChart.customersTotal += x[1];    
+      });  
+    }
+    catch{
+      return;
+    }
   }
 
   private async _createProductChartData(data:any){
-    const obj = data.series['D. AddProduct - Total'];
-    const arr = Object.entries(obj);
-    arr.forEach((x:any) => {
-      x[0] = this._date.transform(x[0], 'MM.dd.yyyy');
-      this.productChart.dataValues.push(x);
-      this.productChart.productsTotal += x[1];    
-    });  
+    try{
+      const obj = data.series['D. AddProduct - Total'];
+      const arr = Object.entries(obj);
+      arr.forEach((x:any) => {
+        x[0] = this._date.transform(x[0], 'MM.dd.yyyy');
+        this.productChart.dataValues.push(x);
+        this.productChart.productsTotal += x[1];    
+      });  
+    }
+    catch{
+      return;
+    }
   }
 }

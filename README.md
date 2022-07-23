@@ -41,6 +41,8 @@ _Added a metric tracking system, using the "mix panel" library exporting and imp
 
 _Injection of environment variables from docker compose to angular for sensitive data._
 
+_User already loaded for testing:  User: admin@admin.com , password: admin_
+
 
 ## Built with 🛠️
 

@@ -18,8 +18,6 @@ export class HeaderComponent implements OnInit {
   constructor(private themeService: ThemeService, private navigate:NavigateService, private overlay: OverlayContainer) { }
 
   ngOnInit(): void {
-    // this.isDarkTheme = this.themeService.isDarkTheme;
-    this.themeService.setTheme("deeppurple-amber");
   }
 
   themeChangeHandler(themeToSet: any) {

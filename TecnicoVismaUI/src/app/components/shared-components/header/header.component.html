@@ -1,20 +1,20 @@
 <mat-toolbar class="primary-toolbar" color="primary">
     <mat-toolbar-row >
-       <button mat-icon-button (click)="toggleSideBar()">
+       <button mat-raised-button (click)="toggleSideBar()">
            <mat-icon>menu</mat-icon>
        </button>
-       <span>Visma Latam</span> 
+       <span style="margin-left: 20px;">Visma Latam</span> 
        <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
            <ul fxLayout="row" fxLayoutGap="20px"> 
                 <li>
-                    <app-theme-menu
+                    <app-theme-menu style="padding: 5px;"
                     [options]="options$ | async"
                     (themeChange)="themeChangeHandler($event)">
                     </app-theme-menu>
-                    <button mat-button [matMenuTriggerFor]="menu">
+                    <button mat-raised-button [matMenuTriggerFor]="menu">
                         <mat-icon>person_outline</mat-icon>
                     </button>
-                    <mat-menu #menu="matMenu">
+                    <mat-menu style="padding: 5px;" #menu="matMenu">
                         <button mat-menu-item (click)="logOut()">
                             <mat-icon>exit_to_app</mat-icon>
                             Sign Out

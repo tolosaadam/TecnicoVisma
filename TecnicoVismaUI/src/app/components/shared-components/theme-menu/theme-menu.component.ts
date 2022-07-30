@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ThemeOptionI } from 'src/app/models/themeOption';
 import { ThemeService } from 'src/app/services/theme/theme.service';
+import { LoadingService } from '../spinner/loading.service';
 
 @Component({
   selector: 'app-theme-menu',
@@ -12,13 +12,28 @@ export class ThemeMenuComponent implements OnInit {
   @Input() options: any;
   @Output() themeChange: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor(private themeService: ThemeService) { }
+  constructor(private loadingService:LoadingService, private themeService: ThemeService) { }
 
   ngOnInit(): void {
+    
+    
   }
 
-  changeTheme(themeToSet: any) {
-    this.themeChange.emit(themeToSet);
+  async changeTheme(themeToSet: any) {
+    
+    this.loadingService.show();
+    await this.timeout(1000).then(()=>{
+      localStorage.setItem('userTheme', themeToSet);
+      this.themeChange.emit(themeToSet);
+    });
+    
+    
+  }
+
+  async timeout(ms:number) {
+    setTimeout(async () => {
+      this.loadingService.hide();
+    }, ms);
   }
 
 }

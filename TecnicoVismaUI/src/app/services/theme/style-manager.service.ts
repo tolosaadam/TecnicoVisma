@@ -42,13 +42,11 @@
    const linkEl = document.createElement("link");
    linkEl.setAttribute("rel", "stylesheet");
 //    linkEl.classList.add(getClassNameForKey(key));
-   console.log(linkEl)
    document.head.appendChild(linkEl);
    return linkEl;
  }
  
  function getClassNameForKey(key: string) {
-    console.log(key)
    return `app-${key}`;
  }
  

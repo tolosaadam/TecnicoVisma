@@ -15,8 +15,8 @@
     }
     a{
         &:hover{
-            background-color: #fff;
-        }
+            filter: brightness(150%);
+          }
     }
 }
 
@@ -25,7 +25,6 @@
     display:inline-block;
     mat-icon,
     span{
-        color: black;
         font-weight: 500;
     }
 }

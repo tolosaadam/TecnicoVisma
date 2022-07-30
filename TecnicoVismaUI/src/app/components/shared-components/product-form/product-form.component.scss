@@ -8,23 +8,6 @@
     
 }
 
-mat-card-header{
-    background: #1976d2;
-    border-radius: 4px;
-    align-items: center;
-    text-align: center;
-    margin-bottom: 20px;
-    display: flex;
-    width: 100%;
-    color: #fff;
-    justify-content: space-between;
-    height: 60px;
-    box-shadow: 0 2px 5px #0000004d;
-
-    mat-card-title{
-        margin-bottom: 0px;
-    }
-}
 
 mat-card-content{
     width: 100%;
@@ -38,6 +21,27 @@ mat-card-content{
    justify-content: center;
 
    .form-content{ 
+
+        .form-toolbar{           
+            margin-bottom: 20px;
+            display: flex;
+            width: 100%;
+            
+            height: 60px;
+            box-shadow: 0 2px 5px #0000004d;
+
+            .form-toolbar-row{
+                align-items: center;
+                text-align: center;
+                justify-content: space-between;
+
+                .close-button{
+                    &:hover{
+                        filter: brightness(90%);
+                      }
+                }
+            }
+        }
 
        display: flex;
        flex-direction: column;
@@ -59,19 +63,16 @@ mat-card-content{
            .submit-button{
             cursor: pointer;
             box-shadow: 0 2px 5px #0000004d;
-            background-color: #1976d2;
-            color: #fff;
             &:hover{
-                background-color: darken(#1976d2,10%);
-            }
+                filter: brightness(90%);
+              }
            }
 
            .cancel-button{
-            color:#1976d2;
             margin: 0px;
             &:hover{
-                background-color: darken(#fff,10%);
-            }
+                filter: brightness(150%);
+              }
            }
 
            button{
@@ -83,10 +84,4 @@ mat-card-content{
    }
 
 
-#close-icon{
-    cursor: pointer;
-    margin-right: 16px;
-}
-.buttons:hover{
-    border-color:#232f3e;
-}
+

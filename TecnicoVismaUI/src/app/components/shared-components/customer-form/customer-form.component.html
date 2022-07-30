@@ -3,10 +3,16 @@
     <div class="content">     
      <form [formGroup]="customerForm" class="form-container">     
        <mat-card class="form-content">
-         <mat-card-header>
-           <mat-card-title>{{data.data.title}}</mat-card-title>
-           <mat-icon id="close-icon" (click)="closeDialog()">close</mat-icon>
-         </mat-card-header>
+
+        <mat-toolbar class="form-toolbar" color="primary">
+          <mat-toolbar-row class="form-toolbar-row">
+            {{data.data.title}}
+            <button class="close-button" mat-raised-button color="warn" (click)="closeDialog()">
+              <mat-icon>close</mat-icon>
+            </button>                     
+          </mat-toolbar-row>
+        </mat-toolbar>
+
          <mat-card-content class="input-content">
            <div class="row">
              <div class="col-md-6">
@@ -83,8 +89,8 @@
            </div>
          </mat-card-content>
          <mat-card-actions class="action-buttons">
-           <button (click)="onSubmit(customerForm.value)" [disabled]="!customerForm.valid"  mat-raised-button class="buttons submit-button">Submit</button>
-           <button (click)="closeDialog()"  mat-raised-button class="buttons cancel-button">Cancel</button>
+           <button (click)="onSubmit(customerForm.value)" [disabled]="!customerForm.valid" color="primary"  mat-raised-button class="buttons submit-button">Submit</button>
+           <button (click)="closeDialog()"  mat-stroked-button class="buttons cancel-button">Cancel</button>
          </mat-card-actions>
        </mat-card>
      </form>

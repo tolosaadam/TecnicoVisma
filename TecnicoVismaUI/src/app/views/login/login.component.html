@@ -1,10 +1,10 @@
-<mat-toolbar>
-    <mat-toolbar-row>
+<mat-toolbar class="primary-nav-bar" color="primary">
+    <mat-toolbar-row color="primary">
     <span>Visma Latam</span>     
     </mat-toolbar-row>
 </mat-toolbar>
-<div class="bottom-nav-bar">
-</div> 
+<mat-toolbar color="primary" class="bottom-nav-bar">
+</mat-toolbar> 
 <div class="container">
     <div class="content">     
     <form [formGroup]="loginForm" class="form-container">     
@@ -36,8 +36,8 @@
         </div>      
         </mat-card-content>
         <mat-card-actions class="action-buttons">
-        <button (click)="onSubmit(loginForm.value)" mat-raised-button class="login-button">Login</button>
-        <button (click)="goToRegistry()" mat-raised-button class="create-button">Create a new account</button>
+        <button (click)="onSubmit(loginForm.value)" mat-raised-button class="login-button" color="primary">Login</button>
+        <button (click)="goToRegistry()" mat-stroked-button class="create-button" color="primary">Create a new account</button>
         </mat-card-actions>
     </mat-card>
     </form>

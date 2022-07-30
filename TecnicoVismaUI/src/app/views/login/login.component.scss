@@ -1,6 +1,4 @@
-mat-toolbar{
-    background-color: #1976d2;
-    color: white;
+.primary-nav-bar{
     box-shadow: 0 3px 5px -1px #0003, 0 6px 10px #00000024, 0 1px 18px #0000001f;
     position: relative;
 }
@@ -11,7 +9,6 @@ ul li {
 
 .bottom-nav-bar{
     height: 50px;
-    background-color: #1976d2;
 
 }
 
@@ -83,19 +80,16 @@ ul li {
                 cursor: pointer;
                 box-shadow: 0 2px 5px #0000004d;
                 margin-bottom: 10px;
-                color: #fff;
-                background-color: #1976d2;
                 &:hover{
-                    background-color: darken(#1976d2, 10%);
-                }
+                    filter: brightness(90%);
+                  }
             }
 
             .create-button{
                 margin: 0px;
-                color: #1976d2;
                 &:hover{
-                    background-color: darken(#fff, 10%);
-                }
+                    filter: brightness(90%);
+                  }
             }
         }
     }

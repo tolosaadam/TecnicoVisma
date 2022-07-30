@@ -1,33 +1,39 @@
 
 <div class="container">
     <div class="content">     
-     <form [formGroup]="productForm" class="form-container">     
+     <form [formGroup]="productForm" class="form-container">   
+
        <mat-card class="form-content">
-         <mat-card-header>
-           <mat-card-title>{{data.data.title}}</mat-card-title>
-           <mat-icon id="close-icon" (click)="closeDialog()">close</mat-icon>
-         </mat-card-header>
+        <mat-toolbar class="form-toolbar" color="primary">
+          <mat-toolbar-row class="form-toolbar-row">
+            {{data.data.title}}
+            <button class="close-button" mat-raised-button color="warn" (click)="closeDialog()">
+              <mat-icon>close</mat-icon>
+            </button>                     
+          </mat-toolbar-row>
+        </mat-toolbar>
+
          <mat-card-content class="input-content">
            <div class="row">
              <div class="col-md-6">
                <mat-form-field appearance="fill" class="full-width">
                  <mat-label>Name</mat-label>
                  <mat-icon matSuffix>badge</mat-icon>
-                 <input type="text" formControlName="name" matInput placeholder="Ingrese el nombre del producto" required>
+                 <input type="text" formControlName="name" matInput placeholder="Enter the product's name" required>
                </mat-form-field>
              </div>
              <div class="col-md-6">
                <mat-form-field appearance="fill" class="full-width">
                  <mat-label>Details</mat-label>
                  <mat-icon matSuffix>list_alt</mat-icon>
-                 <input type="text" formControlName="details" matInput placeholder=" Ingrese los detalles del producto" required>
+                 <input type="text" formControlName="details" matInput placeholder="Enter the product's details" required>
                </mat-form-field>
              </div>
              <div class="col-md-6">
                <mat-form-field appearance="fill" class="full-width">
                  <mat-label>Price</mat-label>
                  <mat-icon matSuffix>payments</mat-icon>
-                 <input  type="number" formControlName="unitPrice" matInput placeholder="Ingrese el precio del producto en pesos" required>
+                 <input  type="number" formControlName="unitPrice" matInput placeholder="Enter the product's unit price" required>
                  <mat-hint> Sin caracteres especiales </mat-hint>
                </mat-form-field>
              </div>           
@@ -35,7 +41,7 @@
                <mat-form-field appearance="fill" class="full-width">
                  <mat-label>Stock</mat-label>
                  <mat-icon matSuffix>inventory_2</mat-icon>               
-                 <input type="number" formControlName="unitsInStock" matInput placeholder="Ingrese el stock del producto" required>
+                 <input type="number" formControlName="unitsInStock" matInput placeholder="Enter the product's stock" required>
                </mat-form-field>
              </div>
              <div class="col-md-6">
@@ -43,7 +49,7 @@
                    <mat-label>Category</mat-label>
                    <mat-icon matSuffix>category</mat-icon>
                    <mat-select formControlName="categoryId">
-                     <mat-option   *ngFor="let category of categories"   [value]="category.id"  placeholder="Ingrese la categoría del producto" required>{{category.name}}</mat-option>
+                     <mat-option   *ngFor="let category of categories"   [value]="category.id"  placeholder="Select the product's category" required>{{category.name}}</mat-option>
                    </mat-select>
                     
                  </mat-form-field>
@@ -51,8 +57,8 @@
            </div>
          </mat-card-content>
          <mat-card-actions class="action-buttons">
-           <button (click)="onSubmit(productForm.value)" [disabled]="!productForm.valid"  mat-raised-button class="buttons submit-button">Submit</button>
-           <button (click)="closeDialog()"  mat-raised-button class="buttons cancel-button">Cancel</button>
+           <button (click)="onSubmit(productForm.value)" [disabled]="!productForm.valid"  mat-raised-button color="primary" class="buttons submit-button">Submit</button>
+           <button (click)="closeDialog()"  mat-stroked-button class="buttons cancel-button">Cancel</button>
          </mat-card-actions>
        </mat-card>
      </form>

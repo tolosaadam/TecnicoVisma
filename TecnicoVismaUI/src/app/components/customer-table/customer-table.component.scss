@@ -17,22 +17,20 @@ table {
     justify-content: space-evenly;
 
     .add-button{
-      color: #fff;
-      background-color: #1976d2;
       &:hover{
-        background-color: darken(#1976d2, 15%);
+        filter: brightness(90%);
       }
     }
 
     .edit-button{
       &:hover{
-        background-color: darken(#ffd740, 15%);
+        filter: brightness(90%);
       }
     }
     
     .delete-button{
       &:hover{
-        background-color: darken(#f44336, 15%);
+        filter: brightness(90%);
       }
     }
 

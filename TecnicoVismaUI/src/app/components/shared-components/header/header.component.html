@@ -1,5 +1,5 @@
-<mat-toolbar>
-    <mat-toolbar-row>
+<mat-toolbar class="primary-toolbar" color="primary">
+    <mat-toolbar-row >
        <button mat-icon-button (click)="toggleSideBar()">
            <mat-icon>menu</mat-icon>
        </button>
@@ -7,6 +7,10 @@
        <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
            <ul fxLayout="row" fxLayoutGap="20px"> 
                 <li>
+                    <app-theme-menu
+                    [options]="options$ | async"
+                    (themeChange)="themeChangeHandler($event)">
+                    </app-theme-menu>
                     <button mat-button [matMenuTriggerFor]="menu">
                         <mat-icon>person_outline</mat-icon>
                     </button>
@@ -21,7 +25,7 @@
        </div>
     </mat-toolbar-row>
 </mat-toolbar>
-<div class="bottom-nav-bar">
+<mat-toolbar class="bottom-nav-bar" color="primary">
     <div class="clock-container">
         <mat-icon class="alarm-icon">alarm</mat-icon>
         <app-digital-clock-timer
@@ -30,4 +34,4 @@
             matTooltipHideDelay="100000"
           ></app-digital-clock-timer>         
     </div>
-</div> 
+</mat-toolbar> 

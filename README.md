@@ -84,6 +84,10 @@ _Showing a video of full functionality_
 [Watch the video](https://youtu.be/uD4dv5lOyro) 🎥🎥🎥🎥🎥🎥
 
 
+## Theming Light, Dark and more more 🎭🎭
+
+[Watch the video](https://youtu.be/FRy-YTaCdyo) 🎥🎥🎥🎥🎥🎥
+
 ## Authors ✒️
 
 * **Adam Ezequiel Tolosa** - *Unique Contributor* - [Adam Tolosa](https://github.com/tolosaadam)

@@ -17,6 +17,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 
 
@@ -45,7 +46,8 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
-    NgxDropzoneModule
+    NgxDropzoneModule,
+    MatSidenavModule
     
   ],
   exports:[

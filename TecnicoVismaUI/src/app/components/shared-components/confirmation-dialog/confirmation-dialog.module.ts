@@ -4,6 +4,7 @@ import { ConfirmationDialogComponent } from './confirmation-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 
 
@@ -15,7 +16,8 @@ import { MatButtonModule } from '@angular/material/button';
     CommonModule,
     MatDialogModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatToolbarModule
   ],
   exports:[
     ConfirmationDialogComponent

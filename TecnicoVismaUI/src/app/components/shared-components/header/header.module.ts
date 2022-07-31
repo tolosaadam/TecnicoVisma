@@ -8,6 +8,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatButtonModule} from '@angular/material/button';
 import { DigitalClockTimerModule } from '../digital-clock-timer/digital-clock-timer.module';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { ThemeMenuModule } from '../theme-menu/theme-menu.module';
 
 
 
@@ -23,7 +24,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     FlexLayoutModule,
     MatButtonModule,
     DigitalClockTimerModule,
-    MatTooltipModule
+    MatTooltipModule,
+    ThemeMenuModule
   ],
   exports:[
     HeaderComponent

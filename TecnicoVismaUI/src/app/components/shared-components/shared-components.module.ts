@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SpinnerModule } from './spinner/spinner.module';
+import { ThemeMenuModule } from './theme-menu/theme-menu.module';
 
 
 
@@ -9,7 +10,8 @@ import { SpinnerModule } from './spinner/spinner.module';
   ],
   imports: [
     CommonModule,
-    SpinnerModule
+    SpinnerModule,
+    ThemeMenuModule
   ],
   exports: [SpinnerModule]
 })

@@ -17,7 +17,7 @@ export class ApiService {
 
   apiUrl:string = "";
 
-  jwtUser:any = localStorage.getItem('userJwt');
+  jwtUser:any = sessionStorage.getItem('userJwt');
 
   constructor(private settingsService:SettingsService, private http:HttpClient) {
     this.apiUrl = this.settingsService.settings.apiURL;

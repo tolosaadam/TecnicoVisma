@@ -13,6 +13,8 @@ import { RegistryModule } from './views/registry/registry.module';
 import {AppHttpInterceptor} from './utils/HttpInterceptor';
 import { SharedComponentsModule } from './components/shared-components/shared-components.module';
 import { SettingsHttpService } from './services/settings/settings-http.service';
+import { StyleManagerService } from './services/theme/style-manager.service';
+import { ThemeService } from './services/theme/theme.service';
 
 
 export function app_Init(settingsHttpService: SettingsHttpService){
@@ -40,14 +42,17 @@ export function app_Init(settingsHttpService: SettingsHttpService){
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: AppHttpInterceptor,
-    multi: true
+    multi: true,
+    
   },
   {
     provide: APP_INITIALIZER,
     useFactory: app_Init,
     deps: [SettingsHttpService],
     multi:true
-  }],
+  },
+  StyleManagerService, 
+  ThemeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

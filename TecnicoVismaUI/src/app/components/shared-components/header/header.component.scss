@@ -1,11 +1,6 @@
-mat-toolbar {
-    background-color: #1976d2;
-    color: white;
+.primary-toolbar{
     box-shadow: 0 3px 5px -1px #0003, 0 6px 10px #00000024, 0 1px 18px #0000001f;
     position: relative;
-
-    
-
 }
 
 ul li {
@@ -14,14 +9,12 @@ ul li {
 
 .bottom-nav-bar{
     height: 50px;
-    background-color: #1976d2;
     align-items: center;
     text-align: center;
     display: flex;
     justify-content: space-around;
 
     .clock-container{
-        background-color: #fff;
         display: flex;
         flex-direction: row;
         border-radius: 8px;

@@ -16,6 +16,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 
 
@@ -40,7 +41,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatSelectModule,
     MatTooltipModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatToolbarModule
   ],
   exports:[
     CustomersOperationsComponent

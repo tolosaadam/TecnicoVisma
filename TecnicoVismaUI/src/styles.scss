@@ -1,4 +1,6 @@
-@import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import "~@angular/material/theming";
+@include mat-core();
+
 html,body { height: 100%; overflow: hidden; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; overflow: auto; }
 
@@ -14,10 +16,56 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; overflow: a
     padding: 0px;
 }
 
-.mat-progress-spinner circle, .mat-spinner circle {
-    stroke: #e81212!important;
-}
-
 .mat-horizontal-stepper-header{
     pointer-events: none !important;
 }
+
+/* Auto fill input style*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus
+input:-webkit-autofill, 
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    border:none !important;
+    -webkit-text-fill-color: inherit !important;
+    -webkit-box-shadow: 0 0 0px 1000px #f8f4f400 inset;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+
+// THEMING
+// .dark-theme {
+//     $dark-primary: mat-palette($mat-yellow);
+//     $dark-accent: mat-palette($mat-amber, A400, A100, A700);
+//     $dark-warn: mat-palette($mat-red);
+//     $dark-theme: mat-dark-theme((
+//     color: (
+//         primary: $dark-primary,
+//         accent: $dark-accent,
+//         warn: $dark-warn
+//     )
+    
+//     ));
+//     @include angular-material-theme($dark-theme)
+// }
+
+// .light-theme {
+//     $light-primary: mat-palette($mat-indigo);
+//     $light-accent: mat-palette($mat-pink, A200, A100, A400);
+//     $light-warn: mat-palette($mat-red);
+//     $light-theme: mat-light-theme((
+//     color: (
+//         primary: $light-primary,
+//         accent: $light-accent,
+//         warn: $light-warn
+//     )
+//     ));
+//     @include angular-material-theme($light-theme)
+// }
+
+

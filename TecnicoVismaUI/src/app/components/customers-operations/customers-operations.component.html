@@ -1,10 +1,13 @@
 <div class="container">
     <div class="content">
         <mat-card class="form-content">
-            <mat-card-header>
-                <mat-card-title>Add a operation</mat-card-title>
-            </mat-card-header>
+            <mat-toolbar class="form-toolbar" color="primary">
+                <mat-toolbar-row class="form-toolbar-row">
+                    Add a operation                   
+                </mat-toolbar-row>
+            </mat-toolbar>
             <mat-card-content>
+            
 
                 <mat-stepper
                 #stepper
@@ -29,7 +32,7 @@
                                     </mat-select>
                                 </mat-form-field>
                                 <div  fxLayout="row" class="add-delete-button">
-                                    <button fxFlex="40"  class="add-button" mat-raised-button (click)="addOrderDetails()"
+                                    <button fxFlex="40"  class="add-button" mat-raised-button color="primary" (click)="addOrderDetails()"
                                         matTooltip="Add a product"
                                         matTooltipPosition="right"
                                         matTooltipHideDelay="5">
@@ -74,7 +77,7 @@
                                                 <span matPrefix>$&nbsp;</span>
                                             </mat-form-field>
                                             <div class="discount-total-container" fxFlex="8">
-                                                <button    class="delete-button" mat-raised-button (click)="deleteOrderDetails(i)"
+                                                <button    class="delete-button" mat-raised-button color="warn" (click)="deleteOrderDetails(i)"
                                                 matTooltip="Delete product"
                                                 matTooltipPosition="right"
                                                 matTooltipHideDelay="5">                                               
@@ -98,7 +101,7 @@
                                     Clear
                                 </button>
                                 <div class="next-back-button">
-                                        <button class="next-button" mat-raised-button (click)="goForward(orderForm.value,stepper)">
+                                        <button class="next-button" mat-raised-button color="primary" (click)="goForward(orderForm.value,stepper)">
                                         Next
                                         <mat-icon>arrow_forward</mat-icon>
                                     </button>
@@ -163,11 +166,11 @@
                                     Clear
                                 </button>
                                 <div class="next-back-button">
-                                    <button class="back-button" mat-raised-button matStepperPrevious>
+                                    <button class="back-button" mat-raised-button color="primary" matStepperPrevious>
                                         <mat-icon>arrow_back</mat-icon>
                                         Back
                                     </button>
-                                        <button class="next-button" mat-raised-button (click)="onSubmit()" matStepperPrevious>
+                                        <button class="next-button" mat-raised-button color="primary" (click)="onSubmit()" matStepperPrevious>
                                         Submit
                                         <mat-icon>done</mat-icon>
                                     </button>

@@ -19,25 +19,19 @@
         margin-top: 10px;
         box-shadow: 0 2px 5px #0000004d;
 
-        mat-card-header{
-            background: #1976d2;
+        .form-toolbar{
+            display: flex;
             border-radius: 4px;
             align-items: center;
             text-align: center;
             margin-bottom: 20px;
             display: flex;
+            flex-direction: row-reverse;
             width: 100%;
-            color: #fff;
             justify-content: space-between;
             height: 60px;
             box-shadow: 0 2px 5px #0000004d;
         
-            mat-card-title{
-                margin-bottom: 0px;
-                text-align: center;
-                align-items: center;
-
-            }
             .social-media-icons{
                 display: flex;
                 flex-direction: row;
@@ -46,9 +40,10 @@
                 .mat-button{
                     border-radius: 10px;
                     cursor: pointer;
-                    padding: 9px;
+                    margin: 5px;
+                    padding: 5px;
                     &:hover{
-                        background: darken(#1976d2, 10%);
+                        filter:brightness(90%)
                     }
 
                 }
@@ -116,11 +111,9 @@
             padding: 0px;
 
             .send-button{
-                background-color: #1976d2;
                 margin: 0px;
-                color: #fff;
                 &:hover{
-                    background-color: darken(#1976d2, 10%);
+                    filter:brightness(90%);
                 }
             }
         }
@@ -134,7 +127,7 @@ mat-card{
 
 
 
-@media screen and (max-width: 1000px){
+@media screen and (max-width: 1224px){
     .content{
         width: 100% !important;
     }

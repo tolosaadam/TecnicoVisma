@@ -1,3 +1,4 @@
+<mat-drawer-container style="height: 94.9%">
 <mat-toolbar class="primary-nav-bar" color="primary">
     <mat-toolbar-row>
     <span>Visma Latam</span>     
@@ -8,9 +9,11 @@
 <div class="container">
     <div class="content">  
         <mat-card class="form-content">
-        <mat-card-header>
-        <mat-card-title>Sign up</mat-card-title>
-        </mat-card-header>
+        <mat-toolbar class="form-toolbar" color="primary">
+            <mat-toolbar-row class="form-toolbar-row">
+                Sign up                
+            </mat-toolbar-row>
+        </mat-toolbar>
         <mat-card-content class="input-content">
         <mat-stepper
         #stepper
@@ -48,7 +51,7 @@
                     <mat-icon>restart_alt</mat-icon>
                     Reset
                 </button>
-                <button class="next-button" mat-raised-button matStepperNext>
+                <button class="next-button" color="primary" mat-raised-button matStepperNext>
                     Next
                     <mat-icon>arrow_forward</mat-icon>
                 </button>
@@ -80,11 +83,11 @@
                     Reset
                 </button>
                 <div class="next-back-button">
-                    <button class="back-button" mat-raised-button matStepperPrevious>
+                    <button class="back-button" color="primary" mat-raised-button matStepperPrevious>
                         <mat-icon>arrow_back</mat-icon>
                         Back
                     </button>
-                    <button class="next-button" mat-raised-button matStepperNext>
+                    <button class="next-button" color="primary" mat-raised-button matStepperNext>
                         Next
                         <mat-icon>arrow_forward</mat-icon>
                     </button>
@@ -124,11 +127,11 @@
                     Reset
                 </button>
                 <div class="next-back-button">
-                    <button class="back-button" mat-raised-button matStepperPrevious>
+                    <button class="back-button" color="primary" mat-raised-button matStepperPrevious>
                         <mat-icon>arrow_back</mat-icon>
                         Back
                     </button>
-                    <button class="next-button" mat-raised-button matStepperNext>
+                    <button class="next-button" color="primary" mat-raised-button matStepperNext>
                         Next
                         <mat-icon>arrow_forward</mat-icon>
                     </button>
@@ -194,11 +197,11 @@
                     Reset
                 </button>
                 <div class="next-back-button">
-                    <button class="back-button" mat-raised-button matStepperPrevious>
+                    <button class="back-button" color="primary" mat-raised-button matStepperPrevious>
                         <mat-icon>arrow_back</mat-icon>
                         Back
                     </button>
-                    <button (click)="onSubmit(personalDataFormGroup.value,localizationDataFormGroup.value,loginFormGroup.value)" class="submit-button" mat-raised-button mat-raised-button matStepperNext>
+                    <button (click)="onSubmit(personalDataFormGroup.value,localizationDataFormGroup.value,loginFormGroup.value)" class="submit-button" mat-raised-button color="primary" matStepperNext>
                         Submit
                         <mat-icon>check</mat-icon>
                     </button>
@@ -212,8 +215,9 @@
         </div>      
         </mat-card-content>
         <mat-card-actions class="action-buttons">
-        <button (click)="goToLogin()" mat-raised-button class="login-button">Log in</button>
+        <button (click)="goToLogin()" mat-raised-button color="primary" class="login-button">Log in</button>
         </mat-card-actions>
     </mat-card>
     </div>
 </div>
+</mat-drawer-container>

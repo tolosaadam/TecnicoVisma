@@ -3,10 +3,6 @@
     margin-bottom: 20px;
     align-items: center;
     justify-content: space-between;
-
-    mat-icon {
-        cursor: pointer;
-    }
 }
 
 .action-buttons{
@@ -21,17 +17,14 @@
     }
 
     .no-button{
-        color:#1976d2;
         &:hover{
-            background-color: darken(#fff, 15%);
+            filter:brightness(90%);
         }
     }
 
     .yes-button{
-        color: white;
-        background-color: #1976d2;
         &:hover{
-            background-color: darken(#1976d2, 15%);
+            filter:brightness(90%);
         }
 
     }

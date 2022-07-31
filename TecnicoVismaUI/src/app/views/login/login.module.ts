@@ -11,6 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 
 
@@ -30,7 +31,9 @@ import { MatDividerModule } from '@angular/material/divider';
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatDividerModule
+    MatDividerModule,
+    MatSidenavModule
+
   ],
   exports:[
     LoginComponent

@@ -29,15 +29,13 @@ ul li {
         margin-top: 50px;
         box-shadow: 0 2px 5px #0000004d;
 
-        mat-card-header{
-            background: #1976d2;
+        .form-toolbar{
             border-radius: 4px;
             align-items: center;
             text-align: center;
             margin-bottom: 20px;
             display: flex;
             width: 100%;
-            color: #fff;
             justify-content: space-between;
             height: 60px;
             box-shadow: 0 2px 5px #0000004d;
@@ -95,5 +93,6 @@ ul li {
     }
     
 }
+
 
 

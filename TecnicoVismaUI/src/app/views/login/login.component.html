@@ -1,3 +1,4 @@
+<mat-drawer-container style="height: 94.9%">
 <mat-toolbar class="primary-nav-bar" color="primary">
     <mat-toolbar-row color="primary">
     <span>Visma Latam</span>     
@@ -9,9 +10,11 @@
     <div class="content">     
     <form [formGroup]="loginForm" class="form-container">     
     <mat-card class="form-content">
-        <mat-card-header>
-        <mat-card-title>Log in</mat-card-title>
-        </mat-card-header>
+        <mat-toolbar class="form-toolbar" color="primary">
+            <mat-toolbar-row class="form-toolbar-row">
+                Log in                 
+            </mat-toolbar-row>
+        </mat-toolbar>
         <mat-card-content class="input-content">
         <div class="row">
             <div class="col-md-6">
@@ -37,11 +40,12 @@
         </mat-card-content>
         <mat-card-actions class="action-buttons">
         <button (click)="onSubmit(loginForm.value)" mat-raised-button class="login-button" color="primary">Login</button>
-        <button (click)="goToRegistry()" mat-stroked-button class="create-button" color="primary">Create a new account</button>
+        <button (click)="goToRegistry()" mat-stroked-button class="create-button">Create a new account</button>
         </mat-card-actions>
     </mat-card>
     </form>
 
 </div>
 </div>
+</mat-drawer-container>
 
